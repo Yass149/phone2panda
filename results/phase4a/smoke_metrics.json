@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "seed": 7,
+  "steps": 25,
+  "action_dim": 7,
+  "max_abs_action": 0.04928567247210015,
+  "final_reward": 0.0,
+  "done": true
+}

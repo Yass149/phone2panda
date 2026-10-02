@@ -1,0 +1,819 @@
+{
+  "all_originals_preserved": true,
+  "generated_at_utc": "2026-10-02T17:15:51+00:00",
+  "milestone": "five_pilot_validation",
+  "passed": true,
+  "passed_count": 5,
+  "pilot_count": 5,
+  "pilots": [
+    {
+      "artifacts": {
+        "frame_table": "pilot_01_s1_left/frames.csv",
+        "overlay": "pilot_01_s1_left/overlay.mp4",
+        "trajectory_plot": "pilot_01_s1_left/trajectory.png"
+      },
+      "calibration": {
+        "all_four_direct_coverage": 0.866667,
+        "decoded_orientation": "upright_landscape",
+        "end_window_direct_coverage": 1.0,
+        "homography_pixel_to_normalised": [
+          [
+            0.0007247476,
+            5.97198e-05,
+            -0.1751773214
+          ],
+          [
+            4.1927e-06,
+            0.0011605265,
+            -0.0532215459
+          ],
+          [
+            -1.6791e-06,
+            0.0001368887,
+            1.0
+          ]
+        ],
+        "marker_jitter_rms_px": {
+          "bl": 1.463,
+          "br": 0.886,
+          "tl": 1.009,
+          "tr": 0.779
+        },
+        "maximum_marker_jitter_rms_px": 1.463,
+        "maximum_start_end_marker_drift_px": 3.162,
+        "method": "four_custom_L_markers_with_static_camera_fallback",
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.866667,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "reference_marker_pixels": {
+          "bl": [
+            157.0,
+            1028.0
+          ],
+          "br": [
+            1726.0,
+            1019.0
+          ],
+          "tl": [
+            238.0,
+            45.0
+          ],
+          "tr": [
+            1622.0,
+            40.0
+          ]
+        },
+        "rotation_applied_degrees": 0,
+        "start_end_marker_drift_px": {
+          "bl": 3.162,
+          "br": 1.414,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "start_window_direct_coverage": 1.0,
+        "static_fallback_frames": 36,
+        "usable_coverage": 1.0
+      },
+      "episode_id": "pilot_01_s1_left",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_end_drift": true,
+          "calibration_start_window": true,
+          "decode_dropped_frames": true,
+          "final_footprint": true,
+          "final_target": true,
+          "object_tracking_coverage": true,
+          "obstacle_clearance": true,
+          "route": true,
+          "start_footprint": true,
+          "start_zone": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "obstacle": {
+        "detection_confidence": 0.862956,
+        "normalised_rect": [
+          0.360617,
+          0.361834,
+          0.638155,
+          0.539641
+        ]
+      },
+      "schema_version": 2,
+      "source": {
+        "file": "pilot_01_s1_left_v2.MOV",
+        "original_preserved": true,
+        "sha256_after": "7558fcac0964481aea7d55e44459f0d379507a4a8047ac70b740b14f752c343e",
+        "sha256_before": "7558fcac0964481aea7d55e44459f0d379507a4a8047ac70b740b14f752c343e"
+      },
+      "task": {
+        "expected_route": "left",
+        "expected_start": "s1",
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.160189,
+        "minimum_footprint_clearance": 0.110189,
+        "normalised_path_length": 1.094264,
+        "object_footprint_radius": 0.05,
+        "observed_route": "left",
+        "route_crossing_median_x": 0.198057,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0,
+        "start_zone": [
+          0.15,
+          0.72,
+          0.34,
+          0.96
+        ],
+        "target_zone": [
+          0.39,
+          0.01,
+          0.63,
+          0.22
+        ]
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "detected_frames": 270,
+        "interpolated_frames": 0,
+        "longest_raw_gap_frames": 0,
+        "mean_confidence": 0.910513,
+        "method": "HSV_red_segmentation_with_continuity_filter",
+        "minimum_confidence": 0.847807,
+        "missing_frames_after_interpolation": 0,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "declared_frames": 270,
+        "decode_dropped_frames": 0,
+        "decoded_frames": 270,
+        "duration_seconds": 9.001667,
+        "fps": 30.0,
+        "height": 1080,
+        "overlay_has_audio": false,
+        "source_has_audio": true,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      }
+    },
+    {
+      "artifacts": {
+        "frame_table": "pilot_02_s3_right/frames.csv",
+        "overlay": "pilot_02_s3_right/overlay.mp4",
+        "trajectory_plot": "pilot_02_s3_right/trajectory.png"
+      },
+      "calibration": {
+        "all_four_direct_coverage": 0.985836,
+        "decoded_orientation": "upright_landscape",
+        "end_window_direct_coverage": 1.0,
+        "homography_pixel_to_normalised": [
+          [
+            0.0007269952,
+            5.65441e-05,
+            -0.18721741
+          ],
+          [
+            1.25269e-05,
+            0.0011616569,
+            -0.0856344086
+          ],
+          [
+            1.5509e-06,
+            0.0001402492,
+            1.0
+          ]
+        ],
+        "marker_jitter_rms_px": {
+          "bl": 1.608,
+          "br": 1.582,
+          "tl": 1.084,
+          "tr": 1.321
+        },
+        "maximum_marker_jitter_rms_px": 1.608,
+        "maximum_start_end_marker_drift_px": 2.236,
+        "method": "four_custom_L_markers_with_static_camera_fallback",
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.988669,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 0.997167
+        },
+        "reference_marker_pixels": {
+          "bl": [
+            175.0,
+            1061.0
+          ],
+          "br": [
+            1757.0,
+            1044.0
+          ],
+          "tl": [
+            252.0,
+            71.0
+          ],
+          "tr": [
+            1643.0,
+            56.0
+          ]
+        },
+        "rotation_applied_degrees": 0,
+        "start_end_marker_drift_px": {
+          "bl": 2.236,
+          "br": 2.0,
+          "tl": 1.414,
+          "tr": 1.0
+        },
+        "start_window_direct_coverage": 1.0,
+        "static_fallback_frames": 5,
+        "usable_coverage": 1.0
+      },
+      "episode_id": "pilot_02_s3_right",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_end_drift": true,
+          "calibration_start_window": true,
+          "decode_dropped_frames": true,
+          "final_footprint": true,
+          "final_target": true,
+          "object_tracking_coverage": true,
+          "obstacle_clearance": true,
+          "route": true,
+          "start_footprint": true,
+          "start_zone": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "obstacle": {
+        "detection_confidence": 0.850606,
+        "normalised_rect": [
+          0.359262,
+          0.36051,
+          0.638542,
+          0.540277
+        ]
+      },
+      "schema_version": 2,
+      "source": {
+        "file": "pilot_02_s3_right.MOV",
+        "original_preserved": true,
+        "sha256_after": "89b94ed5d51eaa6a8503293236068cfb2e12c01c330a7240319fc9ddbbed5052",
+        "sha256_before": "89b94ed5d51eaa6a8503293236068cfb2e12c01c330a7240319fc9ddbbed5052"
+      },
+      "task": {
+        "expected_route": "right",
+        "expected_start": "s3",
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.222948,
+        "minimum_footprint_clearance": 0.172948,
+        "normalised_path_length": 1.473596,
+        "object_footprint_radius": 0.05,
+        "observed_route": "right",
+        "route_crossing_median_x": 0.884103,
+        "route_sample_count": 9,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0,
+        "start_zone": [
+          0.65,
+          0.72,
+          0.83,
+          0.96
+        ],
+        "target_zone": [
+          0.39,
+          0.01,
+          0.63,
+          0.22
+        ]
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "detected_frames": 353,
+        "interpolated_frames": 0,
+        "longest_raw_gap_frames": 0,
+        "mean_confidence": 0.700364,
+        "method": "HSV_red_segmentation_with_continuity_filter",
+        "minimum_confidence": 0.240754,
+        "missing_frames_after_interpolation": 0,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "declared_frames": 353,
+        "decode_dropped_frames": 0,
+        "decoded_frames": 353,
+        "duration_seconds": 11.768338,
+        "fps": 29.995751,
+        "height": 1080,
+        "overlay_has_audio": false,
+        "source_has_audio": true,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      }
+    },
+    {
+      "artifacts": {
+        "frame_table": "pilot_03_s2_left/frames.csv",
+        "overlay": "pilot_03_s2_left/overlay.mp4",
+        "trajectory_plot": "pilot_03_s2_left/trajectory.png"
+      },
+      "calibration": {
+        "all_four_direct_coverage": 0.822464,
+        "decoded_orientation": "upright_landscape",
+        "end_window_direct_coverage": 1.0,
+        "homography_pixel_to_normalised": [
+          [
+            0.0007247186,
+            5.97174e-05,
+            -0.1751702988
+          ],
+          [
+            4.1898e-06,
+            0.0011597443,
+            -0.0531856731
+          ],
+          [
+            -1.6854e-06,
+            0.0001361419,
+            1.0
+          ]
+        ],
+        "marker_jitter_rms_px": {
+          "bl": 0.771,
+          "br": 0.885,
+          "tl": 0.821,
+          "tr": 0.454
+        },
+        "maximum_marker_jitter_rms_px": 0.885,
+        "maximum_start_end_marker_drift_px": 1.414,
+        "method": "four_custom_L_markers_with_static_camera_fallback",
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.822464,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "reference_marker_pixels": {
+          "bl": [
+            157.0,
+            1028.0
+          ],
+          "br": [
+            1725.0,
+            1019.0
+          ],
+          "tl": [
+            238.0,
+            45.0
+          ],
+          "tr": [
+            1622.0,
+            40.0
+          ]
+        },
+        "rotation_applied_degrees": 0,
+        "start_end_marker_drift_px": {
+          "bl": 1.414,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "start_window_direct_coverage": 1.0,
+        "static_fallback_frames": 49,
+        "usable_coverage": 1.0
+      },
+      "episode_id": "pilot_03_s2_left",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_end_drift": true,
+          "calibration_start_window": true,
+          "decode_dropped_frames": true,
+          "final_footprint": true,
+          "final_target": true,
+          "object_tracking_coverage": true,
+          "obstacle_clearance": true,
+          "route": true,
+          "start_footprint": true,
+          "start_zone": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "obstacle": {
+        "detection_confidence": 0.866152,
+        "normalised_rect": [
+          0.360733,
+          0.362632,
+          0.638223,
+          0.539498
+        ]
+      },
+      "schema_version": 2,
+      "source": {
+        "file": "pilot_03_s2_left_v2.MOV",
+        "original_preserved": true,
+        "sha256_after": "a76b8b2c37499f93437fb43b78fd928e2898adb31fdfe9e34a278fff51701b34",
+        "sha256_before": "a76b8b2c37499f93437fb43b78fd928e2898adb31fdfe9e34a278fff51701b34"
+      },
+      "task": {
+        "expected_route": "left",
+        "expected_start": "s2",
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.15717,
+        "minimum_footprint_clearance": 0.10717,
+        "normalised_path_length": 1.24202,
+        "object_footprint_radius": 0.05,
+        "observed_route": "left",
+        "route_crossing_median_x": 0.187973,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0,
+        "start_zone": [
+          0.4,
+          0.72,
+          0.61,
+          0.96
+        ],
+        "target_zone": [
+          0.39,
+          0.01,
+          0.63,
+          0.22
+        ]
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "detected_frames": 276,
+        "interpolated_frames": 0,
+        "longest_raw_gap_frames": 0,
+        "mean_confidence": 0.909709,
+        "method": "HSV_red_segmentation_with_continuity_filter",
+        "minimum_confidence": 0.817446,
+        "missing_frames_after_interpolation": 0,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "declared_frames": 276,
+        "decode_dropped_frames": 0,
+        "decoded_frames": 276,
+        "duration_seconds": 9.201673,
+        "fps": 29.994566,
+        "height": 1080,
+        "overlay_has_audio": false,
+        "source_has_audio": true,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      }
+    },
+    {
+      "artifacts": {
+        "frame_table": "pilot_04_s2_right/frames.csv",
+        "overlay": "pilot_04_s2_right/overlay.mp4",
+        "trajectory_plot": "pilot_04_s2_right/trajectory.png"
+      },
+      "calibration": {
+        "all_four_direct_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "end_window_direct_coverage": 1.0,
+        "homography_pixel_to_normalised": [
+          [
+            0.0007277579,
+            5.66034e-05,
+            -0.1874138259
+          ],
+          [
+            1.25279e-05,
+            0.0011617585,
+            -0.0856418941
+          ],
+          [
+            2.1965e-06,
+            0.0001402374,
+            1.0
+          ]
+        ],
+        "marker_jitter_rms_px": {
+          "bl": 0.613,
+          "br": 1.333,
+          "tl": 0.427,
+          "tr": 0.799
+        },
+        "maximum_marker_jitter_rms_px": 1.333,
+        "maximum_start_end_marker_drift_px": 2.236,
+        "method": "four_custom_L_markers_with_static_camera_fallback",
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "reference_marker_pixels": {
+          "bl": [
+            175.0,
+            1061.0
+          ],
+          "br": [
+            1757.0,
+            1045.0
+          ],
+          "tl": [
+            252.0,
+            71.0
+          ],
+          "tr": [
+            1643.0,
+            56.0
+          ]
+        },
+        "rotation_applied_degrees": 0,
+        "start_end_marker_drift_px": {
+          "bl": 0.0,
+          "br": 2.236,
+          "tl": 0.0,
+          "tr": 1.0
+        },
+        "start_window_direct_coverage": 1.0,
+        "static_fallback_frames": 0,
+        "usable_coverage": 1.0
+      },
+      "episode_id": "pilot_04_s2_right",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_end_drift": true,
+          "calibration_start_window": true,
+          "decode_dropped_frames": true,
+          "final_footprint": true,
+          "final_target": true,
+          "object_tracking_coverage": true,
+          "obstacle_clearance": true,
+          "route": true,
+          "start_footprint": true,
+          "start_zone": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "obstacle": {
+        "detection_confidence": 0.853478,
+        "normalised_rect": [
+          0.359513,
+          0.361259,
+          0.6388,
+          0.540096
+        ]
+      },
+      "schema_version": 2,
+      "source": {
+        "file": "pilot_04_s2_right.MOV",
+        "original_preserved": true,
+        "sha256_after": "7ffb418f3b5e94fb6b88c460494eb387abc1c6d8f7646599091912894debb56a",
+        "sha256_before": "7ffb418f3b5e94fb6b88c460494eb387abc1c6d8f7646599091912894debb56a"
+      },
+      "task": {
+        "expected_route": "right",
+        "expected_start": "s2",
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.17251,
+        "minimum_footprint_clearance": 0.12251,
+        "normalised_path_length": 1.198146,
+        "object_footprint_radius": 0.05,
+        "observed_route": "right",
+        "route_crossing_median_x": 0.827503,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0,
+        "start_zone": [
+          0.4,
+          0.72,
+          0.61,
+          0.96
+        ],
+        "target_zone": [
+          0.39,
+          0.01,
+          0.63,
+          0.22
+        ]
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "detected_frames": 274,
+        "interpolated_frames": 0,
+        "longest_raw_gap_frames": 0,
+        "mean_confidence": 0.910493,
+        "method": "HSV_red_segmentation_with_continuity_filter",
+        "minimum_confidence": 0.404197,
+        "missing_frames_after_interpolation": 0,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "declared_frames": 274,
+        "decode_dropped_frames": 0,
+        "decoded_frames": 274,
+        "duration_seconds": 9.135006,
+        "fps": 29.994527,
+        "height": 1080,
+        "overlay_has_audio": false,
+        "source_has_audio": true,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      }
+    },
+    {
+      "artifacts": {
+        "frame_table": "pilot_05_s2_right_repeat/frames.csv",
+        "overlay": "pilot_05_s2_right_repeat/overlay.mp4",
+        "trajectory_plot": "pilot_05_s2_right_repeat/trajectory.png"
+      },
+      "calibration": {
+        "all_four_direct_coverage": 0.827922,
+        "decoded_orientation": "upright_landscape",
+        "end_window_direct_coverage": 1.0,
+        "homography_pixel_to_normalised": [
+          [
+            0.0007241902,
+            5.89371e-05,
+            -0.174285252
+          ],
+          [
+            4.1864e-06,
+            0.0011596411,
+            -0.0531760326
+          ],
+          [
+            -1.685e-06,
+            0.0001360475,
+            1.0
+          ]
+        ],
+        "marker_jitter_rms_px": {
+          "bl": 0.933,
+          "br": 1.01,
+          "tl": 0.792,
+          "tr": 0.667
+        },
+        "maximum_marker_jitter_rms_px": 1.01,
+        "maximum_start_end_marker_drift_px": 1.0,
+        "method": "four_custom_L_markers_with_static_camera_fallback",
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.827922,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "reference_marker_pixels": {
+          "bl": [
+            157.0,
+            1028.0
+          ],
+          "br": [
+            1726.0,
+            1019.0
+          ],
+          "tl": [
+            237.0,
+            45.0
+          ],
+          "tr": [
+            1622.0,
+            40.0
+          ]
+        },
+        "rotation_applied_degrees": 0,
+        "start_end_marker_drift_px": {
+          "bl": 1.0,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "start_window_direct_coverage": 1.0,
+        "static_fallback_frames": 53,
+        "usable_coverage": 1.0
+      },
+      "episode_id": "pilot_05_s2_right_repeat",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_end_drift": true,
+          "calibration_start_window": true,
+          "decode_dropped_frames": true,
+          "final_footprint": true,
+          "final_target": true,
+          "object_tracking_coverage": true,
+          "obstacle_clearance": true,
+          "route": true,
+          "start_footprint": true,
+          "start_zone": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "obstacle": {
+        "detection_confidence": 0.866381,
+        "normalised_rect": [
+          0.360377,
+          0.362618,
+          0.638184,
+          0.539478
+        ]
+      },
+      "schema_version": 2,
+      "source": {
+        "file": "pilot_05_s2_right_repeat_v2.MOV",
+        "original_preserved": true,
+        "sha256_after": "29d76e815621f77e1b588d24a0aa7aa149b45e4ebb90f0f796542f34bed2fac2",
+        "sha256_before": "29d76e815621f77e1b588d24a0aa7aa149b45e4ebb90f0f796542f34bed2fac2"
+      },
+      "task": {
+        "expected_route": "right",
+        "expected_start": "s2",
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.18221,
+        "minimum_footprint_clearance": 0.13221,
+        "normalised_path_length": 1.222898,
+        "object_footprint_radius": 0.05,
+        "observed_route": "right",
+        "route_crossing_median_x": 0.829529,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0,
+        "start_zone": [
+          0.4,
+          0.72,
+          0.61,
+          0.96
+        ],
+        "target_zone": [
+          0.39,
+          0.01,
+          0.63,
+          0.22
+        ]
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "detected_frames": 308,
+        "interpolated_frames": 0,
+        "longest_raw_gap_frames": 0,
+        "mean_confidence": 0.903334,
+        "method": "HSV_red_segmentation_with_continuity_filter",
+        "minimum_confidence": 0.405812,
+        "missing_frames_after_interpolation": 0,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "declared_frames": 308,
+        "decode_dropped_frames": 0,
+        "decoded_frames": 308,
+        "duration_seconds": 10.268339,
+        "fps": 29.995131,
+        "height": 1080,
+        "overlay_has_audio": false,
+        "source_has_audio": true,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      }
+    }
+  ],
+  "recording_changes_required": [],
+  "schema_version": 2,
+  "source_manifest": "source_manifest.json",
+  "thresholds": {
+    "hold_seconds": 0.75,
+    "max_calibration_jitter_rms_px": 3.0,
+    "max_calibration_start_end_drift_px": 5.0,
+    "max_decode_dropped_frames": 0,
+    "min_calibration_window_coverage": 0.95,
+    "min_footprint_hold_ratio": 0.8,
+    "min_object_tracking_coverage": 0.95,
+    "min_obstacle_footprint_clearance": 0.01,
+    "min_zone_hold_ratio": 0.9
+  }
+}

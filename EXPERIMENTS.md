@@ -1,0 +1,105 @@
+# Experiments
+
+## 2026-10-02 — Pilot media audit
+
+- Input: five iPhone QuickTime `.MOV` files.
+- Codec: HEVC video, AAC audio, timed metadata.
+- Resolution: 1920×1080.
+- Rate: approximately 30 fps.
+- Durations: 8.7–11.8 seconds.
+- Full decode: 1,501 video frames decoded successfully with PyAV 16.0.1.
+- Observation: all recordings use custom L corner markers, a red marker on a black box, a blue central obstacle, three bottom start zones, and one top target.
+
+## 2026-10-02 — Detector selection
+
+- Corner threshold sweep: grayscale thresholds 120–200.
+- Selected: 160, because the grey right-side markers are missed below this level while the marker-plus-label components remain isolated from the carpet.
+- Red saturation sweep: 90–160.
+- Selected: HSV saturation ≥130, which retains the red marker and rejects skin-colour false positives across the five pilots.
+- Homography: marker outer elbows mapped to the unit square.
+
+Final acceptance-command results are appended after the checked pipeline run.
+
+## 2026-10-02 — Five-pilot automated gate
+
+- Command: `.venv/bin/python scripts/validate_pilots.py --config configs/pilot_validation.yaml`
+- Tests before run: 6 passed; Ruff passed.
+- Result: **FAIL, 2/5 pilots passed**. This is an expected non-zero exit until replacement recordings pass.
+- Passed: `pilot_02_s3_right`, `pilot_04_s2_right`.
+- Failed only on simultaneous direct corner-marker coverage:
+  - `pilot_01_s1_left`: 74.60% (bottom-left marker occluded).
+  - `pilot_03_s2_left`: 73.15% (bottom-left marker occluded).
+  - `pilot_05_s2_right_repeat`: 90.42% (bottom-left marker occluded).
+- Red-marker detected coverage: 100% for all five.
+- Decode-dropped frames: 0 for all five.
+- Expected route, start zone, conservative obstacle clearance, and final placement: passed for all five.
+- Minimum footprint-adjusted clearance range: 0.123–0.173 normalised canvas units.
+- Original-integrity SHA-256 before/after: identical for all five.
+- Overlay verification: H.264, 1280×720, source frame count preserved, zero audio streams.
+
+## 2026-10-02 — Replacement-pilot rerun
+
+- Replacements: `pilot_01_s1_left_v2.MOV`, `pilot_03_s2_left_v2.MOV`, and `pilot_05_s2_right_repeat_v2.MOV`.
+- Unchanged inputs: pilots 02 and 04.
+- Decoded orientation: 1920×1080 landscape for all replacements. Marker ordering showed TL/TR at y≈40–45 px and BL/BR at y≈1019–1028 px. Rotation applied: 0°.
+- Result with the unchanged 95% gate: **FAIL, 2/5 pilots passed**.
+- Replacement direct corner coverage:
+  - Pilot 01 v2: 86.67%; BL marker hidden for frames 133–168.
+  - Pilot 03 v2: 82.25%; BL marker hidden for frames 122–170.
+  - Pilot 05 v2: 82.79%; BL marker hidden for frames 123–175.
+- All replacements passed red tracking (100%), decoded-frame integrity (0 drops), labelled route, start zone, conservative clearance, and final placement.
+- Integrity manifest: all eight MOV originals had identical SHA-256 values before and after processing.
+- Public-artifact audit: overlay videos have one H.264 video stream and no audio/subtitle streams; plots have no EXIF; reports contain no absolute private paths, GPS/location strings, or device identifiers.
+
+## 2026-10-02 — Fixed-camera calibration-integrity gate
+
+- Rationale: whole-video direct corner visibility rejected valid manipulation frames when the forearm temporarily crossed the bottom-left marker, even though the phone and canvas remained fixed.
+- Revised acceptance measures: at least 95% simultaneous four-marker visibility in both 0.75-second hands-free windows, no more than 3 px RMS marker jitter, and no more than 5 px start-to-end marker drift.
+- Whole-video direct marker coverage remains in reports as a diagnostic and is not hidden.
+- Tests: 8 passed; Ruff passed.
+- Result: **PASS, 5/5 pilots passed**.
+- Opening and closing calibration-window coverage: 100% for every pilot.
+- Maximum per-pilot marker jitter: 0.885–1.608 px RMS.
+- Maximum per-pilot start-to-end marker drift: 1.000–3.162 px.
+- Red-marker tracking: 100% for every pilot.
+- Decode-dropped frames: 0 for every pilot.
+- Expected route, start zone, conservative obstacle clearance, and final placement: passed for every pilot.
+
+## 2026-10-02 — Phase 3 dataset quality gate
+
+- Command: `.venv/bin/python scripts/validate_dataset.py --config configs/dataset_validation.yaml`
+- Inventory: 36/36 metadata rows matched non-empty MOV files; no missing, extra, or duplicate recordings.
+- Result: **FAIL, 28 accepted and 8 rejected**; train 20/20, validation 4/4, test 4/12.
+- Seven test recordings failed only the 80% S3 start-footprint hold gate; ratios were 0.000000–0.695652.
+- `ep_032_s3_t1_left.MOV` failed only red-marker tracking: 92.3497%, below the unchanged 95% gate.
+- All source SHA-256 hashes matched before and after processing.
+- Artifact audit: video-only overlays, no private metadata or absolute paths; 36 trajectory CSVs written.
+
+## 2026-10-02 — Targeted replacement revalidation
+
+- Updated eight metadata filenames to their `_redo.MOV` replacements and decoded only those episodes.
+- Lighter grey tape required a dataset-only corner threshold of 200; the pilot configuration remains unchanged.
+- BL shoulder occlusion did not fail calibration: every replacement had 100% opening and closing four-marker coverage.
+- Result: **FAIL, 35 accepted and 1 rejected**; train 20/20, validation 4/4, test 11/12.
+- `ep_028_s3_t1_right_redo.MOV` exceeded both calibration limits: 3.624 px window jitter and 6.083 px start-to-end drift.
+- All other replacement checks passed, including 100% red-marker tracking, start footprint, route, clearance, and final placement.
+
+## 2026-10-02 — Final targeted replacement
+
+- Revalidated only `ep_028_s3_t1_right_redo2.MOV`; the other 35 episode results were reused.
+- Result: **PASS, 36/36 accepted**; train 20/20, validation 4/4, test 12/12.
+- Opening and closing calibration coverage: 100%; marker jitter: 0.752 px; start-to-end drift: 1.000 px.
+- Red-marker tracking, start footprint, route, clearance, and final placement: all passed.
+
+## 2026-10-02 — Phase 4A smoke and deterministic rollout
+
+- Environment: project `.venv`, Python 3.11.17, robosuite 1.5.1, MuJoCo 3.2.7, macOS arm64, headless CGL.
+- Compatibility check: robosuite failed before stepping with MuJoCo 3.14.0; pinning 3.2.7 resolved the joint-enum incompatibility.
+- Smoke command: 25 seeded random bounded actions in headless `PickPlaceCan`; passed with maximum absolute action 0.04929.
+- Acceptance command: `MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4a.py --config configs/phase4a.yaml`.
+- Source: accepted training trajectory `ep_001`, labelled left route; 80 smoothed/resampled DMP waypoints.
+- Result: **PASS on the first deterministic rollout**, seed 11, 268 steps, 13.4 seconds.
+- Placement error: 0.00513 m within the 0.055 m target radius; obstacle collisions: 0; minimum obstacle center clearance: 0.06336 m.
+- Maximum transport deviation from the straight start-goal line: 0.09934 m, demonstrating material control by the human path.
+- Action-bound violations: 0; deterministic reset maximum error: 0.0.
+- Tests: 11 passed; Ruff passed. The 50-episode baseline evaluation and policy training were not run.

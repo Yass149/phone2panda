@@ -1,0 +1,40 @@
+schema_version: 1
+seed: 11
+episode_id: ep_001
+trajectory_csv: data/processed/v1/trajectories/ep_001.csv
+dataset_report: results/dataset_quality/quality_report.json
+output_dir: results/phase4a
+
+trajectory:
+  policy_hz: 20
+  transport_samples: 80
+  savgol_window: 21
+  savgol_order: 3
+  dmp_basis_functions: 40
+
+workspace:
+  robot_x_range: [0.00, 0.25]
+  robot_y_range: [-0.225, 0.225]
+  table_z: 0.80
+  grasp_z: 0.835
+  transport_z: 0.955
+  approach_z: 0.955
+  target_radius: 0.055
+  obstacle_height: 0.09
+
+controller:
+  control_frequency: 20
+  position_output_limit: 0.05
+  position_tolerance: 0.008
+  waypoint_steps: 2
+  phase_timeout_steps: 80
+  grasp_steps: 18
+  release_steps: 18
+  settle_steps: 12
+
+video:
+  camera: agentview
+  width: 320
+  height: 240
+  fps: 20
+  crf: 25

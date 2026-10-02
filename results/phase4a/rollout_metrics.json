@@ -1,0 +1,78 @@
+{
+  "accepted": true,
+  "action_bound_violations": 0,
+  "artifacts": {
+    "config": "../../configs/phase4a.yaml",
+    "rollout": "rollout.npz",
+    "video": "phase4a_rollout.mp4"
+  },
+  "controller": "OSC_POSE_fixed_impedance",
+  "controller_saturation_steps": 35,
+  "deterministic_reset_max_error": 0.0,
+  "duration_seconds": 13.4,
+  "generated_at_unix": 1790973719,
+  "human_path_materially_controls_transport": true,
+  "maximum_absolute_action": 1.0,
+  "maximum_transport_deviation_from_straight_m": 0.099342706848363,
+  "minimum_obstacle_center_clearance_m": 0.06335535501151937,
+  "obstacle_collision_steps": 0,
+  "phases": [
+    {
+      "final_position_error": 0.007985826300611135,
+      "name": "approach",
+      "steps": 17
+    },
+    {
+      "final_position_error": 0.007444301159003579,
+      "name": "grasp",
+      "steps": 11
+    },
+    {
+      "final_position_error": 0.0,
+      "name": "close",
+      "steps": 18
+    },
+    {
+      "final_position_error": 0.006461487795350635,
+      "name": "lift",
+      "steps": 12
+    },
+    {
+      "name": "transport_human_dmp",
+      "steps": 160,
+      "waypoints": 80
+    },
+    {
+      "final_position_error": 0.007350007753689941,
+      "name": "lower",
+      "steps": 10
+    },
+    {
+      "final_position_error": 0.0,
+      "name": "release",
+      "steps": 18
+    },
+    {
+      "final_position_error": 0.007304444706879532,
+      "name": "retreat",
+      "steps": 10
+    },
+    {
+      "final_position_error": 0.0,
+      "name": "settle",
+      "steps": 12
+    }
+  ],
+  "placement_error_m": 0.0051314381431895135,
+  "schema_version": 1,
+  "seed": 11,
+  "source_episode": "ep_001",
+  "source_route": "left",
+  "steps": 268,
+  "target_radius_m": 0.055,
+  "versions": {
+    "mujoco": "3.2.7",
+    "python": "3.11.17",
+    "robosuite": "1.5.1"
+  }
+}

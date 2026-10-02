@@ -1,0 +1,71 @@
+{
+  "all_originals_preserved": true,
+  "recording_count": 8,
+  "recordings": [
+    {
+      "file": "pilot_01_s1_left.MOV",
+      "original_preserved": true,
+      "selected_for_validation": false,
+      "sha256_after": "9feab6277effa58fa9195f9a89ea696b3a067658d8643c1bbaa1d0926e637867",
+      "sha256_before": "9feab6277effa58fa9195f9a89ea696b3a067658d8643c1bbaa1d0926e637867",
+      "size_bytes": 11724144
+    },
+    {
+      "file": "pilot_01_s1_left_v2.MOV",
+      "original_preserved": true,
+      "selected_for_validation": true,
+      "sha256_after": "7558fcac0964481aea7d55e44459f0d379507a4a8047ac70b740b14f752c343e",
+      "sha256_before": "7558fcac0964481aea7d55e44459f0d379507a4a8047ac70b740b14f752c343e",
+      "size_bytes": 9070891
+    },
+    {
+      "file": "pilot_02_s3_right.MOV",
+      "original_preserved": true,
+      "selected_for_validation": true,
+      "sha256_after": "89b94ed5d51eaa6a8503293236068cfb2e12c01c330a7240319fc9ddbbed5052",
+      "sha256_before": "89b94ed5d51eaa6a8503293236068cfb2e12c01c330a7240319fc9ddbbed5052",
+      "size_bytes": 13957423
+    },
+    {
+      "file": "pilot_03_s2_left.MOV",
+      "original_preserved": true,
+      "selected_for_validation": false,
+      "sha256_after": "8127a3bf0d679547f9fc14ba796a93bf7612f816ec137e9ecb32ae3f9e1a873c",
+      "sha256_before": "8127a3bf0d679547f9fc14ba796a93bf7612f816ec137e9ecb32ae3f9e1a873c",
+      "size_bytes": 11118483
+    },
+    {
+      "file": "pilot_03_s2_left_v2.MOV",
+      "original_preserved": true,
+      "selected_for_validation": true,
+      "sha256_after": "a76b8b2c37499f93437fb43b78fd928e2898adb31fdfe9e34a278fff51701b34",
+      "sha256_before": "a76b8b2c37499f93437fb43b78fd928e2898adb31fdfe9e34a278fff51701b34",
+      "size_bytes": 9111509
+    },
+    {
+      "file": "pilot_04_s2_right.MOV",
+      "original_preserved": true,
+      "selected_for_validation": true,
+      "sha256_after": "7ffb418f3b5e94fb6b88c460494eb387abc1c6d8f7646599091912894debb56a",
+      "sha256_before": "7ffb418f3b5e94fb6b88c460494eb387abc1c6d8f7646599091912894debb56a",
+      "size_bytes": 10078119
+    },
+    {
+      "file": "pilot_05_s2_right_repeat.MOV",
+      "original_preserved": true,
+      "selected_for_validation": false,
+      "sha256_after": "3ac988cecfeafcf025252f8029a2e25749d478cefe5a185cdeeaf8c05ed033b9",
+      "sha256_before": "3ac988cecfeafcf025252f8029a2e25749d478cefe5a185cdeeaf8c05ed033b9",
+      "size_bytes": 9565049
+    },
+    {
+      "file": "pilot_05_s2_right_repeat_v2.MOV",
+      "original_preserved": true,
+      "selected_for_validation": true,
+      "sha256_after": "29d76e815621f77e1b588d24a0aa7aa149b45e4ebb90f0f796542f34bed2fac2",
+      "sha256_before": "29d76e815621f77e1b588d24a0aa7aa149b45e4ebb90f0f796542f34bed2fac2",
+      "size_bytes": 10236262
+    }
+  ],
+  "schema_version": 2
+}

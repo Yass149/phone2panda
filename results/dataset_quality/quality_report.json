@@ -1,0 +1,4645 @@
+{
+  "accepted_count": 36,
+  "all_raw_recordings_preserved": true,
+  "dataset_gate_passed": true,
+  "episodes": [
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.873134,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1074.0
+          ],
+          "br": [
+            1747.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1627.0,
+            38.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.537,
+          "br": 0.835,
+          "tl": 0.777,
+          "tr": 0.763
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 1.537,
+        "opening_markers": {
+          "bl": [
+            129.0,
+            1074.0
+          ],
+          "br": [
+            1748.0,
+            1048.0
+          ],
+          "tl": [
+            208.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.873134,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_001",
+      "expected_route": "left",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_001.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.152839,
+        "minimum_footprint_clearance": 0.102839,
+        "normalised_path_length": 1.075627,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.8422,
+        "obstacle_rect": [
+          0.359585,
+          0.360927,
+          0.637373,
+          0.538682
+        ],
+        "route_crossing_median_x": 0.184799,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.91021,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 268,
+        "duration_seconds": 8.933333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_001_s1_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 1.0,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1748.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 0.0,
+          "br": 0.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.565,
+          "br": 0.489,
+          "tl": 0.692,
+          "tr": 0.727
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.727,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1748.0,
+            1048.0
+          ],
+          "tl": [
+            208.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_002",
+      "expected_route": "right",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_002.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.140181,
+        "minimum_footprint_clearance": 0.090181,
+        "normalised_path_length": 1.107813,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.84567,
+        "obstacle_rect": [
+          0.359619,
+          0.361236,
+          0.637133,
+          0.538212
+        ],
+        "route_crossing_median_x": 0.794591,
+        "route_sample_count": 8,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.88131,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 276,
+        "duration_seconds": 9.201673,
+        "fps": 29.994566,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_002_s2_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.803922,
+        "closing_markers": {
+          "bl": [
+            190.0,
+            1030.0
+          ],
+          "br": [
+            1761.0,
+            1002.0
+          ],
+          "tl": [
+            274.0,
+            86.0
+          ],
+          "tr": [
+            1621.0,
+            70.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.414,
+          "tr": 2.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.684,
+          "br": 1.678,
+          "tl": 0.746,
+          "tr": 1.465
+        },
+        "maximum_camera_drift_px": 2.0,
+        "maximum_marker_jitter_rms_px": 1.678,
+        "opening_markers": {
+          "bl": [
+            189.0,
+            1030.0
+          ],
+          "br": [
+            1760.0,
+            1002.0
+          ],
+          "tl": [
+            273.0,
+            85.0
+          ],
+          "tr": [
+            1621.0,
+            72.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.803922,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_003",
+      "expected_route": "left",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_003.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.147811,
+        "minimum_footprint_clearance": 0.097811,
+        "normalised_path_length": 1.508345,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.885215,
+        "obstacle_rect": [
+          0.355229,
+          0.349415,
+          0.631495,
+          0.530726
+        ],
+        "route_crossing_median_x": 0.17555,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.919031,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 255,
+        "duration_seconds": 8.5,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_003_s3_t1_left_redo.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.996047,
+        "closing_markers": {
+          "bl": [
+            132.0,
+            1075.0
+          ],
+          "br": [
+            1748.0,
+            1048.0
+          ],
+          "tl": [
+            208.0,
+            67.0
+          ],
+          "tr": [
+            1627.0,
+            38.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 2.236,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.32,
+          "br": 0.576,
+          "tl": 0.956,
+          "tr": 0.677
+        },
+        "maximum_camera_drift_px": 2.236,
+        "maximum_marker_jitter_rms_px": 1.32,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1074.0
+          ],
+          "br": [
+            1748.0,
+            1048.0
+          ],
+          "tl": [
+            208.0,
+            67.0
+          ],
+          "tr": [
+            1627.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.996047,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_004",
+      "expected_route": "right",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_004.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.120949,
+        "minimum_footprint_clearance": 0.070949,
+        "normalised_path_length": 1.350467,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.838414,
+        "obstacle_rect": [
+          0.359844,
+          0.361311,
+          0.637491,
+          0.539201
+        ],
+        "route_crossing_median_x": 0.781245,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.884,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 253,
+        "duration_seconds": 8.433333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_004_s1_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.842697,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1748.0,
+            1048.0
+          ],
+          "tl": [
+            208.0,
+            67.0
+          ],
+          "tr": [
+            1627.0,
+            39.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.361,
+          "br": 1.413,
+          "tl": 1.387,
+          "tr": 1.503
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 1.503,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1748.0,
+            1047.0
+          ],
+          "tl": [
+            208.0,
+            67.0
+          ],
+          "tr": [
+            1627.0,
+            39.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.842697,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_005",
+      "expected_route": "left",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_005.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.130964,
+        "minimum_footprint_clearance": 0.080964,
+        "normalised_path_length": 1.175246,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.843518,
+        "obstacle_rect": [
+          0.359585,
+          0.361332,
+          0.637304,
+          0.538595
+        ],
+        "route_crossing_median_x": 0.21762,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.933908,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 267,
+        "duration_seconds": 8.901673,
+        "fps": 29.994383,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_005_s2_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.935252,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1749.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 0.0,
+          "br": 1.0,
+          "tl": 0.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.734,
+          "br": 0.888,
+          "tl": 0.859,
+          "tr": 0.912
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.912,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1748.0,
+            1048.0
+          ],
+          "tl": [
+            208.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            39.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.935252,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_006",
+      "expected_route": "right",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_006.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.177874,
+        "minimum_footprint_clearance": 0.127874,
+        "normalised_path_length": 1.657331,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.84202,
+        "obstacle_rect": [
+          0.35941,
+          0.361065,
+          0.6369,
+          0.538068
+        ],
+        "route_crossing_median_x": 0.835256,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 0.826087
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.667131,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 278,
+        "duration_seconds": 9.268339,
+        "fps": 29.994605,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_006_s3_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 1.0,
+        "closing_markers": {
+          "bl": [
+            132.0,
+            1075.0
+          ],
+          "br": [
+            1748.0,
+            1048.0
+          ],
+          "tl": [
+            208.0,
+            66.0
+          ],
+          "tr": [
+            1627.0,
+            38.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 0.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.784,
+          "br": 0.71,
+          "tl": 0.84,
+          "tr": 0.625
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.84,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1749.0,
+            1048.0
+          ],
+          "tl": [
+            208.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_007",
+      "expected_route": "right",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_007.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.145544,
+        "minimum_footprint_clearance": 0.095544,
+        "normalised_path_length": 1.503451,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.841359,
+        "obstacle_rect": [
+          0.359147,
+          0.361425,
+          0.636609,
+          0.538354
+        ],
+        "route_crossing_median_x": 0.787724,
+        "route_sample_count": 5,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.70107,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 210,
+        "duration_seconds": 7.0,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_007_s3_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.864734,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1749.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 2.0,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.226,
+          "br": 0.641,
+          "tl": 0.645,
+          "tr": 0.461
+        },
+        "maximum_camera_drift_px": 2.0,
+        "maximum_marker_jitter_rms_px": 1.226,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1075.0
+          ],
+          "br": [
+            1749.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.864734,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_008",
+      "expected_route": "left",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_008.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.15974,
+        "minimum_footprint_clearance": 0.10974,
+        "normalised_path_length": 1.025217,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.837536,
+        "obstacle_rect": [
+          0.359787,
+          0.360818,
+          0.637123,
+          0.538485
+        ],
+        "route_crossing_median_x": 0.173264,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.906177,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 207,
+        "duration_seconds": 6.9,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_008_s1_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 1.0,
+        "closing_markers": {
+          "bl": [
+            132.0,
+            1075.0
+          ],
+          "br": [
+            1749.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 0.0,
+          "tl": 1.414,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.875,
+          "br": 0.759,
+          "tl": 0.807,
+          "tr": 0.546
+        },
+        "maximum_camera_drift_px": 1.414,
+        "maximum_marker_jitter_rms_px": 0.875,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1749.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_009",
+      "expected_route": "right",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_009.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.146305,
+        "minimum_footprint_clearance": 0.096305,
+        "normalised_path_length": 1.215403,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.842371,
+        "obstacle_rect": [
+          0.360184,
+          0.361491,
+          0.636914,
+          0.538362
+        ],
+        "route_crossing_median_x": 0.829869,
+        "route_sample_count": 9,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 0.996032,
+        "interpolated_frames": 1,
+        "mean_confidence": 0.888839,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 252,
+        "duration_seconds": 8.4,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_009_s2_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.769874,
+        "closing_markers": {
+          "bl": [
+            190.0,
+            1030.0
+          ],
+          "br": [
+            1762.0,
+            1002.0
+          ],
+          "tl": [
+            275.0,
+            86.0
+          ],
+          "tr": [
+            1622.0,
+            71.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 4.123,
+          "br": 3.162,
+          "tl": 3.606,
+          "tr": 2.236
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 2.387,
+          "br": 2.588,
+          "tl": 2.554,
+          "tr": 2.126
+        },
+        "maximum_camera_drift_px": 4.123,
+        "maximum_marker_jitter_rms_px": 2.588,
+        "opening_markers": {
+          "bl": [
+            196.0,
+            1032.0
+          ],
+          "br": [
+            1767.0,
+            1001.0
+          ],
+          "tl": [
+            280.0,
+            90.0
+          ],
+          "tr": [
+            1625.0,
+            73.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.769874,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_010",
+      "expected_route": "left",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_010.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.123026,
+        "minimum_footprint_clearance": 0.073026,
+        "normalised_path_length": 1.536402,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.866057,
+        "obstacle_rect": [
+          0.350566,
+          0.34692,
+          0.628301,
+          0.532979
+        ],
+        "route_crossing_median_x": 0.151668,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.923229,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 239,
+        "duration_seconds": 7.966667,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_010_s3_t1_left_redo.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.978166,
+        "closing_markers": {
+          "bl": [
+            132.0,
+            1076.0
+          ],
+          "br": [
+            1750.0,
+            1047.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 2.236,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.214,
+          "br": 0.982,
+          "tl": 0.864,
+          "tr": 0.512
+        },
+        "maximum_camera_drift_px": 2.236,
+        "maximum_marker_jitter_rms_px": 1.214,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1075.0
+          ],
+          "br": [
+            1749.0,
+            1047.0
+          ],
+          "tl": [
+            207.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.978166,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_011",
+      "expected_route": "right",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_011.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.138692,
+        "minimum_footprint_clearance": 0.088692,
+        "normalised_path_length": 1.307333,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.837386,
+        "obstacle_rect": [
+          0.359317,
+          0.361298,
+          0.636688,
+          0.538589
+        ],
+        "route_crossing_median_x": 0.810225,
+        "route_sample_count": 9,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.874641,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 229,
+        "duration_seconds": 7.633333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_011_s1_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.865741,
+        "closing_markers": {
+          "bl": [
+            132.0,
+            1076.0
+          ],
+          "br": [
+            1749.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.739,
+          "br": 0.71,
+          "tl": 0.649,
+          "tr": 0.627
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.739,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1076.0
+          ],
+          "br": [
+            1749.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.865741,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_012",
+      "expected_route": "left",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_012.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.103354,
+        "minimum_footprint_clearance": 0.053354,
+        "normalised_path_length": 1.107368,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.837211,
+        "obstacle_rect": [
+          0.359615,
+          0.360918,
+          0.637065,
+          0.538241
+        ],
+        "route_crossing_median_x": 0.240044,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.905898,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 216,
+        "duration_seconds": 7.2,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_012_s2_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.878505,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1076.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.711,
+          "br": 0.611,
+          "tl": 0.459,
+          "tr": 0.538
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.711,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1075.0
+          ],
+          "br": [
+            1749.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.878505,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_013",
+      "expected_route": "left",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_013.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.163368,
+        "minimum_footprint_clearance": 0.113368,
+        "normalised_path_length": 1.200175,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.839214,
+        "obstacle_rect": [
+          0.359509,
+          0.361116,
+          0.636912,
+          0.53839
+        ],
+        "route_crossing_median_x": 0.184436,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.905213,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 214,
+        "duration_seconds": 7.133333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_013_s2_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.800866,
+        "closing_markers": {
+          "bl": [
+            189.0,
+            1031.0
+          ],
+          "br": [
+            1760.0,
+            1002.0
+          ],
+          "tl": [
+            272.0,
+            86.0
+          ],
+          "tr": [
+            1619.0,
+            70.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 2.236,
+          "tl": 2.236,
+          "tr": 2.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 2.159,
+          "br": 1.484,
+          "tl": 2.614,
+          "tr": 1.859
+        },
+        "maximum_camera_drift_px": 2.236,
+        "maximum_marker_jitter_rms_px": 2.614,
+        "opening_markers": {
+          "bl": [
+            191.0,
+            1031.0
+          ],
+          "br": [
+            1761.0,
+            1001.0
+          ],
+          "tl": [
+            274.0,
+            87.0
+          ],
+          "tr": [
+            1620.0,
+            72.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.800866,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_014",
+      "expected_route": "right",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_014.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.225176,
+        "minimum_footprint_clearance": 0.175176,
+        "normalised_path_length": 1.11633,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.86229,
+        "obstacle_rect": [
+          0.353372,
+          0.347932,
+          0.630885,
+          0.533877
+        ],
+        "route_crossing_median_x": 0.870102,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.936694,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 231,
+        "duration_seconds": 7.7,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_014_s3_t1_right_redo.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.940426,
+        "closing_markers": {
+          "bl": [
+            132.0,
+            1076.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 2.236,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.617,
+          "br": 0.253,
+          "tl": 0.777,
+          "tr": 0.38
+        },
+        "maximum_camera_drift_px": 2.236,
+        "maximum_marker_jitter_rms_px": 1.617,
+        "opening_markers": {
+          "bl": [
+            129.0,
+            1075.0
+          ],
+          "br": [
+            1750.0,
+            1047.0
+          ],
+          "tl": [
+            207.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.940426,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_015",
+      "expected_route": "left",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_015.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.126434,
+        "minimum_footprint_clearance": 0.076434,
+        "normalised_path_length": 0.979883,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.839305,
+        "obstacle_rect": [
+          0.359745,
+          0.360853,
+          0.637163,
+          0.538121
+        ],
+        "route_crossing_median_x": 0.216027,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.91281,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 235,
+        "duration_seconds": 7.833333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_015_s1_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 1.0,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1076.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 0.0,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.896,
+          "br": 0.517,
+          "tl": 0.667,
+          "tr": 0.613
+        },
+        "maximum_camera_drift_px": 0.0,
+        "maximum_marker_jitter_rms_px": 0.896,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1076.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            66.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_016",
+      "expected_route": "right",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_016.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.160476,
+        "minimum_footprint_clearance": 0.110476,
+        "normalised_path_length": 1.20928,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.834472,
+        "obstacle_rect": [
+          0.359672,
+          0.360939,
+          0.63717,
+          0.539112
+        ],
+        "route_crossing_median_x": 0.842671,
+        "route_sample_count": 8,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.875086,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 202,
+        "duration_seconds": 6.733333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_016_s2_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.822727,
+        "closing_markers": {
+          "bl": [
+            132.0,
+            1077.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.414,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.867,
+          "br": 0.56,
+          "tl": 0.876,
+          "tr": 0.595
+        },
+        "maximum_camera_drift_px": 1.414,
+        "maximum_marker_jitter_rms_px": 0.876,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1077.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.822727,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_017",
+      "expected_route": "left",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_017.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.133704,
+        "minimum_footprint_clearance": 0.083704,
+        "normalised_path_length": 1.759755,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.838368,
+        "obstacle_rect": [
+          0.359509,
+          0.361248,
+          0.637018,
+          0.538614
+        ],
+        "route_crossing_median_x": 0.210303,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 0.990909,
+        "interpolated_frames": 2,
+        "mean_confidence": 0.642737,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 220,
+        "duration_seconds": 7.333333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_017_s3_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 1.0,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1077.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 2.236,
+          "br": 0.0,
+          "tl": 1.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.242,
+          "br": 0.718,
+          "tl": 0.693,
+          "tr": 0.715
+        },
+        "maximum_camera_drift_px": 2.236,
+        "maximum_marker_jitter_rms_px": 1.242,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1076.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_018",
+      "expected_route": "right",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_018.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.136443,
+        "minimum_footprint_clearance": 0.086443,
+        "normalised_path_length": 1.375864,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.833346,
+        "obstacle_rect": [
+          0.359947,
+          0.360868,
+          0.637161,
+          0.538681
+        ],
+        "route_crossing_median_x": 0.806432,
+        "route_sample_count": 9,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.886119,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 223,
+        "duration_seconds": 7.433333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_018_s1_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 1.0,
+        "closing_markers": {
+          "bl": [
+            132.0,
+            1077.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 2.0,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.002,
+          "br": 0.731,
+          "tl": 0.771,
+          "tr": 0.563
+        },
+        "maximum_camera_drift_px": 2.0,
+        "maximum_marker_jitter_rms_px": 1.002,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1076.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_019",
+      "expected_route": "right",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_019.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.154308,
+        "minimum_footprint_clearance": 0.104308,
+        "normalised_path_length": 1.289974,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.8329,
+        "obstacle_rect": [
+          0.359703,
+          0.36064,
+          0.637081,
+          0.53856
+        ],
+        "route_crossing_median_x": 0.811255,
+        "route_sample_count": 9,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.899683,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 202,
+        "duration_seconds": 6.733333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_019_s1_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.785366,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1077.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 0.0,
+          "tl": 1.414,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.635,
+          "br": 0.736,
+          "tl": 0.847,
+          "tr": 0.726
+        },
+        "maximum_camera_drift_px": 1.414,
+        "maximum_marker_jitter_rms_px": 0.847,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1076.0
+          ],
+          "br": [
+            1750.0,
+            1047.0
+          ],
+          "tl": [
+            207.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.785366,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_020",
+      "expected_route": "left",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_020.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.160406,
+        "minimum_footprint_clearance": 0.110406,
+        "normalised_path_length": 1.230134,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.835507,
+        "obstacle_rect": [
+          0.359733,
+          0.360537,
+          0.637277,
+          0.538522
+        ],
+        "route_crossing_median_x": 0.162245,
+        "route_sample_count": 8,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.90712,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 205,
+        "duration_seconds": 6.833333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_020_s2_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.791045,
+        "closing_markers": {
+          "bl": [
+            192.0,
+            1027.0
+          ],
+          "br": [
+            1764.0,
+            1003.0
+          ],
+          "tl": [
+            278.0,
+            83.0
+          ],
+          "tr": [
+            1626.0,
+            71.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 3.606,
+          "br": 2.236,
+          "tl": 3.162,
+          "tr": 1.414
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 2.075,
+          "br": 2.064,
+          "tl": 2.377,
+          "tr": 2.075
+        },
+        "maximum_camera_drift_px": 3.606,
+        "maximum_marker_jitter_rms_px": 2.377,
+        "opening_markers": {
+          "bl": [
+            198.0,
+            1029.0
+          ],
+          "br": [
+            1767.0,
+            1000.0
+          ],
+          "tl": [
+            281.0,
+            88.0
+          ],
+          "tr": [
+            1625.0,
+            72.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.791045,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_021",
+      "expected_route": "right",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_021.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.252955,
+        "minimum_footprint_clearance": 0.202955,
+        "normalised_path_length": 1.089017,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.882542,
+        "obstacle_rect": [
+          0.352861,
+          0.346678,
+          0.630459,
+          0.530328
+        ],
+        "route_crossing_median_x": 0.905616,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.939853,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 201,
+        "duration_seconds": 6.7,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_021_s3_t1_right_redo.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.994975,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1077.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.935,
+          "br": 0.821,
+          "tl": 0.673,
+          "tr": 0.572
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.935,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1076.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.994975,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_022",
+      "expected_route": "left",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_022.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.140603,
+        "minimum_footprint_clearance": 0.090603,
+        "normalised_path_length": 1.00064,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.836267,
+        "obstacle_rect": [
+          0.360973,
+          0.36066,
+          0.637081,
+          0.538464
+        ],
+        "route_crossing_median_x": 0.211187,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.917738,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 199,
+        "duration_seconds": 6.633333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_022_s1_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 1.0,
+        "closing_markers": {
+          "bl": [
+            132.0,
+            1077.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            207.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.414,
+          "br": 0.0,
+          "tl": 1.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.516,
+          "br": 1.531,
+          "tl": 1.21,
+          "tr": 1.44
+        },
+        "maximum_camera_drift_px": 1.414,
+        "maximum_marker_jitter_rms_px": 1.531,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1077.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_023",
+      "expected_route": "right",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_023.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.198619,
+        "minimum_footprint_clearance": 0.148619,
+        "normalised_path_length": 1.28872,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.838199,
+        "obstacle_rect": [
+          0.359601,
+          0.361518,
+          0.636962,
+          0.538728
+        ],
+        "route_crossing_median_x": 0.871049,
+        "route_sample_count": 8,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.877631,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 207,
+        "duration_seconds": 6.9,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_023_s2_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.887805,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1078.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.414,
+          "br": 1.0,
+          "tl": 0.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.752,
+          "br": 0.709,
+          "tl": 0.572,
+          "tr": 0.695
+        },
+        "maximum_camera_drift_px": 1.414,
+        "maximum_marker_jitter_rms_px": 0.752,
+        "opening_markers": {
+          "bl": [
+            132.0,
+            1078.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            67.0
+          ],
+          "tr": [
+            1628.0,
+            38.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.887805,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_024",
+      "expected_route": "left",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_024.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.129797,
+        "minimum_footprint_clearance": 0.079797,
+        "normalised_path_length": 1.753579,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.838206,
+        "obstacle_rect": [
+          0.359379,
+          0.361377,
+          0.636719,
+          0.53839
+        ],
+        "route_crossing_median_x": 0.191137,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.707104,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 205,
+        "duration_seconds": 6.833333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_024_s3_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.73057,
+        "closing_markers": {
+          "bl": [
+            193.0,
+            1027.0
+          ],
+          "br": [
+            1764.0,
+            1003.0
+          ],
+          "tl": [
+            278.0,
+            84.0
+          ],
+          "tr": [
+            1625.0,
+            70.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 0.0,
+          "br": 1.0,
+          "tl": 0.0,
+          "tr": 2.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.982,
+          "br": 1.618,
+          "tl": 1.331,
+          "tr": 1.562
+        },
+        "maximum_camera_drift_px": 2.0,
+        "maximum_marker_jitter_rms_px": 1.618,
+        "opening_markers": {
+          "bl": [
+            193.0,
+            1027.0
+          ],
+          "br": [
+            1764.0,
+            1002.0
+          ],
+          "tl": [
+            278.0,
+            84.0
+          ],
+          "tr": [
+            1625.0,
+            72.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.73057,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_025",
+      "expected_route": "left",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_025.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.188477,
+        "minimum_footprint_clearance": 0.138477,
+        "normalised_path_length": 1.613403,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.884527,
+        "obstacle_rect": [
+          0.355389,
+          0.349259,
+          0.631957,
+          0.530734
+        ],
+        "route_crossing_median_x": 0.113974,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.894355,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 193,
+        "duration_seconds": 6.433333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_025_s3_t1_left_redo.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.986486,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1078.0
+          ],
+          "br": [
+            1750.0,
+            1048.0
+          ],
+          "tl": [
+            206.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.414,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.203,
+          "br": 0.63,
+          "tl": 0.783,
+          "tr": 0.852
+        },
+        "maximum_camera_drift_px": 1.414,
+        "maximum_marker_jitter_rms_px": 1.203,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1077.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.986486,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_026",
+      "expected_route": "right",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_026.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.129441,
+        "minimum_footprint_clearance": 0.079441,
+        "normalised_path_length": 1.311444,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.837464,
+        "obstacle_rect": [
+          0.359822,
+          0.361065,
+          0.636984,
+          0.538261
+        ],
+        "route_crossing_median_x": 0.812126,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.913143,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 222,
+        "duration_seconds": 7.4,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_026_s1_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.870466,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            36.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.594,
+          "br": 0.72,
+          "tl": 0.534,
+          "tr": 0.623
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 1.594,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            36.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.870466,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_027",
+      "expected_route": "left",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_027.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.153724,
+        "minimum_footprint_clearance": 0.103724,
+        "normalised_path_length": 1.243996,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.836788,
+        "obstacle_rect": [
+          0.360077,
+          0.361471,
+          0.637101,
+          0.537807
+        ],
+        "route_crossing_median_x": 0.160496,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.915705,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 193,
+        "duration_seconds": 6.433333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_027_s2_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.972763,
+        "closing_markers": {
+          "bl": [
+            239.0,
+            1065.0
+          ],
+          "br": [
+            1837.0,
+            1036.0
+          ],
+          "tl": [
+            313.0,
+            95.0
+          ],
+          "tr": [
+            1694.0,
+            60.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.752,
+          "br": 0.552,
+          "tl": 0.361,
+          "tr": 0.59
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.752,
+        "opening_markers": {
+          "bl": [
+            239.0,
+            1066.0
+          ],
+          "br": [
+            1835.0,
+            1036.0
+          ],
+          "tl": [
+            313.0,
+            96.0
+          ],
+          "tr": [
+            1694.0,
+            61.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 0.972763,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_028",
+      "expected_route": "right",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_028.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.271044,
+        "minimum_footprint_clearance": 0.221044,
+        "normalised_path_length": 1.160044,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.861282,
+        "obstacle_rect": [
+          0.358411,
+          0.354665,
+          0.635615,
+          0.532216
+        ],
+        "route_crossing_median_x": 0.950156,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.936306,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 257,
+        "duration_seconds": 8.566667,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_028_s3_t1_right_redo2.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.916201,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            36.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 2.236,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 0.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.242,
+          "br": 0.693,
+          "tl": 0.539,
+          "tr": 0.625
+        },
+        "maximum_camera_drift_px": 2.236,
+        "maximum_marker_jitter_rms_px": 1.242,
+        "opening_markers": {
+          "bl": [
+            128.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            36.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.916201,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_029",
+      "expected_route": "left",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_029.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.15032,
+        "minimum_footprint_clearance": 0.10032,
+        "normalised_path_length": 1.00669,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.838447,
+        "obstacle_rect": [
+          0.360087,
+          0.361163,
+          0.637034,
+          0.537971
+        ],
+        "route_crossing_median_x": 0.197311,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.913943,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 179,
+        "duration_seconds": 5.966667,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_029_s1_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.970443,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 0.0,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.898,
+          "br": 0.931,
+          "tl": 0.628,
+          "tr": 0.62
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.931,
+        "opening_markers": {
+          "bl": [
+            131.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.970443,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_030",
+      "expected_route": "right",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_030.csv",
+      "split": "train",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.13558,
+        "minimum_footprint_clearance": 0.08558,
+        "normalised_path_length": 1.23613,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.833346,
+        "obstacle_rect": [
+          0.359903,
+          0.361325,
+          0.636954,
+          0.538528
+        ],
+        "route_crossing_median_x": 0.827214,
+        "route_sample_count": 11,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 0.995074,
+        "interpolated_frames": 1,
+        "mean_confidence": 0.831903,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 203,
+        "duration_seconds": 6.766667,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_030_s2_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.969072,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1049.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.825,
+          "br": 0.868,
+          "tl": 0.613,
+          "tr": 0.79
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.868,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1628.0,
+            36.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.969072,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_031",
+      "expected_route": "right",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_031.csv",
+      "split": "validation",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.154366,
+        "minimum_footprint_clearance": 0.104366,
+        "normalised_path_length": 1.191682,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.831535,
+        "obstacle_rect": [
+          0.360057,
+          0.361295,
+          0.637034,
+          0.538668
+        ],
+        "route_crossing_median_x": 0.816437,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.88477,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 194,
+        "duration_seconds": 6.466667,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_031_s2_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.765766,
+        "closing_markers": {
+          "bl": [
+            189.0,
+            1035.0
+          ],
+          "br": [
+            1761.0,
+            1000.0
+          ],
+          "tl": [
+            269.0,
+            89.0
+          ],
+          "tr": [
+            1617.0,
+            69.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 0.0,
+          "br": 1.414,
+          "tl": 0.0,
+          "tr": 1.414
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.366,
+          "br": 2.111,
+          "tl": 2.045,
+          "tr": 1.517
+        },
+        "maximum_camera_drift_px": 1.414,
+        "maximum_marker_jitter_rms_px": 2.111,
+        "opening_markers": {
+          "bl": [
+            187.0,
+            1034.0
+          ],
+          "br": [
+            1759.0,
+            999.0
+          ],
+          "tl": [
+            269.0,
+            89.0
+          ],
+          "tr": [
+            1616.0,
+            71.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.765766,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_032",
+      "expected_route": "left",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_032.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.154208,
+        "minimum_footprint_clearance": 0.104208,
+        "normalised_path_length": 1.586434,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.883283,
+        "obstacle_rect": [
+          0.35442,
+          0.348618,
+          0.631319,
+          0.530749
+        ],
+        "route_crossing_median_x": 0.118937,
+        "route_sample_count": 6,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.916393,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 222,
+        "duration_seconds": 7.4,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_032_s3_t1_left_redo.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.946524,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            204.0,
+            69.0
+          ],
+          "tr": [
+            1628.0,
+            36.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 2.0,
+          "br": 0.0,
+          "tl": 0.0,
+          "tr": 1.414
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.221,
+          "br": 0.959,
+          "tl": 1.228,
+          "tr": 0.907
+        },
+        "maximum_camera_drift_px": 2.0,
+        "maximum_marker_jitter_rms_px": 1.228,
+        "opening_markers": {
+          "bl": [
+            129.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1049.0
+          ],
+          "tl": [
+            204.0,
+            69.0
+          ],
+          "tr": [
+            1627.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.946524,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_033",
+      "expected_route": "right",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_033.csv",
+      "split": "validation",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.092047,
+        "minimum_footprint_clearance": 0.042047,
+        "normalised_path_length": 1.360576,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.833003,
+        "obstacle_rect": [
+          0.360455,
+          0.361632,
+          0.637371,
+          0.538896
+        ],
+        "route_crossing_median_x": 0.809008,
+        "route_sample_count": 8,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.89591,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 187,
+        "duration_seconds": 6.233333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_033_s1_t1_right.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.885572,
+        "closing_markers": {
+          "bl": [
+            131.0,
+            1079.0
+          ],
+          "br": [
+            1752.0,
+            1049.0
+          ],
+          "tl": [
+            205.0,
+            69.0
+          ],
+          "tr": [
+            1628.0,
+            37.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 0.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.414
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.456,
+          "br": 0.867,
+          "tl": 0.946,
+          "tr": 0.867
+        },
+        "maximum_camera_drift_px": 1.414,
+        "maximum_marker_jitter_rms_px": 0.946,
+        "opening_markers": {
+          "bl": [
+            130.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            205.0,
+            68.0
+          ],
+          "tr": [
+            1627.0,
+            36.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.885572,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_034",
+      "expected_route": "left",
+      "expected_start": "s2",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_034.csv",
+      "split": "validation",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.092738,
+        "minimum_footprint_clearance": 0.042738,
+        "normalised_path_length": 1.137996,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.832719,
+        "obstacle_rect": [
+          0.36028,
+          0.361313,
+          0.637225,
+          0.538515
+        ],
+        "route_crossing_median_x": 0.253855,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.850395,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 201,
+        "duration_seconds": 6.7,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_034_s2_t1_left.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 1.0,
+        "closing_markers": {
+          "bl": [
+            184.0,
+            1035.0
+          ],
+          "br": [
+            1757.0,
+            1000.0
+          ],
+          "tl": [
+            264.0,
+            89.0
+          ],
+          "tr": [
+            1613.0,
+            69.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.414,
+          "br": 1.414,
+          "tl": 1.0,
+          "tr": 2.236
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 1.441,
+          "br": 2.107,
+          "tl": 0.989,
+          "tr": 1.835
+        },
+        "maximum_camera_drift_px": 2.236,
+        "maximum_marker_jitter_rms_px": 2.107,
+        "opening_markers": {
+          "bl": [
+            183.0,
+            1036.0
+          ],
+          "br": [
+            1755.0,
+            999.0
+          ],
+          "tl": [
+            263.0,
+            89.0
+          ],
+          "tr": [
+            1611.0,
+            70.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 1.0,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_035",
+      "expected_route": "right",
+      "expected_start": "s3",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_035.csv",
+      "split": "test",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.238618,
+        "minimum_footprint_clearance": 0.188618,
+        "normalised_path_length": 1.08426,
+        "observed_route": "right",
+        "obstacle_detection_confidence": 0.885343,
+        "obstacle_rect": [
+          0.354861,
+          0.348255,
+          0.632255,
+          0.530565
+        ],
+        "route_crossing_median_x": 0.899261,
+        "route_sample_count": 7,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.930714,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 223,
+        "duration_seconds": 7.433333,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_035_s3_t1_right_redo.MOV"
+    },
+    {
+      "accepted": true,
+      "calibration": {
+        "all_four_direct_coverage": 0.917949,
+        "closing_markers": {
+          "bl": [
+            130.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1049.0
+          ],
+          "tl": [
+            203.0,
+            69.0
+          ],
+          "tr": [
+            1627.0,
+            36.0
+          ]
+        },
+        "closing_window_coverage": 1.0,
+        "decoded_orientation": "upright_landscape",
+        "drift_px_by_marker": {
+          "bl": 1.0,
+          "br": 0.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "marker_jitter_rms_px_by_marker": {
+          "bl": 0.983,
+          "br": 0.713,
+          "tl": 0.751,
+          "tr": 0.744
+        },
+        "maximum_camera_drift_px": 1.0,
+        "maximum_marker_jitter_rms_px": 0.983,
+        "opening_markers": {
+          "bl": [
+            129.0,
+            1079.0
+          ],
+          "br": [
+            1751.0,
+            1048.0
+          ],
+          "tl": [
+            204.0,
+            69.0
+          ],
+          "tr": [
+            1627.0,
+            37.0
+          ]
+        },
+        "opening_window_coverage": 1.0,
+        "orientation_basis": "decoded_marker_positions",
+        "per_marker_direct_coverage": {
+          "bl": 0.917949,
+          "br": 1.0,
+          "tl": 1.0,
+          "tr": 1.0
+        },
+        "rotation_applied_degrees": 0
+      },
+      "episode_id": "ep_036",
+      "expected_route": "left",
+      "expected_start": "s1",
+      "gate": {
+        "criteria": {
+          "calibration_end_window": true,
+          "calibration_marker_jitter": true,
+          "calibration_start_window": true,
+          "camera_drift": true,
+          "decoded_frames": true,
+          "final_footprint": true,
+          "final_placement": true,
+          "obstacle_clearance": true,
+          "orientation": true,
+          "red_marker_tracking": true,
+          "route": true,
+          "start_footprint": true,
+          "start_position": true
+        },
+        "failure_reasons": [],
+        "passed": true
+      },
+      "processed_trajectory": "data/processed/v1/trajectories/ep_036.csv",
+      "split": "validation",
+      "task": {
+        "final_center_hold_ratio": 1.0,
+        "final_footprint_hold_ratio": 1.0,
+        "minimum_center_clearance": 0.13827,
+        "minimum_footprint_clearance": 0.08827,
+        "normalised_path_length": 0.996414,
+        "observed_route": "left",
+        "obstacle_detection_confidence": 0.834849,
+        "obstacle_rect": [
+          0.36067,
+          0.361515,
+          0.637401,
+          0.538279
+        ],
+        "route_crossing_median_x": 0.200394,
+        "route_sample_count": 5,
+        "start_center_hold_ratio": 1.0,
+        "start_footprint_hold_ratio": 1.0
+      },
+      "tracking": {
+        "detected_coverage": 1.0,
+        "interpolated_frames": 0,
+        "mean_confidence": 0.893594,
+        "usable_coverage": 1.0
+      },
+      "video": {
+        "codec": "hevc",
+        "decode_dropped_frames": 0,
+        "decoded_frames": 195,
+        "duration_seconds": 6.5,
+        "fps": 30.0,
+        "height": 1080,
+        "timestamp_gap_after_frames": [],
+        "width": 1920
+      },
+      "video_file": "ep_036_s1_t1_left.MOV"
+    }
+  ],
+  "generated_at_utc": "2026-10-02T20:21:36+00:00",
+  "inventory_passed": true,
+  "phase": "phase_3_dataset_quality",
+  "rejected_count": 0,
+  "representative_artifacts": [
+    {
+      "episode_id": "ep_001",
+      "overlay": "overlays/ep_001.mp4",
+      "selection_reason": "representative_accepted",
+      "trajectory_plot": "plots/ep_001.png"
+    },
+    {
+      "episode_id": "ep_002",
+      "overlay": "overlays/ep_002.mp4",
+      "selection_reason": "representative_accepted",
+      "trajectory_plot": "plots/ep_002.png"
+    },
+    {
+      "episode_id": "ep_004",
+      "overlay": "overlays/ep_004.mp4",
+      "selection_reason": "representative_accepted",
+      "trajectory_plot": "plots/ep_004.png"
+    },
+    {
+      "episode_id": "ep_005",
+      "overlay": "overlays/ep_005.mp4",
+      "selection_reason": "representative_accepted",
+      "trajectory_plot": "plots/ep_005.png"
+    }
+  ],
+  "revalidated_episode_ids": [
+    "ep_028"
+  ],
+  "run_scope": "subset",
+  "schema_version": 1,
+  "source_manifest": "source_manifest.json",
+  "split_counts": {
+    "test": {
+      "accepted": 12,
+      "rejected": 0,
+      "total": 12
+    },
+    "train": {
+      "accepted": 20,
+      "rejected": 0,
+      "total": 20
+    },
+    "validation": {
+      "accepted": 4,
+      "rejected": 0,
+      "total": 4
+    }
+  },
+  "thresholds": {
+    "hold_seconds": 0.75,
+    "max_calibration_jitter_rms_px": 3.0,
+    "max_calibration_start_end_drift_px": 5.0,
+    "max_camera_drift_px": 5.0,
+    "max_decode_dropped_frames": 0,
+    "min_calibration_window_coverage": 0.95,
+    "min_footprint_hold_ratio": 0.8,
+    "min_object_tracking_coverage": 0.95,
+    "min_obstacle_footprint_clearance": 0.01,
+    "min_zone_hold_ratio": 0.9
+  },
+  "total_recordings": 36
+}

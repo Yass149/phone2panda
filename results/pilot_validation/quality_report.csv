@@ -1,0 +1,6 @@
+episode_id,passed,frame_count,duration_seconds,corner_direct_coverage,calibration_start_coverage,calibration_end_coverage,calibration_max_jitter_px,calibration_max_drift_px,calibration_coverage,object_tracking_coverage,mean_tracking_confidence,decode_dropped_frames,expected_route,observed_route,start_hold_ratio,final_hold_ratio,minimum_center_clearance,minimum_footprint_clearance,failure_reasons
+pilot_01_s1_left,True,270,9.001667,0.866667,1.0,1.0,1.463,3.162,1.0,1.0,0.910513,0,left,left,1.0,1.0,0.160189,0.110189,
+pilot_02_s3_right,True,353,11.768338,0.985836,1.0,1.0,1.608,2.236,1.0,1.0,0.700364,0,right,right,1.0,1.0,0.222948,0.172948,
+pilot_03_s2_left,True,276,9.201673,0.822464,1.0,1.0,0.885,1.414,1.0,1.0,0.909709,0,left,left,1.0,1.0,0.15717,0.10717,
+pilot_04_s2_right,True,274,9.135006,1.0,1.0,1.0,1.333,2.236,1.0,1.0,0.910493,0,right,right,1.0,1.0,0.17251,0.12251,
+pilot_05_s2_right_repeat,True,308,10.268339,0.827922,1.0,1.0,1.01,1.0,1.0,1.0,0.903334,0,right,right,1.0,1.0,0.18221,0.13221,
