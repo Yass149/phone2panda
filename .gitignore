@@ -1,0 +1,79 @@
+# OS, editor, and local session state
+.DS_Store
+.Rhistory
+.remember/
+.idea/
+.vscode/
+*.swp
+
+# Project-local environments and caches
+.venv/
+.tools/
+.cache/
+.local/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.py[cod]
+
+# Secrets and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*.json
+*secrets*.json
+
+# Personally recorded source media stays local and untouched.
+*.MOV
+*.mov
+*.HEIC
+*.heic
+data/raw_private/
+
+# Derived full-resolution trajectories and bulk generated artifacts are reproducible.
+data/processed/
+results/**
+
+# Keep only aggregate reports and a minimal, public-safe representative sample.
+!results/pilot_validation/
+!results/pilot_validation/quality_report.json
+!results/pilot_validation/quality_report.csv
+!results/pilot_validation/source_manifest.json
+!results/dataset_quality/
+!results/dataset_quality/quality_report.json
+!results/dataset_quality/quality_report.csv
+!results/dataset_quality/source_manifest.json
+!results/dataset_quality/plots/
+!results/dataset_quality/plots/ep_001.png
+!results/phase4a/
+!results/phase4a/phase4a_rollout.mp4
+!results/phase4a/rollout.npz
+!results/phase4a/rollout_metrics.json
+!results/phase4a/smoke_metrics.json
+
+# Large experiment outputs and trained weights must never enter ordinary commits.
+artifacts/
+checkpoints/
+models/
+runs/
+wandb/
+*.ckpt
+*.onnx
+*.pt
+*.pth
+*.tflite
+*.avi
+*.mkv
+*.webm
+
+# Build and coverage outputs
+build/
+dist/
+*.egg-info/
+.coverage
+htmlcov/
