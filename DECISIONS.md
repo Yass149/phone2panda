@@ -43,3 +43,7 @@ Use 50 deterministic scenarios shared by all four methods, cycling through the t
 ## 2026-10-02 — Phase 4C contact taxonomy and stop gate
 
 Classify MuJoCo geom pairs at every control step: gripper-cube is intended manipulation; robot-obstacle, robot-table, and robot self-contact are unintended; cube-table is reported separately. Require zero unintended contacts in all five safety-preflight rollouts before permitting a corrected 50-episode evaluation. The conservative height, enlarged robot-envelope route score, and goal-side lowering posture did not pass this gate, so no corrected 50-run result or success video is claimed.
+
+## 2026-10-02 — Phase 4D bounded lateral-placement attempt
+
+Keep the selected human DMP transport path unchanged and test only three route-side Y offsets. Clamp staging coordinates to the configured workspace, lower at the lateral point, place horizontally, and retreat along the same corridor. Stop without a 50-run evaluation if no offset achieves both 5/5 placement and zero unintended contact. All three offsets failed, so collision-aware IK or planning is now required.

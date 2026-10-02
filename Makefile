@@ -1,4 +1,4 @@
-.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c test lint check
+.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c phase4d-preflight phase4d test lint check
 
 UV_ENV = UV_CACHE_DIR=$(CURDIR)/.cache/uv UV_PYTHON_INSTALL_DIR=$(CURDIR)/.local/share/uv/python
 UV = $(UV_ENV) ./tools/run-uv.sh
@@ -29,6 +29,12 @@ phase4c-preflight:
 
 phase4c:
 	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4c.py --config configs/phase4c.yaml --evaluate
+
+phase4d-preflight:
+	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4d.py --config configs/phase4d.yaml --preflight-only
+
+phase4d:
+	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4d.py --config configs/phase4d.yaml --evaluate
 
 test:
 	.venv/bin/pytest

@@ -56,3 +56,13 @@ Phase 4B is complete. Policy training and Phase 5 were not started.
 - [ ] Run the corrected 50-episode evaluation only after the safety preflight passes.
 
 Phase 4C stopped at the failed safety preflight as required. Phase 5 was not started.
+
+## Phase 4D — Route-side lateral placement
+
+- [x] Preserve the selected DMP transport path and add workspace-clamped route-side Y staging.
+- [x] Lower laterally, place horizontally, release, and retreat through the same corridor.
+- [x] Attribute every contact to its execution phase.
+- [x] Test only 0.06, 0.09, and 0.12 m offsets on the five fixed preflight seeds.
+- [ ] Run 50 corrected episodes only if an offset passes 5/5 placement with zero unintended contacts.
+
+No offset passed. Phase 4D stopped before the 50-run evaluation, video generation, whole-arm planning, or Phase 5.

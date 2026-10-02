@@ -420,6 +420,7 @@ def execute_rollout(
     pre_lower_yaw_steps: int = 0,
     pre_lower_yaw_command: float = 0.0,
     goal_side_lower_offset_m: float = 0.0,
+    lateral_staging_xy: FloatArray | None = None,
 ) -> tuple[dict[str, Any], list[NDArray[np.uint8]]]:
     np.random.seed(scenario.seed)
     observation = env.reset()
@@ -525,7 +526,16 @@ def execute_rollout(
             {"name": "pre_lower_safe_posture", "steps": len(actions) - start_step}
         )
     lower = np.asarray([*goal_xy, float(workspace["grasp_z"])])
-    if goal_side_lower_offset_m > 0.0:
+    staging_high: FloatArray | None = None
+    staging_low: FloatArray | None = None
+    if lateral_staging_xy is not None:
+        staging_xy = np.asarray(lateral_staging_xy, dtype=np.float64)
+        staging_high = np.asarray([*staging_xy, float(workspace["transport_z"])])
+        staging_low = np.asarray([*staging_xy, float(workspace["grasp_z"])])
+        converge("route_side_staging", staging_high, 1.0)
+        converge("lower_route_side", staging_low, 1.0)
+        converge("place_from_route_side", lower, 1.0)
+    elif goal_side_lower_offset_m > 0.0:
         goal_side = goal_xy - scenario.obstacle_xy
         goal_side /= max(float(np.linalg.norm(goal_side)), 1e-12)
         staging_xy = goal_xy + goal_side * goal_side_lower_offset_m
@@ -540,8 +550,14 @@ def execute_rollout(
     for _ in range(int(controller["release_steps"])):
         step_toward(lower, -1.0)
     phases.append({"name": "release", "steps": len(actions) - start_step})
-    retreat = np.asarray([*goal_xy, float(workspace["approach_z"])])
-    converge("retreat", retreat, -1.0)
+    if lateral_staging_xy is not None:
+        assert staging_low is not None and staging_high is not None
+        converge("retreat_route_side_low", staging_low, -1.0)
+        converge("retreat_route_side_high", staging_high, -1.0)
+        retreat = staging_high
+    else:
+        retreat = np.asarray([*goal_xy, float(workspace["approach_z"])])
+        converge("retreat", retreat, -1.0)
     start_step = len(actions)
     for _ in range(int(controller["settle_steps"])):
         step_toward(retreat, -1.0)

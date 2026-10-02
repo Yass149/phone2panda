@@ -69,6 +69,9 @@ results/**
 !results/phase4c/original_contact_diagnostics.json
 !results/phase4c/preflight.json
 !results/phase4c/preflight_rollouts.jsonl
+!results/phase4d/
+!results/phase4d/preflight_grid.json
+!results/phase4d/preflight_rollouts.jsonl
 
 # Large experiment outputs and trained weights must never enter ordinary commits.
 artifacts/

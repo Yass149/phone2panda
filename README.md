@@ -60,6 +60,16 @@ make phase4c-preflight
 
 The original 50-rollout audit is reproducible and saved under `results/phase4c/`. The current conservative posture candidate fails the zero-unintended-contact preflight, so `make phase4c` refuses to run. No corrected 50-episode result or policy-training result is claimed.
 
+## Phase 4D lateral-placement attempt
+
+Run the bounded three-offset route-side preflight:
+
+```bash
+make phase4d-preflight
+```
+
+The command tests only 0.06, 0.09, and 0.12 m using the existing five seeds and stops at the first safe configuration. No offset currently passes, so `make phase4d` refuses to run and no corrected video is claimed.
+
 Outputs are written under `results/pilot_validation/`:
 
 - `quality_report.json` and `quality_report.csv`: aggregate machine-readable gate results.

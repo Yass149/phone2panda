@@ -102,11 +102,15 @@ class ContactAccumulator:
         self.per_rollout_steps: dict[
             str, dict[tuple[str, tuple[str, str]], set[int]]
         ] = {}
+        self.per_rollout_step_events: dict[
+            str, Counter[tuple[int, str, tuple[str, str]]]
+        ] = {}
 
     def begin(self, rollout_id: str) -> None:
         self.rollout_id = rollout_id
         self.per_rollout_events[rollout_id] = Counter()
         self.per_rollout_steps[rollout_id] = defaultdict(set)
+        self.per_rollout_step_events[rollout_id] = Counter()
 
     def observe(self, step_index: int, first: str, second: str) -> None:
         if not self.rollout_id:
@@ -119,6 +123,7 @@ class ContactAccumulator:
         self.rollouts[key].add(self.rollout_id)
         self.per_rollout_events[self.rollout_id][key] += 1
         self.per_rollout_steps[self.rollout_id][key].add(step_index)
+        self.per_rollout_step_events[self.rollout_id][(step_index, category, pair)] += 1
 
     def rollout_summary(self, rollout_id: str) -> dict[str, Any]:
         payload: dict[str, Any] = {}
@@ -138,6 +143,50 @@ class ContactAccumulator:
                     for key in sorted(keys)
                 ],
             }
+        return payload
+
+    def phase_summary(
+        self, rollout_id: str, phases: list[dict[str, Any]]
+    ) -> dict[str, Any]:
+        boundaries: list[tuple[int, int, str]] = []
+        start = 0
+        for phase in phases:
+            end = start + int(phase["steps"])
+            boundaries.append((start, end, str(phase["name"])))
+            start = end
+        phase_events: dict[str, Counter[tuple[str, tuple[str, str]]]] = defaultdict(Counter)
+        phase_steps: dict[
+            str, dict[tuple[str, tuple[str, str]], set[int]]
+        ] = defaultdict(lambda: defaultdict(set))
+        for (step, category, pair), count in self.per_rollout_step_events[rollout_id].items():
+            phase_name = next(
+                (name for low, high, name in boundaries if low <= step < high),
+                "unattributed",
+            )
+            key = (category, pair)
+            phase_events[phase_name][key] += count
+            phase_steps[phase_name][key].add(step)
+        payload: dict[str, Any] = {}
+        for _, _, phase_name in boundaries:
+            events = phase_events[phase_name]
+            steps = phase_steps[phase_name]
+            payload[phase_name] = {}
+            for category in CONTACT_CATEGORIES:
+                keys = [key for key in events if key[0] == category]
+                payload[phase_name][category] = {
+                    "contact_events": sum(events[key] for key in keys),
+                    "contact_steps": len(
+                        set().union(*(steps[key] for key in keys)) if keys else set()
+                    ),
+                    "pairs": [
+                        {
+                            "geometries": list(key[1]),
+                            "contact_events": events[key],
+                            "contact_steps": len(steps[key]),
+                        }
+                        for key in sorted(keys)
+                    ],
+                }
         return payload
 
     def aggregate(self) -> dict[str, Any]:

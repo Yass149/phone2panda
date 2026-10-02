@@ -127,3 +127,13 @@ Final acceptance-command results are appended after the checked pipeline run.
 - A conservative 1.03 m transport height, 0.055 m robot-envelope route score, and 0.056 m goal-side lowering posture eliminated the worst original seed in isolation.
 - Official five-seed safety preflight: **FAIL, 0/5 safety successes**. Object placement remained 5/5, but robot-obstacle contact remained 5/5 and included links 5–7.
 - Per the gate, the corrected 50-episode run and representative corrected video were not produced. Phase 5 was not started.
+
+## 2026-10-02 — Phase 4D route-side lateral placement
+
+- Preserved the Phase 4B DMP XY transport path; added target-X, route-side-Y staging with workspace clamping and phase-level contact attribution.
+- Tested the required offsets in order on seeds 401–405.
+- 0.06 m: 5/5 placement, 0/5 safety; 90 robot-obstacle events—4 while lowering, 7 while placing, 78 during release, and 1 during low retreat.
+- 0.09 m: 1/5 placement, 0/5 safety; 91 robot-obstacle events—7 while lowering, 11 while placing, and 73 during release.
+- 0.12 m: 0/5 placement, 0/5 safety; 91 robot-obstacle events—1 while lowering, 10 while placing, and 80 during release.
+- Transport and route-side staging had zero unintended contacts for every offset. Robot-table contacts and self-collisions were also zero.
+- No offset passed, so the corrected 50-run evaluation and video were not produced. Collision-aware IK or whole-arm planning is required; Phase 5 was not started.
