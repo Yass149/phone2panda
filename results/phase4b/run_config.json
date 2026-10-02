@@ -1,0 +1,47 @@
+{
+  "config_sha256": "34e8e466b26257a1a21d6e042e482d4ba685c8a4436e814e781ab29c1c68ecb2",
+  "configuration": {
+    "dataset_report": "results/dataset_quality/quality_report.json",
+    "demonstrations": {
+      "minimum_mean_confidence": 0.8,
+      "minimum_tracking_coverage": 0.95,
+      "split": "all"
+    },
+    "evaluation": {
+      "episode_count": 50,
+      "seed_start": 4100
+    },
+    "metadata_csv": "data/metadata.csv",
+    "methods": [
+      "straight",
+      "raw_replay",
+      "dmp",
+      "dmp_route_confidence"
+    ],
+    "output_dir": "results/phase4b",
+    "phase4a_config": "configs/phase4a.yaml",
+    "preflight": {
+      "seeds": [
+        401,
+        402,
+        403,
+        404,
+        405
+      ]
+    },
+    "scenario": {
+      "goal_jitter_m": 0.003,
+      "object_radius_m": 0.031,
+      "obstacle_height_m": 0.14,
+      "obstacle_jitter_m": 0.002,
+      "start_jitter_m": 0.004
+    },
+    "schema_version": 1,
+    "trajectory_dir": "data/processed/v1/trajectories",
+    "video": {
+      "failure_method_preference": "straight",
+      "frame_stride": 2,
+      "success_method_preference": "dmp_route_confidence"
+    }
+  }
+}

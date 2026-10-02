@@ -1,0 +1,36 @@
+schema_version: 1
+phase4a_config: configs/phase4a.yaml
+metadata_csv: data/metadata.csv
+dataset_report: results/dataset_quality/quality_report.json
+trajectory_dir: data/processed/v1/trajectories
+output_dir: results/phase4b
+
+methods:
+  - straight
+  - raw_replay
+  - dmp
+  - dmp_route_confidence
+
+preflight:
+  seeds: [401, 402, 403, 404, 405]
+
+evaluation:
+  seed_start: 4100
+  episode_count: 50
+
+demonstrations:
+  split: all
+  minimum_tracking_coverage: 0.95
+  minimum_mean_confidence: 0.80
+
+scenario:
+  start_jitter_m: 0.004
+  goal_jitter_m: 0.003
+  obstacle_jitter_m: 0.002
+  obstacle_height_m: 0.14
+  object_radius_m: 0.031
+
+video:
+  frame_stride: 2
+  success_method_preference: dmp_route_confidence
+  failure_method_preference: straight

@@ -1,0 +1,21 @@
+{
+  "config_sha256": "34e8e466b26257a1a21d6e042e482d4ba685c8a4436e814e781ab29c1c68ecb2",
+  "infrastructure_failures": [],
+  "method_counts": {
+    "dmp": 5,
+    "dmp_route_confidence": 5,
+    "raw_replay": 5,
+    "straight": 5
+  },
+  "passed": true,
+  "phase": "4B_preflight",
+  "schema_version": 1,
+  "seeds": [
+    401,
+    402,
+    403,
+    404,
+    405
+  ],
+  "task_failures": 7
+}

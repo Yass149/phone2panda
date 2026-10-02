@@ -38,6 +38,17 @@ make phase4a
 
 The command uses accepted trajectory `ep_001`, fits its left-route DMP, executes explicit pick-and-place phases in robosuite, and writes the video, metrics, and transition arrays under `results/phase4a/`. It does not run baseline evaluation or policy training.
 
+## Phase 4B baseline comparison
+
+Run the bounded infrastructure preflight first, then the fixed 50-episode comparison:
+
+```bash
+make phase4b-preflight
+make phase4b
+```
+
+The second command refuses to run unless the current configuration has a passing five-seed preflight. It evaluates straight-line control, nearest raw replay, DMP retargeting, and confidence-filtered DMP route selection on the same 50 seeds. Outputs under `results/phase4b/` include `rollouts.jsonl`, `aggregate.json`, `run_config.json`, `comparison.md`, `comparison.png`, and one representative success and failure video. Phase 4B does not train a policy.
+
 Outputs are written under `results/pilot_validation/`:
 
 - `quality_report.json` and `quality_report.csv`: aggregate machine-readable gate results.

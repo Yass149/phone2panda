@@ -12,6 +12,9 @@ MAX_FILE_BYTES = 5 * 1024 * 1024
 PUBLIC_MEDIA = {
     "results/dataset_quality/plots/ep_001.png",
     "results/phase4a/phase4a_rollout.mp4",
+    "results/phase4b/comparison.png",
+    "results/phase4b/representative_failure.mp4",
+    "results/phase4b/representative_success.mp4",
 }
 PRIVATE_PREFIXES = (
     ".cache/",

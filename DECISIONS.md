@@ -35,3 +35,7 @@ Store one CSV trajectory per recording and one aggregate quality report. Generat
 ## 2026-10-02 — Minimal Phase 4A simulator
 
 Use robosuite 1.5.1 with MuJoCo 3.2.7 and Panda `OSC_POSE` fixed-impedance control. Extend the small built-in Lift scene with one fixed obstacle and one visual target rather than introducing another simulator. Use accepted `ep_001` as the representative left-route demonstration, fit a two-dimensional discrete DMP, and map canvas y to robot x and canvas x to robot y. Keep approach, grasp, lift, DMP transport, lower, release, and retreat as explicit logged phases.
+
+## 2026-10-02 — Phase 4B fixed scenarios and collision semantics
+
+Use 50 deterministic scenarios shared by all four methods, cycling through the three recorded start zones and applying only seeded centimetre-scale jitter. Retarget demonstration endpoints to each scenario with a two-dimensional similarity transform. Preserve the validated Phase 4A object-obstacle contact as the task collision gate; report Panda-link obstacle contacts separately because a two-dimensional object path does not model whole-arm clearance. Confidence-aware route selection requires at least 95% direct tracking coverage and 0.80 mean tracking confidence, then chooses the left or right DMP with the larger predicted footprint-adjusted clearance.

@@ -103,3 +103,16 @@ Final acceptance-command results are appended after the checked pipeline run.
 - Maximum transport deviation from the straight start-goal line: 0.09934 m, demonstrating material control by the human path.
 - Action-bound violations: 0; deterministic reset maximum error: 0.0.
 - Tests: 11 passed; Ruff passed. The 50-episode baseline evaluation and policy training were not run.
+
+## 2026-10-02 — Phase 4B fixed-scenario comparison
+
+- Preflight: five seeds per method, 20 rollouts total; no infrastructure, reset, finite-metric, or action-bound failures.
+- Evaluation: exactly 50 episodes per method using identical seeds 4100–4149 and scenario geometry.
+- Straight line: 0/50 task successes, 50 object collisions, 22 drops, median clearance −48.7 mm.
+- Nearest raw replay: 48/50 successes, 2 object collisions, no drops, median clearance 20.9 mm.
+- DMP retargeting: 47/50 successes, 3 object collisions, no drops, median clearance 19.5 mm.
+- DMP with route/confidence selection: 50/50 successes, no object collisions or drops, median clearance 23.1 mm; Wilson 95% success interval 92.9–100.0%.
+- Median controller latency was 0.0076–0.0077 ms; p95 was 0.0113–0.0143 ms. Every method had zero action-bound violations.
+- Whole-arm diagnostic: Panda-link obstacle contact occurred in 39/50 route/confidence runs, so future rollout collection must filter these contacts or add robot-aware clearance before policy training.
+- Artifacts: 200-line raw rollout record, aggregate JSON, resolved configuration, Markdown table, one reproducible plot, one successful replay, and one failure replay.
+- Tests: 14 passed; Ruff passed. Phase 5 was not started.

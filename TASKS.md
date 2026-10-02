@@ -33,6 +33,16 @@ Phase 3 is complete. Model training and simulator work were not started.
 - [x] Map the human path into the Panda workspace with explicit task phases.
 - [x] Add focused mapping, action-bound, and deterministic-reset tests.
 - [x] Save one deterministic successful rollout, video, configuration, and metrics.
-- [ ] Run the 50-episode baseline evaluation only after explicit approval.
+- [x] Run the 50-episode baseline evaluation only after explicit approval.
 
 Phase 4A is complete. Policy training was not started.
+
+## Phase 4B — Fixed-scenario baseline comparison
+
+- [x] Implement straight-line, nearest raw replay, DMP, and route/confidence DMP methods.
+- [x] Pass five fixed-seed infrastructure preflights per method.
+- [x] Evaluate exactly 50 identical seeded scenarios per method.
+- [x] Save per-rollout records, aggregates, confidence intervals, comparison plot, and two videos.
+- [x] Record object collisions, robot contacts, drops, placement, efficiency, clearance, saturation, and latency.
+
+Phase 4B is complete. Policy training and Phase 5 were not started.

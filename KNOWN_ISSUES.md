@@ -5,5 +5,5 @@
 - Normalised clearance uses a configured conservative circular footprint around the tracked red marker. Exact box orientation and height are not observable from the single overhead RGB view.
 - Generated overlays intentionally omit the source AAC audio and timed metadata.
 - robosuite 1.5.1 is incompatible with MuJoCo 3.14.0 in this environment; `mujoco==3.2.7` is pinned.
-- Phase 4A measures one fixed-seed rollout only. Generalisation, baseline success rates, and confidence intervals remain unmeasured.
 - The agent-view camera partially occludes the obstacle behind the Panda during parts of the rollout; state-based collision and clearance metrics remain available.
+- Phase 4B retargets two-dimensional object paths and does not solve whole-arm motion planning. Although the route/confidence method avoided all object-obstacle collisions, Panda-link contact occurred in 39/50 runs and must be filtered or resolved before distilling a safety-sensitive policy.

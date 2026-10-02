@@ -55,6 +55,16 @@ results/**
 !results/phase4a/rollout.npz
 !results/phase4a/rollout_metrics.json
 !results/phase4a/smoke_metrics.json
+!results/phase4b/
+!results/phase4b/aggregate.json
+!results/phase4b/comparison.md
+!results/phase4b/comparison.png
+!results/phase4b/preflight.json
+!results/phase4b/preflight_rollouts.jsonl
+!results/phase4b/representative_failure.mp4
+!results/phase4b/representative_success.mp4
+!results/phase4b/rollouts.jsonl
+!results/phase4b/run_config.json
 
 # Large experiment outputs and trained weights must never enter ordinary commits.
 artifacts/
