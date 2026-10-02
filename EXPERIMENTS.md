@@ -137,3 +137,16 @@ Final acceptance-command results are appended after the checked pipeline run.
 - 0.12 m: 0/5 placement, 0/5 safety; 91 robot-obstacle events—1 while lowering, 10 while placing, and 80 during release.
 - Transport and route-side staging had zero unintended contacts for every offset. Robot-table contacts and self-collisions were also zero.
 - No offset passed, so the corrected 50-run evaluation and video were not produced. Collision-aware IK or whole-arm planning is required; Phase 5 was not started.
+
+## 2026-10-02 — Phase 4E calibrated obstacle diagnostic
+
+- Physical and simulated obstacle height: 0.040 m. Earlier 0.14 m Phase 4B–4D results remain unchanged and are now labelled an uncalibrated tall-obstacle stress test.
+- Simulated cube size range: 0.040–0.044 m; seed-402 cube: 0.04020 × 0.04191 × 0.04125 m.
+- Derived end-effector transport height: 0.847715 m; measured median: 0.84703 m. Median cube-bottom clearance was 0.01115 m straight and 0.01092 m DMP.
+- Straight diagnostic: object-obstacle collision on 90 control steps / 222 contacts, −52.6 mm footprint clearance, grasp retained, but 44 gripper-finger/obstacle contacts on 25 steps.
+- DMP route/confidence diagnostic: zero object-obstacle, robot-obstacle, robot-table, or self contacts; grasp retained; 18.9 mm minimum clearance; 1.16 mm placement error.
+- Corrected diagnostic interpretation: **PASS**. The straight run demonstrated its expected obstacle failure; its gripper contacts were recorded but did not block DMP evaluation. The saved diagnostics were reassessed without rerunning simulation.
+- Five-seed DMP route/confidence preflight: **PASS, 5/5** placements with retained grasp and zero unintended contacts.
+- Fixed scenarios, seeds 4100–4149, 50 episodes per method: straight 0/50 safe successes, nearest raw replay 49/50, DMP 49/50, and DMP + route/confidence 50/50.
+- Route/confidence DMP: zero object collisions, unintended contacts, or drops; 1.39 mm median placement error; 22.43 mm median and 9.88 mm worst obstacle clearance; 3.84% action saturation.
+- The only non-straight failures were at seed 4140: one gripper-finger/obstacle event for raw replay and 14 for unfiltered DMP. Phase 5 was not started.

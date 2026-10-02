@@ -1,0 +1,21 @@
+schema_version: 1
+phase4b_config: configs/phase4b.yaml
+output_dir: results/phase4e
+
+calibration:
+  physical_obstacle_height_m: 0.04
+  obstacle_height_m: 0.04
+  cube_half_height_max_m: 0.022
+  desired_cube_bottom_clearance_m: 0.012
+  measured_grasp_offset_m: 0.013715
+  maximum_grasp_distance_m: 0.03
+
+diagnostic:
+  seed: 402
+
+preflight:
+  seeds: [401, 402, 403, 404, 405]
+
+evaluation:
+  seed_start: 4100
+  episode_count: 50

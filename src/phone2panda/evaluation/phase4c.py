@@ -30,6 +30,7 @@ from phone2panda.sim.phase4a import Phase4AConfig
 
 CONTACT_CATEGORIES = (
     "intended_gripper_cube",
+    "object_obstacle",
     "robot_obstacle",
     "robot_table",
     "self_collision",
@@ -83,6 +84,8 @@ def classify_contact_pair(first: str, second: str) -> str:
     names = (first, second)
     if any(_is_cube(name) for name in names) and any(_is_gripper(name) for name in names):
         return "intended_gripper_cube"
+    if "route_obstacle_geom" in names and any(_is_cube(name) for name in names):
+        return "object_obstacle"
     if "route_obstacle_geom" in names and any(_is_robot(name) for name in names):
         return "robot_obstacle"
     if "table_collision" in names and any(_is_robot(name) for name in names):

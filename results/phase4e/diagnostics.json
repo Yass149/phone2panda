@@ -1,0 +1,1474 @@
+{
+  "checks": {
+    "dmp_no_object_collision": true,
+    "dmp_no_unintended_robot_contact": true,
+    "dmp_object_remained_grasped": true,
+    "dmp_successful_placement": true,
+    "straight_expected_obstacle_failure": true,
+    "straight_gripper_contact_recorded": true
+  },
+  "config_sha256": "d4d8b79192460d9d35e1f3a7740bc8982c60d29abc2583ef90c91bff74cc6efa",
+  "dimensions": {
+    "configured_cube_half_height_max_m": 0.022,
+    "cube_bottom_z_m": 0.812,
+    "cube_center_z_m": 0.8340000000000001,
+    "cube_top_z_m": 0.8560000000000001,
+    "desired_cube_bottom_clearance_m": 0.012,
+    "eef_transport_z_m": 0.8477150000000001,
+    "measured_grasp_offset_m": 0.013715,
+    "obstacle_top_z_m": 0.8400000000000001,
+    "physical_obstacle_height_m": 0.04,
+    "simulated_cube_full_size_range_m": [
+      0.04,
+      0.044
+    ],
+    "simulated_obstacle_height_m": 0.04,
+    "table_z_m": 0.8,
+    "vertical_overlap_m": 0.028000000000000025
+  },
+  "dmp_route_confidence": {
+    "action_bound_violations": 0,
+    "action_saturation_rate": 0.03862660944206009,
+    "action_saturation_steps": 9,
+    "calibrated_safety_success": true,
+    "collision": false,
+    "collision_steps": 0,
+    "contacts": {
+      "intended_gripper_cube": {
+        "contact_events": 1635,
+        "contact_steps": 182,
+        "pairs": [
+          {
+            "contact_events": 181,
+            "contact_steps": 181,
+            "geometries": [
+              "cube_g0",
+              "gripper0_right_finger1_collision"
+            ]
+          },
+          {
+            "contact_events": 644,
+            "contact_steps": 182,
+            "geometries": [
+              "cube_g0",
+              "gripper0_right_finger1_pad_collision"
+            ]
+          },
+          {
+            "contact_events": 180,
+            "contact_steps": 180,
+            "geometries": [
+              "cube_g0",
+              "gripper0_right_finger2_collision"
+            ]
+          },
+          {
+            "contact_events": 630,
+            "contact_steps": 182,
+            "geometries": [
+              "cube_g0",
+              "gripper0_right_finger2_pad_collision"
+            ]
+          }
+        ]
+      },
+      "object_obstacle": {
+        "contact_events": 0,
+        "contact_steps": 0,
+        "pairs": []
+      },
+      "other": {
+        "contact_events": 260,
+        "contact_steps": 67,
+        "pairs": [
+          {
+            "contact_events": 260,
+            "contact_steps": 67,
+            "geometries": [
+              "cube_g0",
+              "table_collision"
+            ]
+          }
+        ]
+      },
+      "robot_obstacle": {
+        "contact_events": 0,
+        "contact_steps": 0,
+        "pairs": []
+      },
+      "robot_table": {
+        "contact_events": 0,
+        "contact_steps": 0,
+        "pairs": []
+      },
+      "self_collision": {
+        "contact_events": 0,
+        "contact_steps": 0,
+        "pairs": []
+      }
+    },
+    "controller_latency_median_ms": 0.009125,
+    "controller_latency_p95_ms": 0.009667,
+    "cube_dimensions_m": [
+      0.04020343054948852,
+      0.041906803442915086,
+      0.04124656863079862
+    ],
+    "drop": false,
+    "eligible_demonstrations": 32,
+    "failure_reasons": [],
+    "maximum_absolute_action": 1.0,
+    "maximum_transport_grasp_distance_m": 0.015670599799655967,
+    "method": "dmp_route_confidence",
+    "minimum_obstacle_clearance_m": 0.018898914453070972,
+    "object_collision_steps": 0,
+    "object_remained_grasped": true,
+    "path_efficiency": 0.49523398327645135,
+    "phase_contacts": {
+      "approach": {
+        "intended_gripper_cube": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 60,
+          "contact_steps": 15,
+          "pairs": [
+            {
+              "contact_events": 60,
+              "contact_steps": 15,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "close": {
+        "intended_gripper_cube": {
+          "contact_events": 108,
+          "contact_steps": 12,
+          "pairs": [
+            {
+              "contact_events": 12,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 41,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 12,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 43,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 72,
+          "contact_steps": 18,
+          "pairs": [
+            {
+              "contact_events": 72,
+              "contact_steps": 18,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "grasp": {
+        "intended_gripper_cube": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 12,
+          "contact_steps": 3,
+          "pairs": [
+            {
+              "contact_events": 12,
+              "contact_steps": 3,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "lift": {
+        "intended_gripper_cube": {
+          "contact_events": 18,
+          "contact_steps": 2,
+          "pairs": [
+            {
+              "contact_events": 2,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 8,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 2,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 6,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "lower": {
+        "intended_gripper_cube": {
+          "contact_events": 27,
+          "contact_steps": 3,
+          "pairs": [
+            {
+              "contact_events": 3,
+              "contact_steps": 3,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 12,
+              "contact_steps": 3,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 3,
+              "contact_steps": 3,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 9,
+              "contact_steps": 3,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "release": {
+        "intended_gripper_cube": {
+          "contact_events": 42,
+          "contact_steps": 5,
+          "pairs": [
+            {
+              "contact_events": 4,
+              "contact_steps": 4,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 18,
+              "contact_steps": 5,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 3,
+              "contact_steps": 3,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 17,
+              "contact_steps": 5,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 60,
+          "contact_steps": 17,
+          "pairs": [
+            {
+              "contact_events": 60,
+              "contact_steps": 17,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "retreat": {
+        "intended_gripper_cube": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 8,
+          "contact_steps": 2,
+          "pairs": [
+            {
+              "contact_events": 8,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "settle": {
+        "intended_gripper_cube": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 48,
+          "contact_steps": 12,
+          "pairs": [
+            {
+              "contact_events": 48,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "transport_dmp_route_confidence": {
+        "intended_gripper_cube": {
+          "contact_events": 1440,
+          "contact_steps": 160,
+          "pairs": [
+            {
+              "contact_events": 160,
+              "contact_steps": 160,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 565,
+              "contact_steps": 160,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 160,
+              "contact_steps": 160,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 555,
+              "contact_steps": 160,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      }
+    },
+    "phases": [
+      {
+        "final_position_error_m": 0.004811199625876539,
+        "name": "approach",
+        "steps": 15
+      },
+      {
+        "final_position_error_m": 0.0073799769692464295,
+        "name": "grasp",
+        "steps": 3
+      },
+      {
+        "name": "close",
+        "steps": 18
+      },
+      {
+        "final_position_error_m": 0.007963266346919256,
+        "name": "lift",
+        "steps": 2
+      },
+      {
+        "name": "transport_dmp_route_confidence",
+        "steps": 160,
+        "waypoints": 80
+      },
+      {
+        "final_position_error_m": 0.005590839421301113,
+        "name": "lower",
+        "steps": 3
+      },
+      {
+        "name": "release",
+        "steps": 18
+      },
+      {
+        "final_position_error_m": 0.007825828575020781,
+        "name": "retreat",
+        "steps": 2
+      },
+      {
+        "name": "settle",
+        "steps": 12
+      }
+    ],
+    "placement_error_m": 0.0011574413625529874,
+    "placement_success": true,
+    "predicted_minimum_clearance_m": 0.018284158049672823,
+    "robot_obstacle_contact": false,
+    "robot_obstacle_contact_steps": 0,
+    "scenario": {
+      "goal_xy_m": [
+        0.22021783396271377,
+        -0.008701787442861634
+      ],
+      "index": 1,
+      "obstacle_half_size_m": [
+        0.022168062499999995,
+        0.062407350000000014
+      ],
+      "obstacle_xy_m": [
+        0.1331677243593358,
+        0.0019016569766819222
+      ],
+      "seed": 402,
+      "start_id": "s2",
+      "start_xy_m": [
+        0.03932490795172394,
+        -0.003204490299476486
+      ]
+    },
+    "schema_version": 1,
+    "source_confidence": 0.905213,
+    "source_episode": "ep_013",
+    "source_route": "left",
+    "steps": 233,
+    "target_placed": true,
+    "task_success": true,
+    "transport_cube_bottom_clearance_m": 0.010919622927365369,
+    "transport_cube_center_z_median_m": 0.8315429072427647,
+    "transport_eef_z_median_m": 0.8470301157623659,
+    "transport_grasp_offset_z_median_m": 0.015509066329134347,
+    "unintended_contact": false
+  },
+  "gate_keys": [
+    "straight_expected_obstacle_failure",
+    "dmp_successful_placement",
+    "dmp_no_object_collision",
+    "dmp_object_remained_grasped",
+    "dmp_no_unintended_robot_contact"
+  ],
+  "passed": true,
+  "phase": "4E_diagnostics",
+  "reassessed_without_simulation": true,
+  "schema_version": 1,
+  "seed": 402,
+  "straight": {
+    "action_bound_violations": 0,
+    "action_saturation_rate": 0.03862660944206009,
+    "action_saturation_steps": 9,
+    "calibrated_safety_success": false,
+    "collision": true,
+    "collision_steps": 90,
+    "contacts": {
+      "intended_gripper_cube": {
+        "contact_events": 1639,
+        "contact_steps": 181,
+        "pairs": [
+          {
+            "contact_events": 175,
+            "contact_steps": 175,
+            "geometries": [
+              "cube_g0",
+              "gripper0_right_finger1_collision"
+            ]
+          },
+          {
+            "contact_events": 678,
+            "contact_steps": 181,
+            "geometries": [
+              "cube_g0",
+              "gripper0_right_finger1_pad_collision"
+            ]
+          },
+          {
+            "contact_events": 175,
+            "contact_steps": 175,
+            "geometries": [
+              "cube_g0",
+              "gripper0_right_finger2_collision"
+            ]
+          },
+          {
+            "contact_events": 611,
+            "contact_steps": 181,
+            "geometries": [
+              "cube_g0",
+              "gripper0_right_finger2_pad_collision"
+            ]
+          }
+        ]
+      },
+      "object_obstacle": {
+        "contact_events": 222,
+        "contact_steps": 90,
+        "pairs": [
+          {
+            "contact_events": 222,
+            "contact_steps": 90,
+            "geometries": [
+              "cube_g0",
+              "route_obstacle_geom"
+            ]
+          }
+        ]
+      },
+      "other": {
+        "contact_events": 252,
+        "contact_steps": 63,
+        "pairs": [
+          {
+            "contact_events": 252,
+            "contact_steps": 63,
+            "geometries": [
+              "cube_g0",
+              "table_collision"
+            ]
+          }
+        ]
+      },
+      "robot_obstacle": {
+        "contact_events": 44,
+        "contact_steps": 25,
+        "pairs": [
+          {
+            "contact_events": 20,
+            "contact_steps": 20,
+            "geometries": [
+              "gripper0_right_finger1_collision",
+              "route_obstacle_geom"
+            ]
+          },
+          {
+            "contact_events": 24,
+            "contact_steps": 24,
+            "geometries": [
+              "gripper0_right_finger2_collision",
+              "route_obstacle_geom"
+            ]
+          }
+        ]
+      },
+      "robot_table": {
+        "contact_events": 0,
+        "contact_steps": 0,
+        "pairs": []
+      },
+      "self_collision": {
+        "contact_events": 0,
+        "contact_steps": 0,
+        "pairs": []
+      }
+    },
+    "controller_latency_median_ms": 0.009417,
+    "controller_latency_p95_ms": 0.013425399999999988,
+    "cube_dimensions_m": [
+      0.04020343054948852,
+      0.041906803442915086,
+      0.04124656863079862
+    ],
+    "drop": false,
+    "eligible_demonstrations": 0,
+    "failure_reasons": [
+      "object_obstacle_collision"
+    ],
+    "maximum_absolute_action": 1.0,
+    "maximum_transport_grasp_distance_m": 0.019431395096048736,
+    "method": "straight",
+    "minimum_obstacle_clearance_m": -0.052561622626807435,
+    "object_collision_steps": 90,
+    "object_remained_grasped": true,
+    "path_efficiency": 0.9825158488874375,
+    "phase_contacts": {
+      "approach": {
+        "intended_gripper_cube": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 60,
+          "contact_steps": 15,
+          "pairs": [
+            {
+              "contact_events": 60,
+              "contact_steps": 15,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "close": {
+        "intended_gripper_cube": {
+          "contact_events": 108,
+          "contact_steps": 12,
+          "pairs": [
+            {
+              "contact_events": 12,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 41,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 12,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 43,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 72,
+          "contact_steps": 18,
+          "pairs": [
+            {
+              "contact_events": 72,
+              "contact_steps": 18,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "grasp": {
+        "intended_gripper_cube": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 12,
+          "contact_steps": 3,
+          "pairs": [
+            {
+              "contact_events": 12,
+              "contact_steps": 3,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "lift": {
+        "intended_gripper_cube": {
+          "contact_events": 18,
+          "contact_steps": 2,
+          "pairs": [
+            {
+              "contact_events": 2,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 8,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 2,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 6,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "lower": {
+        "intended_gripper_cube": {
+          "contact_events": 18,
+          "contact_steps": 2,
+          "pairs": [
+            {
+              "contact_events": 2,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 8,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 2,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 6,
+              "contact_steps": 2,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "release": {
+        "intended_gripper_cube": {
+          "contact_events": 42,
+          "contact_steps": 5,
+          "pairs": [
+            {
+              "contact_events": 3,
+              "contact_steps": 3,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 19,
+              "contact_steps": 5,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 4,
+              "contact_steps": 4,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 16,
+              "contact_steps": 5,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 48,
+          "contact_steps": 12,
+          "pairs": [
+            {
+              "contact_events": 48,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "retreat": {
+        "intended_gripper_cube": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 12,
+          "contact_steps": 3,
+          "pairs": [
+            {
+              "contact_events": 12,
+              "contact_steps": 3,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "settle": {
+        "intended_gripper_cube": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "object_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "other": {
+          "contact_events": 48,
+          "contact_steps": 12,
+          "pairs": [
+            {
+              "contact_events": 48,
+              "contact_steps": 12,
+              "geometries": [
+                "cube_g0",
+                "table_collision"
+              ]
+            }
+          ]
+        },
+        "robot_obstacle": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      },
+      "transport_straight": {
+        "intended_gripper_cube": {
+          "contact_events": 1453,
+          "contact_steps": 160,
+          "pairs": [
+            {
+              "contact_events": 156,
+              "contact_steps": 156,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_collision"
+              ]
+            },
+            {
+              "contact_events": 602,
+              "contact_steps": 160,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger1_pad_collision"
+              ]
+            },
+            {
+              "contact_events": 155,
+              "contact_steps": 155,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_collision"
+              ]
+            },
+            {
+              "contact_events": 540,
+              "contact_steps": 160,
+              "geometries": [
+                "cube_g0",
+                "gripper0_right_finger2_pad_collision"
+              ]
+            }
+          ]
+        },
+        "object_obstacle": {
+          "contact_events": 222,
+          "contact_steps": 90,
+          "pairs": [
+            {
+              "contact_events": 222,
+              "contact_steps": 90,
+              "geometries": [
+                "cube_g0",
+                "route_obstacle_geom"
+              ]
+            }
+          ]
+        },
+        "other": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "robot_obstacle": {
+          "contact_events": 44,
+          "contact_steps": 25,
+          "pairs": [
+            {
+              "contact_events": 20,
+              "contact_steps": 20,
+              "geometries": [
+                "gripper0_right_finger1_collision",
+                "route_obstacle_geom"
+              ]
+            },
+            {
+              "contact_events": 24,
+              "contact_steps": 24,
+              "geometries": [
+                "gripper0_right_finger2_collision",
+                "route_obstacle_geom"
+              ]
+            }
+          ]
+        },
+        "robot_table": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        },
+        "self_collision": {
+          "contact_events": 0,
+          "contact_steps": 0,
+          "pairs": []
+        }
+      }
+    },
+    "phases": [
+      {
+        "final_position_error_m": 0.004811199625876539,
+        "name": "approach",
+        "steps": 15
+      },
+      {
+        "final_position_error_m": 0.0073799769692464295,
+        "name": "grasp",
+        "steps": 3
+      },
+      {
+        "name": "close",
+        "steps": 18
+      },
+      {
+        "final_position_error_m": 0.007963266346919256,
+        "name": "lift",
+        "steps": 2
+      },
+      {
+        "name": "transport_straight",
+        "steps": 160,
+        "waypoints": 80
+      },
+      {
+        "final_position_error_m": 0.007287863346023645,
+        "name": "lower",
+        "steps": 2
+      },
+      {
+        "name": "release",
+        "steps": 18
+      },
+      {
+        "final_position_error_m": 0.006162141731202493,
+        "name": "retreat",
+        "steps": 3
+      },
+      {
+        "name": "settle",
+        "steps": 12
+      }
+    ],
+    "placement_error_m": 0.018866980214485306,
+    "placement_success": true,
+    "robot_obstacle_contact": false,
+    "robot_obstacle_contact_steps": 0,
+    "scenario": {
+      "goal_xy_m": [
+        0.22021783396271377,
+        -0.008701787442861634
+      ],
+      "index": 1,
+      "obstacle_half_size_m": [
+        0.022168062499999995,
+        0.062407350000000014
+      ],
+      "obstacle_xy_m": [
+        0.1331677243593358,
+        0.0019016569766819222
+      ],
+      "seed": 402,
+      "start_id": "s2",
+      "start_xy_m": [
+        0.03932490795172394,
+        -0.003204490299476486
+      ]
+    },
+    "schema_version": 1,
+    "source_confidence": null,
+    "source_episode": null,
+    "source_route": null,
+    "steps": 233,
+    "target_placed": true,
+    "task_success": false,
+    "transport_cube_bottom_clearance_m": 0.011149443424805394,
+    "transport_cube_center_z_median_m": 0.8317727277402047,
+    "transport_eef_z_median_m": 0.8470290949338664,
+    "transport_grasp_offset_z_median_m": 0.012565744079011343,
+    "unintended_contact": true
+  }
+}

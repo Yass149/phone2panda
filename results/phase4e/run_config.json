@@ -1,0 +1,32 @@
+{
+  "config_sha256": "d4d8b79192460d9d35e1f3a7740bc8982c60d29abc2583ef90c91bff74cc6efa",
+  "configuration": {
+    "calibration": {
+      "cube_half_height_max_m": 0.022,
+      "desired_cube_bottom_clearance_m": 0.012,
+      "maximum_grasp_distance_m": 0.03,
+      "measured_grasp_offset_m": 0.013715,
+      "obstacle_height_m": 0.04,
+      "physical_obstacle_height_m": 0.04
+    },
+    "diagnostic": {
+      "seed": 402
+    },
+    "evaluation": {
+      "episode_count": 50,
+      "seed_start": 4100
+    },
+    "output_dir": "results/phase4e",
+    "phase4b_config": "configs/phase4b.yaml",
+    "preflight": {
+      "seeds": [
+        401,
+        402,
+        403,
+        404,
+        405
+      ]
+    },
+    "schema_version": 1
+  }
+}

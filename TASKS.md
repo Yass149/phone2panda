@@ -66,3 +66,14 @@ Phase 4C stopped at the failed safety preflight as required. Phase 5 was not sta
 - [ ] Run 50 corrected episodes only if an offset passes 5/5 placement with zero unintended contacts.
 
 No offset passed. Phase 4D stopped before the 50-run evaluation, video generation, whole-arm planning, or Phase 5.
+
+## Phase 4E — Calibrated 4 cm obstacle check
+
+- [x] Preserve and relabel the earlier 0.14 m environment as an uncalibrated stress test.
+- [x] Derive a low transport height from cube size, grasp offset, and table clearance.
+- [x] Run one straight and one DMP diagnostic on the same deterministic seed.
+- [x] Treat the straight diagnostic's expected obstacle collision as baseline evidence, not a DMP gate failure.
+- [x] Run the five-seed calibrated DMP safety preflight (5/5 safe placements).
+- [x] Run exactly 50 calibrated episodes for each of the four Phase 4B methods.
+
+The calibrated route/confidence DMP achieved 50/50 safe successes with zero unintended-contact rollouts. Phase 5 has not started.

@@ -47,3 +47,7 @@ Classify MuJoCo geom pairs at every control step: gripper-cube is intended manip
 ## 2026-10-02 — Phase 4D bounded lateral-placement attempt
 
 Keep the selected human DMP transport path unchanged and test only three route-side Y offsets. Clamp staging coordinates to the configured workspace, lower at the lateral point, place horizontally, and retreat along the same corridor. Stop without a 50-run evaluation if no offset achieves both 5/5 placement and zero unintended contact. All three offsets failed, so collision-aware IK or planning is now required.
+
+## 2026-10-02 — Phase 4E physical obstacle calibration
+
+Treat the earlier 0.14 m obstacle as an uncalibrated tall-obstacle stress test and preserve all of its results unchanged. Model the measured glasses case as 0.04 m tall. With a maximum 0.022 m cube half-height, 0.012 m cube-bottom clearance, and 0.013715 m measured grasp offset, use a derived 0.847715 m end-effector transport height. The deliberately unsafe straight diagnostic passes when it demonstrates the expected obstacle failure; only the DMP run is required to place successfully, retain grasp, and have zero unintended contacts before calibrated preflight.

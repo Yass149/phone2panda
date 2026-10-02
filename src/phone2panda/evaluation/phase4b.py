@@ -421,6 +421,8 @@ def execute_rollout(
     pre_lower_yaw_command: float = 0.0,
     goal_side_lower_offset_m: float = 0.0,
     lateral_staging_xy: FloatArray | None = None,
+    minimum_transport_cube_z_m: float | None = None,
+    monitor_transport_height_drop: bool = True,
 ) -> tuple[dict[str, Any], list[NDArray[np.uint8]]]:
     np.random.seed(scenario.seed)
     observation = env.reset()
@@ -433,6 +435,7 @@ def execute_rollout(
     frames: list[NDArray[np.uint8]] = []
     actions: list[FloatArray] = []
     cube_path: list[FloatArray] = []
+    eef_path: list[FloatArray] = []
     latencies_ms: list[float] = []
     phases: list[dict[str, Any]] = []
     saturation_steps = 0
@@ -467,11 +470,18 @@ def execute_rollout(
         object_collision_steps += int(object_collision)
         robot_collision_steps += int(robot_collision)
         cube = np.asarray(env.sim.data.body_xpos[env.cube_body_id]).copy()
-        eef_after = np.asarray(env.sim.data.site_xpos[eef_site])
+        eef_after = np.asarray(env.sim.data.site_xpos[eef_site]).copy()
         if monitor_drop:
-            dropped |= bool(cube[2] < table_z + 0.08 or np.linalg.norm(cube - eef_after) > 0.08)
+            height_threshold = (
+                minimum_transport_cube_z_m
+                if minimum_transport_cube_z_m is not None
+                else table_z + 0.08
+            )
+            height_drop = monitor_transport_height_drop and cube[2] < height_threshold
+            dropped |= bool(height_drop or np.linalg.norm(cube - eef_after) > 0.08)
         actions.append(action.copy())
         cube_path.append(cube)
+        eef_path.append(eef_after)
         if capture_video and len(actions) % int(config.raw["video"]["frame_stride"]) == 0:
             frame = observation[f"{video_cfg['camera']}_image"]
             frames.append(np.asarray(frame, dtype=np.uint8))
@@ -565,7 +575,13 @@ def execute_rollout(
 
     action_values = np.asarray(actions)
     cube_values = np.asarray(cube_path)
+    eef_values = np.asarray(eef_path)
     transport_cube = cube_values[transport_start:transport_end, :2]
+    transport_grasp_distance = np.linalg.norm(
+        cube_values[transport_start:transport_end]
+        - eef_values[transport_start:transport_end],
+        axis=1,
+    )
     movement = float(np.sum(np.linalg.norm(np.diff(transport_cube, axis=0), axis=1)))
     direct = float(np.linalg.norm(scenario.goal_xy - scenario.start_xy))
     path_efficiency = min(1.0, direct / movement) if movement > 1e-9 else 0.0
@@ -601,6 +617,19 @@ def execute_rollout(
         "robot_obstacle_contact": bool(robot_collision_steps),
         "robot_obstacle_contact_steps": robot_collision_steps,
         "drop": dropped,
+        "maximum_transport_grasp_distance_m": float(np.max(transport_grasp_distance)),
+        "transport_cube_center_z_median_m": float(
+            np.median(cube_values[transport_start:transport_end, 2])
+        ),
+        "transport_eef_z_median_m": float(
+            np.median(eef_values[transport_start:transport_end, 2])
+        ),
+        "transport_grasp_offset_z_median_m": float(
+            np.median(
+                eef_values[transport_start:transport_end, 2]
+                - cube_values[transport_start:transport_end, 2]
+            )
+        ),
         "placement_error_m": placement_error,
         "steps": len(actions),
         "path_efficiency": path_efficiency,
@@ -768,9 +797,11 @@ def aggregate_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     return aggregate
 
 
-def _comparison_markdown(aggregate: dict[str, Any]) -> str:
+def _comparison_markdown(
+    aggregate: dict[str, Any], success_label: str = "Success"
+) -> str:
     header = (
-        "| Method | Success (95% CI) | Object collisions | Robot contacts | Drops | "
+        f"| Method | {success_label} (95% CI) | Object collisions | Robot contacts | Drops | "
         "Placement median | Steps median | "
         "Path efficiency | Min clearance median | Saturation | Latency med/p95 |\n"
         "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n"
@@ -798,7 +829,9 @@ def _comparison_markdown(aggregate: dict[str, Any]) -> str:
     return header + "\n".join(lines) + "\n"
 
 
-def _plot_comparison(path: Path, aggregate: dict[str, Any]) -> None:
+def _plot_comparison(
+    path: Path, aggregate: dict[str, Any], success_label: str = "Task success (%)"
+) -> None:
     labels = ["Straight", "Raw replay", "DMP", "DMP + route"]
     success = np.asarray([aggregate[method]["success_rate"] for method in METHODS])
     intervals = np.asarray([aggregate[method]["success_rate_ci95"] for method in METHODS])
@@ -824,7 +857,7 @@ def _plot_comparison(path: Path, aggregate: dict[str, Any]) -> None:
         ecolor="black",
         capsize=3,
     )
-    axes[0].set_ylabel("Task success (%)")
+    axes[0].set_ylabel(success_label)
     axes[0].set_ylim(0, 105)
     axes[0].set_title("50 fixed scenarios per method")
     axes[1].bar(x, 1000.0 * clearance, color=["#777777", "#4c78a8", "#f58518", "#54a24b"])

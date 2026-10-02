@@ -70,6 +70,16 @@ make phase4d-preflight
 
 The command tests only 0.06, 0.09, and 0.12 m using the existing five seeds and stops at the first safe configuration. No offset currently passes, so `make phase4d` refuses to run and no corrected video is claimed.
 
+## Phase 4E calibrated obstacle
+
+The 0.14 m Phase 4B–4D obstacle is retained as an uncalibrated tall-obstacle stress test. Phase 4E separately models the approximately 0.04 m physical glasses case:
+
+```bash
+make phase4e-diagnostics
+```
+
+The deliberately unsafe straight diagnostic passes when it demonstrates the expected obstacle failure; those object and gripper contacts are recorded rather than treated as a DMP blocker. The calibrated DMP route/confidence diagnostic passed with retained grasp, zero unintended contacts, and 1.16 mm placement error. Its five-seed safety preflight passed 5/5, followed by the fixed-seed four-method comparison in `results/phase4e/`.
+
 Outputs are written under `results/pilot_validation/`:
 
 - `quality_report.json` and `quality_report.csv`: aggregate machine-readable gate results.

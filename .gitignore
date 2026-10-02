@@ -72,6 +72,18 @@ results/**
 !results/phase4d/
 !results/phase4d/preflight_grid.json
 !results/phase4d/preflight_rollouts.jsonl
+!results/phase4e/
+!results/phase4e/aggregate.json
+!results/phase4e/comparison.md
+!results/phase4e/comparison.png
+!results/phase4e/contact_diagnostics.json
+!results/phase4e/diagnostics.json
+!results/phase4e/preflight.json
+!results/phase4e/preflight_rollouts.jsonl
+!results/phase4e/representative_calibrated_failure.mp4
+!results/phase4e/representative_calibrated_success.mp4
+!results/phase4e/rollouts.jsonl
+!results/phase4e/run_config.json
 
 # Large experiment outputs and trained weights must never enter ordinary commits.
 artifacts/

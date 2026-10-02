@@ -12,6 +12,7 @@ def test_contact_taxonomy() -> None:
         classify_contact_pair("robot0_link7_collision", "route_obstacle_geom")
         == "robot_obstacle"
     )
+    assert classify_contact_pair("cube_g0", "route_obstacle_geom") == "object_obstacle"
     assert classify_contact_pair("robot0_link7_collision", "table_collision") == "robot_table"
     assert (
         classify_contact_pair("robot0_link6_collision", "gripper0_right_hand_collision")
