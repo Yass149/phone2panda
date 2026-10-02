@@ -380,6 +380,7 @@ def _reset_gripper_state(env: HumanPathPickPlace) -> None:
 
 
 ContactCallback = Callable[[int, str, str], None]
+ActionProvider = Callable[[FloatArray, float, FloatArray, FloatArray], FloatArray]
 
 
 def _contact_types(
@@ -423,6 +424,7 @@ def execute_rollout(
     lateral_staging_xy: FloatArray | None = None,
     minimum_transport_cube_z_m: float | None = None,
     monitor_transport_height_drop: bool = True,
+    action_provider: ActionProvider | None = None,
 ) -> tuple[dict[str, Any], list[NDArray[np.uint8]]]:
     np.random.seed(scenario.seed)
     observation = env.reset()
@@ -444,6 +446,8 @@ def execute_rollout(
     dropped = False
     transport_start = 0
     transport_end = 0
+    initial_eef = np.asarray(env.sim.data.site_xpos[eef_site]).copy()
+    initial_cube = np.asarray(env.sim.data.body_xpos[env.cube_body_id]).copy()
 
     def step_toward(
         target: FloatArray,
@@ -454,12 +458,23 @@ def execute_rollout(
         nonlocal observation, saturation_steps, object_collision_steps
         nonlocal robot_collision_steps, dropped
         eef = np.asarray(env.sim.data.site_xpos[eef_site])
+        cube_before = np.asarray(env.sim.data.body_xpos[env.cube_body_id])
         started = perf_counter_ns()
-        action, saturated = bounded_action(
-            target - eef,
-            float(controller["position_output_limit"]),
-            gripper,
-        )
+        if action_provider is None:
+            action, saturated = bounded_action(
+                target - eef,
+                float(controller["position_output_limit"]),
+                gripper,
+            )
+        else:
+            raw_action = np.asarray(
+                action_provider(target.copy(), gripper, eef.copy(), cube_before.copy()),
+                dtype=np.float64,
+            )
+            if raw_action.shape != (7,) or not np.all(np.isfinite(raw_action)):
+                raise ValueError("Action provider must return one finite seven-value action")
+            saturated = bool(np.any(np.abs(raw_action) > 1.0))
+            action = np.clip(raw_action, -1.0, 1.0)
         action[5] = float(np.clip(yaw_command, -1.0, 1.0))
         latencies_ms.append((perf_counter_ns() - started) / 1_000_000.0)
         saturation_steps += int(saturated)
@@ -642,6 +657,11 @@ def execute_rollout(
         "controller_latency_p95_ms": float(np.percentile(latencies_ms, 95)),
         "phases": phases,
         "_latencies_ms": latencies_ms,
+        "_actions": action_values,
+        "_initial_eef": initial_eef,
+        "_initial_cube": initial_cube,
+        "_eef_path": eef_values,
+        "_cube_path": cube_values,
     }
     return result, frames
 

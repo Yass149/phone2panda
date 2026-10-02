@@ -1,0 +1,82 @@
+{
+  "action_names": [
+    "delta_x",
+    "delta_y",
+    "delta_z",
+    "rotation_x",
+    "rotation_y",
+    "rotation_z",
+    "gripper"
+  ],
+  "episode_axis": 0,
+  "episode_boundaries": "episode_lengths and valid_mask",
+  "feature_names": [
+    "eef_x_m",
+    "eef_y_m",
+    "eef_z_m",
+    "cube_x_m",
+    "cube_y_m",
+    "cube_z_m",
+    "active_target_x_m",
+    "active_target_y_m",
+    "active_target_z_m",
+    "target_delta_x_m",
+    "target_delta_y_m",
+    "target_delta_z_m",
+    "task_goal_x_m",
+    "task_goal_y_m",
+    "obstacle_x_m",
+    "obstacle_y_m",
+    "obstacle_half_x_m",
+    "obstacle_half_y_m",
+    "route_left",
+    "route_right",
+    "gripper_state",
+    "desired_gripper"
+  ],
+  "provenance": [
+    {
+      "phase4e_config_sha256": "d4d8b79192460d9d35e1f3a7740bc8982c60d29abc2583ef90c91bff74cc6efa",
+      "scenario_index": 0,
+      "seed": 401,
+      "source_confidence": 0.913943,
+      "source_episode": "ep_029",
+      "source_route": "left"
+    },
+    {
+      "phase4e_config_sha256": "d4d8b79192460d9d35e1f3a7740bc8982c60d29abc2583ef90c91bff74cc6efa",
+      "scenario_index": 1,
+      "seed": 402,
+      "source_confidence": 0.905213,
+      "source_episode": "ep_013",
+      "source_route": "left"
+    },
+    {
+      "phase4e_config_sha256": "d4d8b79192460d9d35e1f3a7740bc8982c60d29abc2583ef90c91bff74cc6efa",
+      "scenario_index": 2,
+      "seed": 403,
+      "source_confidence": 0.936694,
+      "source_episode": "ep_014",
+      "source_route": "right"
+    },
+    {
+      "phase4e_config_sha256": "d4d8b79192460d9d35e1f3a7740bc8982c60d29abc2583ef90c91bff74cc6efa",
+      "scenario_index": 3,
+      "seed": 404,
+      "source_confidence": 0.913943,
+      "source_episode": "ep_029",
+      "source_route": "left"
+    },
+    {
+      "phase4e_config_sha256": "d4d8b79192460d9d35e1f3a7740bc8982c60d29abc2583ef90c91bff74cc6efa",
+      "scenario_index": 4,
+      "seed": 405,
+      "source_confidence": 0.915705,
+      "source_episode": "ep_027",
+      "source_route": "left"
+    }
+  ],
+  "schema_version": 1,
+  "teacher_method": "dmp_route_confidence",
+  "time_axis": 1
+}

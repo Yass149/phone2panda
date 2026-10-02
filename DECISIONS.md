@@ -51,3 +51,7 @@ Keep the selected human DMP transport path unchanged and test only three route-s
 ## 2026-10-02 — Phase 4E physical obstacle calibration
 
 Treat the earlier 0.14 m obstacle as an uncalibrated tall-obstacle stress test and preserve all of its results unchanged. Model the measured glasses case as 0.04 m tall. With a maximum 0.022 m cube half-height, 0.012 m cube-bottom clearance, and 0.013715 m measured grasp offset, use a derived 0.847715 m end-effector transport height. The deliberately unsafe straight diagnostic passes when it demonstrates the expected obstacle failure; only the DMP run is required to place successfully, retain grasp, and have zero unintended contacts before calibrated preflight.
+
+## 2026-10-02 — Phase 5A compact recurrent policy
+
+Use a dependency-free, normalized 24-unit GRU rather than ACT, LeRobot, SmolVLA, or another framework. The GRU provides deterministic initialization and training, a 3,559-parameter checkpoint suitable for modest hardware, and direct controller-latency measurement. Limit Phase 5A to overfitting exactly five successful calibrated DMP episodes and require 5/5 safe closed-loop replay before any broader training.

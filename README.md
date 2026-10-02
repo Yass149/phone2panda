@@ -80,6 +80,16 @@ make phase4e-diagnostics
 
 The deliberately unsafe straight diagnostic passes when it demonstrates the expected obstacle failure; those object and gripper contacts are recorded rather than treated as a DMP blocker. The calibrated DMP route/confidence diagnostic passed with retained grasp, zero unintended contacts, and 1.16 mm placement error. Its five-seed safety preflight passed 5/5, followed by the fixed-seed four-method comparison in `results/phase4e/`.
 
+## Phase 5A bounded GRU overfit gate
+
+Phase 5A distils exactly five fixed-seed, human-derived route/confidence DMP rollouts into a 24-unit normalized GRU:
+
+```bash
+make phase5a
+```
+
+The GRU is intentionally selected for reproducibility, modest hardware requirements, and controlled latency measurement. The bounded overfit gate passed 5/5 on the same scenarios with zero object collisions, unintended robot contacts, or drops. This is an overfit/reloadability check only; it is not evidence of generalization and does not start full policy training.
+
 Outputs are written under `results/pilot_validation/`:
 
 - `quality_report.json` and `quality_report.csv`: aggregate machine-readable gate results.

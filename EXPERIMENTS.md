@@ -150,3 +150,13 @@ Final acceptance-command results are appended after the checked pipeline run.
 - Fixed scenarios, seeds 4100–4149, 50 episodes per method: straight 0/50 safe successes, nearest raw replay 49/50, DMP 49/50, and DMP + route/confidence 50/50.
 - Route/confidence DMP: zero object collisions, unintended contacts, or drops; 1.39 mm median placement error; 22.43 mm median and 9.88 mm worst obstacle clearance; 3.84% action saturation.
 - The only non-straight failures were at seed 4140: one gripper-finger/obstacle event for raw replay and 14 for unfiltered DMP. Phase 5 was not started.
+
+## 2026-10-02 — Phase 5A bounded GRU overfit gate
+
+- Teacher data: exactly five successful route/confidence DMP rollouts, seeds 401–405, with preserved episode boundaries and source-episode/route/confidence provenance.
+- Policy: normalized 24-unit GRU, 3,559 parameters, 31,706-byte compressed checkpoint; deterministic seed 5001.
+- Training: 500-epoch hard cap reached in 6.96 seconds; best normalized action MSE 0.00248018. Early stopping was enabled with a 50-epoch patience.
+- Closed-loop result on the same five scenarios: **PASS, 5/5** acceptable placements, zero object collisions, zero unintended contacts, zero drops, and retained grasp in 5/5.
+- Placement errors: 1.68, 2.72, 0.43, 2.15, and 0.53 mm; maximum 2.72 mm against the 10 mm gate.
+- Policy latency: 0.0271 ms median and 0.0283 ms p95. Exactly one passing rollout video was rendered after the gate passed.
+- This is an overfit gate only. Full policy training, hyperparameter optimization, ACT, LeRobot, and SmolVLA were not started.

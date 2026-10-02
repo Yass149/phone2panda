@@ -1,0 +1,25 @@
+schema_version: 1
+phase4e_config: configs/phase4e.yaml
+output_dir: results/phase5a
+
+teacher:
+  method: dmp_route_confidence
+  seeds: [401, 402, 403, 404, 405]
+
+policy:
+  hidden_size: 24
+  seed: 5001
+
+training:
+  maximum_epochs: 500
+  learning_rate: 0.003
+  patience: 50
+  minimum_improvement: 0.0000001
+  target_loss: 0.00002
+  gradient_clip_norm: 5.0
+
+gate:
+  maximum_placement_error_m: 0.01
+
+video:
+  representative_seed: 402

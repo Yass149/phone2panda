@@ -84,6 +84,16 @@ results/**
 !results/phase4e/representative_calibrated_success.mp4
 !results/phase4e/rollouts.jsonl
 !results/phase4e/run_config.json
+!results/phase5a/
+!results/phase5a/dataset_schema.json
+!results/phase5a/evaluation.json
+!results/phase5a/evaluation_rollouts.jsonl
+!results/phase5a/gru_policy.npz
+!results/phase5a/representative_success.mp4
+!results/phase5a/run_config.json
+!results/phase5a/teacher_dataset.npz
+!results/phase5a/training_curve.csv
+!results/phase5a/training_curve.png
 
 # Large experiment outputs and trained weights must never enter ordinary commits.
 artifacts/

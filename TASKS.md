@@ -76,4 +76,15 @@ No offset passed. Phase 4D stopped before the 50-run evaluation, video generatio
 - [x] Run the five-seed calibrated DMP safety preflight (5/5 safe placements).
 - [x] Run exactly 50 calibrated episodes for each of the four Phase 4B methods.
 
-The calibrated route/confidence DMP achieved 50/50 safe successes with zero unintended-contact rollouts. Phase 5 has not started.
+The calibrated route/confidence DMP achieved 50/50 safe successes with zero unintended-contact rollouts.
+
+## Phase 5A — Five-episode GRU overfit gate
+
+- [x] Collect exactly five successful fixed-seed teacher rollouts from the calibrated human-derived DMP controller.
+- [x] Preserve episode boundaries, state/context, route, gripper state, actions, and human-DMP provenance.
+- [x] Implement and cap deterministic training of a normalized 24-unit GRU.
+- [x] Add focused normalization, sequence-batching, and checkpoint-reload tests.
+- [x] Pass all five same-scenario closed-loop evaluations with zero collisions, unintended contacts, or drops.
+- [x] Save one passing video, checkpoint, schema, curve, and machine-readable evaluation.
+
+Phase 5A is complete. Full policy training and optimization have not started.

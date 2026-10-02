@@ -1,0 +1,36 @@
+{
+  "config_sha256": "652ffe4bfd8700c0870c85b0e906ddd5bab209661f3b8e9ebebc5e327f56a5c0",
+  "configuration": {
+    "gate": {
+      "maximum_placement_error_m": 0.01
+    },
+    "output_dir": "results/phase5a",
+    "phase4e_config": "configs/phase4e.yaml",
+    "policy": {
+      "hidden_size": 24,
+      "seed": 5001
+    },
+    "schema_version": 1,
+    "teacher": {
+      "method": "dmp_route_confidence",
+      "seeds": [
+        401,
+        402,
+        403,
+        404,
+        405
+      ]
+    },
+    "training": {
+      "gradient_clip_norm": 5.0,
+      "learning_rate": 0.003,
+      "maximum_epochs": 500,
+      "minimum_improvement": 1e-07,
+      "patience": 50,
+      "target_loss": 2e-05
+    },
+    "video": {
+      "representative_seed": 402
+    }
+  }
+}

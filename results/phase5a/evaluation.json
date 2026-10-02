@@ -1,0 +1,71 @@
+{
+  "artifacts": {
+    "checkpoint": "gru_policy.npz",
+    "dataset_schema": "dataset_schema.json",
+    "evaluation_rollouts": "evaluation_rollouts.jsonl",
+    "representative_video": "representative_success.mp4",
+    "teacher_dataset": "teacher_dataset.npz",
+    "training_curve_csv": "training_curve.csv",
+    "training_curve_plot": "training_curve.png"
+  },
+  "config_sha256": "652ffe4bfd8700c0870c85b0e906ddd5bab209661f3b8e9ebebc5e327f56a5c0",
+  "dimensions": {
+    "cube_bottom_z_m": 0.812,
+    "cube_center_z_m": 0.8340000000000001,
+    "cube_top_z_m": 0.8560000000000001,
+    "eef_transport_z_m": 0.8477150000000001,
+    "obstacle_top_z_m": 0.8400000000000001,
+    "table_z_m": 0.8,
+    "vertical_overlap_m": 0.028000000000000025
+  },
+  "gate": {
+    "controller_latency_median_ms": 0.027083,
+    "controller_latency_p95_ms": 0.028324799999999997,
+    "drop_rollouts": 0,
+    "episodes": 5,
+    "grasp_retained_rollouts": 5,
+    "maximum_placement_error_m": 0.01,
+    "object_collision_rollouts": 0,
+    "placement_error_max_m": 0.0027168880233997654,
+    "placement_errors_m": [
+      0.0016828549393731519,
+      0.0027168880233997654,
+      0.0004260893236339651,
+      0.002152971892545587,
+      0.0005312020093674048
+    ],
+    "placements": 5,
+    "successes": 5,
+    "unintended_contact_rollouts": 0
+  },
+  "passed": true,
+  "phase": "5A",
+  "policy": {
+    "checkpoint_bytes": 31706,
+    "hidden_size": 24,
+    "parameter_count": 3559,
+    "selection_reason": "Reproducible compact recurrent policy for modest hardware and controlled latency evaluation",
+    "type": "normalized_gru"
+  },
+  "schema_version": 1,
+  "teacher": {
+    "all_successful": true,
+    "episodes": 5,
+    "method": "dmp_route_confidence",
+    "phase4e_config_sha256": "d4d8b79192460d9d35e1f3a7740bc8982c60d29abc2583ef90c91bff74cc6efa",
+    "seeds": [
+      401,
+      402,
+      403,
+      404,
+      405
+    ]
+  },
+  "training": {
+    "best_recorded_loss": 0.0024801829086764974,
+    "epochs": 500,
+    "final_recorded_loss": 0.0024801829086764974,
+    "maximum_epochs": 500,
+    "seconds": 6.959471875001327
+  }
+}

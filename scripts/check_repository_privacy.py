@@ -18,6 +18,8 @@ PUBLIC_MEDIA = {
     "results/phase4e/comparison.png",
     "results/phase4e/representative_calibrated_failure.mp4",
     "results/phase4e/representative_calibrated_success.mp4",
+    "results/phase5a/representative_success.mp4",
+    "results/phase5a/training_curve.png",
 }
 PRIVATE_PREFIXES = (
     ".cache/",
