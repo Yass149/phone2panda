@@ -46,3 +46,13 @@ Phase 4A is complete. Policy training was not started.
 - [x] Record object collisions, robot contacts, drops, placement, efficiency, clearance, saturation, and latency.
 
 Phase 4B is complete. Policy training and Phase 5 were not started.
+
+## Phase 4C — Full-arm safety audit
+
+- [x] Replay and attribute exact contacts for all 50 winning-method Phase 4B scenarios.
+- [x] Separate intended gripper-cube, robot-obstacle, robot-table, and self contacts.
+- [x] Add a conservative height, robot-envelope route score, goal-side lowering posture, and an unintended-contact gate.
+- [x] Run the five-seed winning-method safety preflight.
+- [ ] Run the corrected 50-episode evaluation only after the safety preflight passes.
+
+Phase 4C stopped at the failed safety preflight as required. Phase 5 was not started.

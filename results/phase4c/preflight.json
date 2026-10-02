@@ -1,0 +1,36 @@
+{
+  "config_sha256": "6e09eb72ad54884ce69141b0c3394feb6daa61d510e8cec1a4b5d065f4405578",
+  "failures": [
+    {
+      "failure_reasons": [],
+      "seed": 401,
+      "unintended_contact": true
+    },
+    {
+      "failure_reasons": [],
+      "seed": 402,
+      "unintended_contact": true
+    },
+    {
+      "failure_reasons": [],
+      "seed": 403,
+      "unintended_contact": true
+    },
+    {
+      "failure_reasons": [],
+      "seed": 404,
+      "unintended_contact": true
+    },
+    {
+      "failure_reasons": [],
+      "seed": 405,
+      "unintended_contact": true
+    }
+  ],
+  "passed": false,
+  "phase": "4C_preflight",
+  "rollouts": 5,
+  "safety_successes": 0,
+  "schema_version": 1,
+  "unintended_contact_rollouts": 5
+}

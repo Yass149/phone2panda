@@ -7,6 +7,7 @@ import math
 import os
 import platform
 import time
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from time import perf_counter_ns
@@ -378,12 +379,23 @@ def _reset_gripper_state(env: HumanPathPickPlace) -> None:
             gripper.current_action = np.zeros(gripper.dof)
 
 
-def _contact_types(env: HumanPathPickPlace) -> tuple[bool, bool]:
+ContactCallback = Callable[[int, str, str], None]
+
+
+def _contact_types(
+    env: HumanPathPickPlace,
+    step_index: int,
+    contact_callback: ContactCallback | None = None,
+) -> tuple[bool, bool]:
     cube_geoms = {env.sim.model.geom_name2id(name) for name in env.cube.contact_geoms}
     object_collision = False
     robot_collision = False
     for index in range(env.sim.data.ncon):
         contact = env.sim.data.contact[index]
+        name1 = env.sim.model.geom_id2name(int(contact.geom1)) or f"geom_{int(contact.geom1)}"
+        name2 = env.sim.model.geom_id2name(int(contact.geom2)) or f"geom_{int(contact.geom2)}"
+        if contact_callback is not None:
+            contact_callback(step_index, name1, name2)
         pair = {int(contact.geom1), int(contact.geom2)}
         if env.obstacle_geom_id not in pair:
             continue
@@ -404,6 +416,10 @@ def execute_rollout(
     path: FloatArray,
     selection: dict[str, Any],
     capture_video: bool = False,
+    contact_callback: ContactCallback | None = None,
+    pre_lower_yaw_steps: int = 0,
+    pre_lower_yaw_command: float = 0.0,
+    goal_side_lower_offset_m: float = 0.0,
 ) -> tuple[dict[str, Any], list[NDArray[np.uint8]]]:
     np.random.seed(scenario.seed)
     observation = env.reset()
@@ -425,7 +441,12 @@ def execute_rollout(
     transport_start = 0
     transport_end = 0
 
-    def step_toward(target: FloatArray, gripper: float, monitor_drop: bool = False) -> float:
+    def step_toward(
+        target: FloatArray,
+        gripper: float,
+        monitor_drop: bool = False,
+        yaw_command: float = 0.0,
+    ) -> float:
         nonlocal observation, saturation_steps, object_collision_steps
         nonlocal robot_collision_steps, dropped
         eef = np.asarray(env.sim.data.site_xpos[eef_site])
@@ -435,10 +456,13 @@ def execute_rollout(
             float(controller["position_output_limit"]),
             gripper,
         )
+        action[5] = float(np.clip(yaw_command, -1.0, 1.0))
         latencies_ms.append((perf_counter_ns() - started) / 1_000_000.0)
         saturation_steps += int(saturated)
         observation, _, _, _ = env.step(action)
-        object_collision, robot_collision = _contact_types(env)
+        object_collision, robot_collision = _contact_types(
+            env, len(actions), contact_callback
+        )
         object_collision_steps += int(object_collision)
         robot_collision_steps += int(robot_collision)
         cube = np.asarray(env.sim.data.body_xpos[env.cube_body_id]).copy()
@@ -487,8 +511,31 @@ def execute_rollout(
             "waypoints": len(path),
         }
     )
+    if pre_lower_yaw_steps:
+        posture_target = np.asarray([*goal_xy, float(workspace["transport_z"])])
+        start_step = len(actions)
+        for _ in range(pre_lower_yaw_steps):
+            step_toward(
+                posture_target,
+                1.0,
+                monitor_drop=True,
+                yaw_command=pre_lower_yaw_command,
+            )
+        phases.append(
+            {"name": "pre_lower_safe_posture", "steps": len(actions) - start_step}
+        )
     lower = np.asarray([*goal_xy, float(workspace["grasp_z"])])
-    converge("lower", lower, 1.0)
+    if goal_side_lower_offset_m > 0.0:
+        goal_side = goal_xy - scenario.obstacle_xy
+        goal_side /= max(float(np.linalg.norm(goal_side)), 1e-12)
+        staging_xy = goal_xy + goal_side * goal_side_lower_offset_m
+        staging_high = np.asarray([*staging_xy, float(workspace["transport_z"])])
+        staging_low = np.asarray([*staging_xy, float(workspace["grasp_z"])])
+        converge("goal_side_staging", staging_high, 1.0)
+        converge("lower_goal_side", staging_low, 1.0)
+        converge("place_from_goal_side", lower, 1.0)
+    else:
+        converge("lower", lower, 1.0)
     start_step = len(actions)
     for _ in range(int(controller["release_steps"])):
         step_toward(lower, -1.0)

@@ -65,6 +65,10 @@ results/**
 !results/phase4b/representative_success.mp4
 !results/phase4b/rollouts.jsonl
 !results/phase4b/run_config.json
+!results/phase4c/
+!results/phase4c/original_contact_diagnostics.json
+!results/phase4c/preflight.json
+!results/phase4c/preflight_rollouts.jsonl
 
 # Large experiment outputs and trained weights must never enter ordinary commits.
 artifacts/

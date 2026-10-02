@@ -6,4 +6,4 @@
 - Generated overlays intentionally omit the source AAC audio and timed metadata.
 - robosuite 1.5.1 is incompatible with MuJoCo 3.14.0 in this environment; `mujoco==3.2.7` is pinned.
 - The agent-view camera partially occludes the obstacle behind the Panda during parts of the rollout; state-based collision and clearance metrics remain available.
-- Phase 4B retargets two-dimensional object paths and does not solve whole-arm motion planning. Although the route/confidence method avoided all object-obstacle collisions, Panda-link contact occurred in 39/50 runs and must be filtered or resolved before distilling a safety-sensitive policy.
+- Phase 4B retargets two-dimensional object paths and does not solve whole-arm motion planning. Exact Phase 4C attribution found 687 link-7/obstacle events plus one gripper-hand/obstacle event across 39/50 winning-method runs. A conservative height and goal-side posture still failed the five-seed safety gate, with links 5–7 contacting the obstacle; whole-arm motion planning or a validated collision-aware IK posture is required before policy distillation.

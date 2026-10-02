@@ -39,3 +39,7 @@ Use robosuite 1.5.1 with MuJoCo 3.2.7 and Panda `OSC_POSE` fixed-impedance contr
 ## 2026-10-02 — Phase 4B fixed scenarios and collision semantics
 
 Use 50 deterministic scenarios shared by all four methods, cycling through the three recorded start zones and applying only seeded centimetre-scale jitter. Retarget demonstration endpoints to each scenario with a two-dimensional similarity transform. Preserve the validated Phase 4A object-obstacle contact as the task collision gate; report Panda-link obstacle contacts separately because a two-dimensional object path does not model whole-arm clearance. Confidence-aware route selection requires at least 95% direct tracking coverage and 0.80 mean tracking confidence, then chooses the left or right DMP with the larger predicted footprint-adjusted clearance.
+
+## 2026-10-02 — Phase 4C contact taxonomy and stop gate
+
+Classify MuJoCo geom pairs at every control step: gripper-cube is intended manipulation; robot-obstacle, robot-table, and robot self-contact are unintended; cube-table is reported separately. Require zero unintended contacts in all five safety-preflight rollouts before permitting a corrected 50-episode evaluation. The conservative height, enlarged robot-envelope route score, and goal-side lowering posture did not pass this gate, so no corrected 50-run result or success video is claimed.

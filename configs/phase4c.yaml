@@ -1,0 +1,19 @@
+schema_version: 1
+phase4b_config: configs/phase4b.yaml
+output_dir: results/phase4c
+method: dmp_route_confidence
+
+safety:
+  transport_z_m: 1.03
+  approach_z_m: 1.03
+  robot_clearance_radius_m: 0.055
+  pre_lower_yaw_steps: 0
+  pre_lower_yaw_command: 1.0
+  goal_side_lower_offset_m: 0.056
+
+preflight:
+  seeds: [401, 402, 403, 404, 405]
+
+evaluation:
+  seed_start: 4100
+  episode_count: 50

@@ -116,3 +116,14 @@ Final acceptance-command results are appended after the checked pipeline run.
 - Whole-arm diagnostic: Panda-link obstacle contact occurred in 39/50 route/confidence runs, so future rollout collection must filter these contacts or add robot-aware clearance before policy training.
 - Artifacts: 200-line raw rollout record, aggregate JSON, resolved configuration, Markdown table, one reproducible plot, one successful replay, and one failure replay.
 - Tests: 14 passed; Ruff passed. Phase 5 was not started.
+
+## 2026-10-02 — Phase 4C full-arm contact audit
+
+- Reused the Phase 4B logs to identify 39 affected winning-method seeds and 687 legacy robot-contact steps.
+- Deterministically replayed the 50 winning-method scenarios with named MuJoCo contact-pair logging; every legacy per-rollout count matched.
+- Intended gripper-cube: 93,245 contact events across all 50 rollouts. Cube-table: 14,878 reported events.
+- Unintended robot-obstacle: 688 events across 39 rollouts—687 `robot0_link7_collision` events and one `gripper0_right_hand_collision` event against `route_obstacle_geom`.
+- Unintended robot-table contacts: 0. Self-collisions: 0.
+- A conservative 1.03 m transport height, 0.055 m robot-envelope route score, and 0.056 m goal-side lowering posture eliminated the worst original seed in isolation.
+- Official five-seed safety preflight: **FAIL, 0/5 safety successes**. Object placement remained 5/5, but robot-obstacle contact remained 5/5 and included links 5–7.
+- Per the gate, the corrected 50-episode run and representative corrected video were not produced. Phase 5 was not started.

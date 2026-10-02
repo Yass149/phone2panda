@@ -49,6 +49,17 @@ make phase4b
 
 The second command refuses to run unless the current configuration has a passing five-seed preflight. It evaluates straight-line control, nearest raw replay, DMP retargeting, and confidence-filtered DMP route selection on the same 50 seeds. Outputs under `results/phase4b/` include `rollouts.jsonl`, `aggregate.json`, `run_config.json`, `comparison.md`, `comparison.png`, and one representative success and failure video. Phase 4B does not train a policy.
 
+## Phase 4C safety audit
+
+Attribute the original whole-arm contacts, then run the winning-method safety preflight:
+
+```bash
+make phase4c-audit
+make phase4c-preflight
+```
+
+The original 50-rollout audit is reproducible and saved under `results/phase4c/`. The current conservative posture candidate fails the zero-unintended-contact preflight, so `make phase4c` refuses to run. No corrected 50-episode result or policy-training result is claimed.
+
 Outputs are written under `results/pilot_validation/`:
 
 - `quality_report.json` and `quality_report.csv`: aggregate machine-readable gate results.
