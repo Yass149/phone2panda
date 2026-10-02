@@ -1,0 +1,17 @@
+schema_version: 1
+base_validation_config: configs/pilot_validation.yaml
+metadata_csv: data/metadata.csv
+raw_dir: data/raw_private
+processed_dir: data/processed/v1
+report_dir: results/dataset_quality
+
+calibration:
+  opening_closing_frames: 9
+  max_camera_drift_px: 5.0
+
+# The full-dataset recordings use lighter grey corner tape than the pilots.
+detection_overrides:
+  corner_gray_max: 200
+
+artifacts:
+  representative_accepted_overlays: 4

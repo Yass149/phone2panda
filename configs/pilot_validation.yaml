@@ -1,0 +1,71 @@
+schema_version: 2
+output_dir: results/pilot_validation
+
+videos:
+  - file: pilot_01_s1_left_v2.MOV
+    episode_id: pilot_01_s1_left
+    expected_start: s1
+    expected_route: left
+  - file: pilot_02_s3_right.MOV
+    episode_id: pilot_02_s3_right
+    expected_start: s3
+    expected_route: right
+  - file: pilot_03_s2_left_v2.MOV
+    episode_id: pilot_03_s2_left
+    expected_start: s2
+    expected_route: left
+  - file: pilot_04_s2_right.MOV
+    episode_id: pilot_04_s2_right
+    expected_start: s2
+    expected_route: right
+  - file: pilot_05_s2_right_repeat_v2.MOV
+    episode_id: pilot_05_s2_right_repeat
+    expected_start: s2
+    expected_route: right
+
+# Rectangles are [x_min, y_min, x_max, y_max] in the marker-calibrated frame.
+geometry:
+  start_zones:
+    s1: [0.15, 0.72, 0.34, 0.96]
+    s2: [0.40, 0.72, 0.61, 0.96]
+    s3: [0.65, 0.72, 0.83, 0.96]
+  target_zone: [0.39, 0.01, 0.63, 0.22]
+  object_footprint_radius: 0.050
+  route_vertical_margin: 0.035
+
+detection:
+  corner_gray_max: 160
+  corner_area_min: 700
+  corner_area_max: 12000
+  corner_min_extent_px: 60
+  corner_reference_tolerance_px: 20
+  median_sample_count: 17
+  red_hue_low: [0, 18]
+  red_hue_high: [170, 180]
+  red_saturation_min: 130
+  red_value_min: 60
+  red_area_min: 500
+  red_area_max: 30000
+  red_max_extent_px: 300
+  red_min_solidity: 0.25
+  max_tracking_step: 0.12
+  max_interpolation_gap_frames: 5
+  blue_hue: [95, 140]
+  blue_saturation_min: 70
+  blue_value_min: 40
+
+validation:
+  hold_seconds: 0.75
+  min_calibration_window_coverage: 0.95
+  max_calibration_jitter_rms_px: 3.0
+  max_calibration_start_end_drift_px: 5.0
+  min_object_tracking_coverage: 0.95
+  min_zone_hold_ratio: 0.90
+  min_footprint_hold_ratio: 0.80
+  min_obstacle_footprint_clearance: 0.01
+  max_decode_dropped_frames: 0
+
+overlay:
+  width: 1280
+  height: 720
+  crf: 23
