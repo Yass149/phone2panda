@@ -2,16 +2,48 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from phone2panda.evaluation.phase4b import build_library
+import numpy as np
+import pytest
+
+from phone2panda.evaluation import phase5b
+from phone2panda.evaluation.phase4b import Scenario
 from phone2panda.evaluation.phase4e import _execution_config
 from phone2panda.evaluation.phase5b import build_balanced_manifest, load_phase5b_config
 
 
-def test_phase5b_manifest_is_balanced_and_seed_disjoint() -> None:
+def test_phase5b_manifest_is_balanced_and_seed_disjoint(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     config = load_phase5b_config(Path("configs/phase5b.yaml"))
     execution, _ = _execution_config(config.phase5a.phase4e)
-    demonstrations, geometry = build_library(execution)
-    manifest = build_balanced_manifest(config, execution, demonstrations, geometry)
+
+    def fake_scenario(_execution, _demos, _geometry, seed: int, index: int) -> Scenario:
+        start_id = ("s1", "s2", "s3")[index % 3]
+        return Scenario(
+            index=index,
+            seed=seed,
+            start_id=start_id,
+            start_xy=np.asarray([0.04, -0.18], dtype=np.float64),
+            goal_xy=np.asarray([0.22, 0.14], dtype=np.float64),
+            obstacle_xy=np.asarray([0.13, 0.0], dtype=np.float64),
+            obstacle_half_size=np.asarray([0.035, 0.055], dtype=np.float64),
+        )
+
+    def fake_selection(_execution, _demos, scenario: Scenario, _method):
+        route = (
+            "left"
+            if scenario.start_id == "s1" or (scenario.start_id == "s2" and scenario.seed % 2 == 0)
+            else "right"
+        )
+        return np.zeros((2, 2), dtype=np.float64), {
+            "source_route": route,
+            "source_episode": f"synthetic_{route}",
+            "source_confidence": 1.0,
+        }
+
+    monkeypatch.setattr(phase5b, "make_scenario", fake_scenario)
+    monkeypatch.setattr(phase5b, "select_method_path", fake_selection)
+    manifest = build_balanced_manifest(config, execution, [], {})
 
     assert manifest["summary"]["training"]["start_counts"] == {
         "s1": 40,

@@ -6,7 +6,6 @@ from phone2panda.retarget.mapping import WorkspaceMap, bounded_action
 from phone2panda.sim.phase4a import (
     load_phase4a_config,
     make_environment,
-    prepare_human_transport,
     reset_signature,
 )
 
@@ -29,7 +28,11 @@ def test_actions_are_bounded() -> None:
 
 def test_deterministic_reset() -> None:
     config = load_phase4a_config(Path("configs/phase4a.yaml"))
-    prepared = prepare_human_transport(config)
+    prepared = {
+        "robot": np.asarray([[0.04, -0.18], [0.22, 0.14]], dtype=np.float64),
+        "obstacle_xy": np.asarray([0.13, 0.0], dtype=np.float64),
+        "obstacle_half_size": np.asarray([0.035, 0.055], dtype=np.float64),
+    }
     env = make_environment(config, prepared, render=False)
     try:
         np.random.seed(int(config.raw["seed"]))
