@@ -1,23 +1,26 @@
-<div align="center">
-
 # Phone2Panda
 
-**Personal phone demonstrations to route-aware Panda control**
+**Hand-recorded phone routes become obstacle-avoiding motion for a simulated Panda robot.**
 
-[Demo](media/phone2panda_demo.mp4) ·
-[Phone footage](media/phone_demo_sanitized.mp4) ·
-[Results](#results) ·
-[Method](docs/design.md) ·
-[Experiments](docs/experiments.md) ·
-[Model card](docs/model_card.md)
+I recorded 36 overhead demonstrations with a phone, extracted the object paths,
+and used them to guide a Panda arm around a measured obstacle. On 50 fixed
+simulated scenes, the route-aware controller completed **50/50 safe placements**;
+a direct start-to-goal controller completed **0/50**.
 
-</div>
+**[Watch the 70-second demo](media/phone2panda_demo.mp4)** ·
+[Inspect the results](#results) ·
+[How it works](#system) ·
+[Reproduce the checks](#quick-start-and-reproduction)
 
 <p align="center">
-  <img src="media/phone2panda_preview.gif" width="960" alt="A phone demonstration and the corresponding Panda motion">
+  <a href="media/phone2panda_demo.mp4"><img src="media/phone2panda_preview.gif" width="800" alt="Animated preview of a phone demonstration beside the corresponding simulated Panda motion; open the full 70-second demo"></a>
 </p>
 
-<p align="center"><sub>The same human-derived route, calibrated from phone video and retargeted to a simulated Panda.</sub></p>
+<p align="center"><sub>Phone demonstration → calibrated route → simulated Panda. Select the preview for the full MP4.</sub></p>
+
+[Original phone footage](media/phone_demo_sanitized.mp4) ·
+[Experiment log](docs/experiments.md) ·
+[Model card](docs/model_card.md)
 
 ## Overview
 
@@ -100,6 +103,18 @@ Ablations are one-factor-at-a-time on 50 fixed scenarios:
 - Route/confidence filtering improved safety: 50/50 safe when enabled versus 47/50, with 3 object-collision rollouts, 1 unintended-contact rollout and 1 drop when disabled.
 - Float32 reduced the checkpoint from 31,942 to 17,795 bytes but was slightly slower in this CPU benchmark (0.0127 vs 0.0121 ms median).
 <!-- END GENERATED RESULTS -->
+
+### What changed the result
+
+<p align="center">
+  <img src="results/phase6/ablation_plot.png" width="1050" alt="Eleven controlled ablations: exact safe-placement counts and median obstacle clearance, with human-derived paths and route filtering compared to their removed alternatives">
+</p>
+
+The fixed-scenario ablations isolate the effects of the recorded route, camera
+calibration, filtering, smoothing, and demonstration count. In particular,
+removing the human-derived path changes safe success from 50/50 to 0/50;
+removing route filtering reduces it to 47/50. The
+[GRU training curve](results/phase5b/training_curve.png) is available separately.
 
 These are simulator measurements for the physically calibrated **40 mm**
 glasses-case obstacle. The earlier 140 mm environment is retained as an
