@@ -75,6 +75,11 @@ def check_tracked_media() -> tuple[list[str], int]:
                 with Image.open(path) as image:
                     metadata = dict(image.info)
                     image.verify()
+                if metadata:
+                    errors.append(
+                        f"{path.relative_to(ROOT)} retains PNG metadata: "
+                        f"{', '.join(sorted(metadata))}"
+                    )
                 if any(
                     term in str(key).lower() or term in str(value).lower()
                     for key, value in metadata.items()
@@ -86,7 +91,22 @@ def check_tracked_media() -> tuple[list[str], int]:
                 if any(stream.type == "audio" for stream in container.streams):
                     errors.append(f"{path.relative_to(ROOT)} contains audio")
                 metadata = dict(container.metadata)
+                format_keys = set(metadata)
+                allowed_format = {"major_brand", "minor_version", "compatible_brands"}
+                unexpected_format = format_keys - allowed_format
+                if unexpected_format:
+                    errors.append(
+                        f"{path.relative_to(ROOT)} retains descriptive container metadata: "
+                        f"{', '.join(sorted(unexpected_format))}"
+                    )
                 for stream in container.streams:
+                    allowed_stream = {"language", "handler_name", "vendor_id"}
+                    unexpected_stream = set(stream.metadata) - allowed_stream
+                    if unexpected_stream:
+                        errors.append(
+                            f"{path.relative_to(ROOT)} retains descriptive stream metadata: "
+                            f"{', '.join(sorted(unexpected_stream))}"
+                        )
                     metadata.update(stream.metadata)
                 video = next(
                     (stream for stream in container.streams if stream.type == "video"), None

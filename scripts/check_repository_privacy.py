@@ -81,6 +81,8 @@ def media_findings(path: Path, data: bytes | None = None) -> list[str]:
         source = io.BytesIO(data) if data is not None else path
         with Image.open(source) as image:
             metadata = {str(key).lower(): str(value).lower() for key, value in image.info.items()}
+        if data is None and metadata:
+            return ["PNG retains descriptive metadata"]
         unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
         if any(term in key or term in value for key, value in metadata.items() for term in unsafe):
             return ["PNG contains location or device metadata"]
@@ -95,7 +97,15 @@ def media_findings(path: Path, data: bytes | None = None) -> list[str]:
         if any(stream.type == "audio" for stream in container.streams):
             return ["video contains an audio stream"]
         metadata = dict(container.metadata)
+        if data is None:
+            allowed_format = {"major_brand", "minor_version", "compatible_brands"}
+            if set(metadata) - allowed_format:
+                return ["video retains descriptive container metadata"]
         for stream in container.streams:
+            if data is None:
+                allowed_stream = {"language", "handler_name", "vendor_id"}
+                if set(stream.metadata) - allowed_stream:
+                    return ["video retains descriptive stream metadata"]
             metadata.update(stream.metadata)
     unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
     if any(

@@ -1,4 +1,4 @@
-.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c phase4d-preflight phase4d phase4e-diagnostics phase4e-preflight phase4e phase5a phase5b phase6 test lint check readme-results build-demo smoke-demo evaluate-existing submission-check reproduce-public privacy-history
+.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c phase4d-preflight phase4d phase4e-diagnostics phase4e-preflight phase4e phase5a phase5b phase6 test lint check readme-results build-demo sanitize-media smoke-demo evaluate-existing submission-check reproduce-public privacy-history
 
 UV_ENV = UV_CACHE_DIR=$(CURDIR)/.cache/uv UV_PYTHON_INSTALL_DIR=$(CURDIR)/.local/share/uv/python
 UV = $(UV_ENV) ./tools/run-uv.sh
@@ -59,6 +59,9 @@ readme-results:
 
 build-demo:
 	./scripts/build_demo.sh
+
+sanitize-media:
+	.venv/bin/python scripts/sanitize_public_media.py
 
 smoke-demo:
 	.venv/bin/python scripts/check_submission.py --demo-only
