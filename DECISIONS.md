@@ -59,3 +59,7 @@ Use a dependency-free, normalized 24-unit GRU rather than ACT, LeRobot, SmolVLA,
 ## 2026-10-03 — Phase 5B split isolation
 
 Fix the balanced seed manifest before generating rollouts: 120 training, 20 episode-disjoint validation, and 50 untouched testing scenarios. Fit normalization only on training data, select checkpoints only by validation loss, and compare the GRU with its DMP teacher on identical held-out geometry. Keep the validated 24-unit architecture because validation remained stable; do not tune after observing test outcomes.
+
+## 2026-10-03 — Phase 6 fixed controls and precision scope
+
+Use the untouched Phase 5B test manifest for every ablation and choose balanced demonstration IDs by deterministic round-robin over start/route cells before running outcomes. Reuse Phase 5B DMP records only for identical calibrated, smoothed, filtered, human-path control conditions. Compare the existing float64 GRU only with a direct float32 checkpoint; because outputs differ numerically, require a 50-scenario float32 replay, but do not add conversion or quantization frameworks.

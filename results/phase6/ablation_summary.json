@@ -1,0 +1,251 @@
+{
+  "environment": {
+    "cube_bottom_z_m": 0.812,
+    "cube_center_z_m": 0.8340000000000001,
+    "cube_top_z_m": 0.8560000000000001,
+    "eef_transport_z_m": 0.8477150000000001,
+    "obstacle_top_z_m": 0.8400000000000001,
+    "table_z_m": 0.8,
+    "vertical_overlap_m": 0.028000000000000025
+  },
+  "fixed_scenario_seed_sha256": "fb767d22824100bc5f9d40ebcb62e60117e31657311a5f3b1733485333f6aece",
+  "phase": "6_ablations",
+  "reused_baseline_conditions": [
+    "homography_calibrated",
+    "smoothing_enabled",
+    "filtering_enabled",
+    "human_derived_path"
+  ],
+  "schema_version": 1,
+  "table": [
+    {
+      "condition": "demo_5",
+      "episodes": 50,
+      "factor": "demonstrations",
+      "level": "5",
+      "metrics": {
+        "controller_latency_median_ms": 0.009375,
+        "controller_latency_p95_ms": 0.021875,
+        "drop_rollouts": 0,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.033553036935168784,
+        "minimum_clearance_worst_m": 0.01144425074269511,
+        "object_collision_rollouts": 0,
+        "placement_error_median_m": 0.0012309565661586515,
+        "placement_error_p95_m": 0.00239626977146763,
+        "safe_successes": 50,
+        "unintended_contact_rollouts": 0
+      },
+      "reused_phase5b_baseline": false
+    },
+    {
+      "condition": "demo_15",
+      "episodes": 50,
+      "factor": "demonstrations",
+      "level": "15",
+      "metrics": {
+        "controller_latency_median_ms": 0.009375,
+        "controller_latency_p95_ms": 0.015417,
+        "drop_rollouts": 0,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.03318380870321186,
+        "minimum_clearance_worst_m": 0.01144425074269511,
+        "object_collision_rollouts": 0,
+        "placement_error_median_m": 0.0015248386470736485,
+        "placement_error_p95_m": 0.0074923603331725945,
+        "safe_successes": 50,
+        "unintended_contact_rollouts": 0
+      },
+      "reused_phase5b_baseline": false
+    },
+    {
+      "condition": "demo_30",
+      "episodes": 50,
+      "factor": "demonstrations",
+      "level": "30",
+      "metrics": {
+        "controller_latency_median_ms": 0.009209,
+        "controller_latency_p95_ms": 0.011458,
+        "drop_rollouts": 0,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.02267638334047322,
+        "minimum_clearance_worst_m": 0.013304287214381302,
+        "object_collision_rollouts": 0,
+        "placement_error_median_m": 0.001504227197453472,
+        "placement_error_p95_m": 0.002425197001702835,
+        "safe_successes": 50,
+        "unintended_contact_rollouts": 0
+      },
+      "reused_phase5b_baseline": false
+    },
+    {
+      "condition": "homography_calibrated",
+      "episodes": 50,
+      "factor": "homography",
+      "level": "calibrated",
+      "metrics": {
+        "controller_latency_median_ms": 0.014,
+        "controller_latency_p95_ms": 0.014791,
+        "drop_rollouts": 0,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.02206528441084604,
+        "minimum_clearance_worst_m": 0.013304287214381302,
+        "object_collision_rollouts": 0,
+        "placement_error_median_m": 0.0015349513544927044,
+        "placement_error_p95_m": 0.002414881101145414,
+        "safe_successes": 50,
+        "unintended_contact_rollouts": 0
+      },
+      "reused_phase5b_baseline": true
+    },
+    {
+      "condition": "naive_pixel_scaling",
+      "episodes": 50,
+      "factor": "homography",
+      "level": "naive pixel scaling",
+      "metrics": {
+        "controller_latency_median_ms": 0.00925,
+        "controller_latency_p95_ms": 0.012416,
+        "drop_rollouts": 0,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.014346089767966301,
+        "minimum_clearance_worst_m": -0.0015884470094435568,
+        "object_collision_rollouts": 0,
+        "placement_error_median_m": 0.0014424832346010504,
+        "placement_error_p95_m": 0.0023986593883406947,
+        "safe_successes": 49,
+        "unintended_contact_rollouts": 1
+      },
+      "reused_phase5b_baseline": false
+    },
+    {
+      "condition": "smoothing_enabled",
+      "episodes": 50,
+      "factor": "smoothing",
+      "level": "enabled",
+      "metrics": {
+        "controller_latency_median_ms": 0.014,
+        "controller_latency_p95_ms": 0.014791,
+        "drop_rollouts": 0,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.02206528441084604,
+        "minimum_clearance_worst_m": 0.013304287214381302,
+        "object_collision_rollouts": 0,
+        "placement_error_median_m": 0.0015349513544927044,
+        "placement_error_p95_m": 0.002414881101145414,
+        "safe_successes": 50,
+        "unintended_contact_rollouts": 0
+      },
+      "reused_phase5b_baseline": true
+    },
+    {
+      "condition": "smoothing_disabled",
+      "episodes": 50,
+      "factor": "smoothing",
+      "level": "disabled",
+      "metrics": {
+        "controller_latency_median_ms": 0.010166,
+        "controller_latency_p95_ms": 0.025042,
+        "drop_rollouts": 0,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.024218590653904516,
+        "minimum_clearance_worst_m": 0.012744632781935508,
+        "object_collision_rollouts": 0,
+        "placement_error_median_m": 0.00108669163793979,
+        "placement_error_p95_m": 0.0023353918809353048,
+        "safe_successes": 50,
+        "unintended_contact_rollouts": 0
+      },
+      "reused_phase5b_baseline": false
+    },
+    {
+      "condition": "filtering_enabled",
+      "episodes": 50,
+      "factor": "confidence/route filtering",
+      "level": "enabled",
+      "metrics": {
+        "controller_latency_median_ms": 0.014,
+        "controller_latency_p95_ms": 0.014791,
+        "drop_rollouts": 0,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.02206528441084604,
+        "minimum_clearance_worst_m": 0.013304287214381302,
+        "object_collision_rollouts": 0,
+        "placement_error_median_m": 0.0015349513544927044,
+        "placement_error_p95_m": 0.002414881101145414,
+        "safe_successes": 50,
+        "unintended_contact_rollouts": 0
+      },
+      "reused_phase5b_baseline": true
+    },
+    {
+      "condition": "filtering_disabled",
+      "episodes": 50,
+      "factor": "confidence/route filtering",
+      "level": "disabled",
+      "metrics": {
+        "controller_latency_median_ms": 0.0095,
+        "controller_latency_p95_ms": 0.0153331,
+        "drop_rollouts": 1,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.01891173283494646,
+        "minimum_clearance_worst_m": -0.008600926921322662,
+        "object_collision_rollouts": 3,
+        "placement_error_median_m": 0.0014937481129989097,
+        "placement_error_p95_m": 0.002365493709341839,
+        "safe_successes": 47,
+        "unintended_contact_rollouts": 1
+      },
+      "reused_phase5b_baseline": false
+    },
+    {
+      "condition": "human_derived_path",
+      "episodes": 50,
+      "factor": "path",
+      "level": "human-derived",
+      "metrics": {
+        "controller_latency_median_ms": 0.014,
+        "controller_latency_p95_ms": 0.014791,
+        "drop_rollouts": 0,
+        "episodes": 50,
+        "minimum_clearance_median_m": 0.02206528441084604,
+        "minimum_clearance_worst_m": 0.013304287214381302,
+        "object_collision_rollouts": 0,
+        "placement_error_median_m": 0.0015349513544927044,
+        "placement_error_p95_m": 0.002414881101145414,
+        "safe_successes": 50,
+        "unintended_contact_rollouts": 0
+      },
+      "reused_phase5b_baseline": true
+    },
+    {
+      "condition": "straight_line",
+      "episodes": 50,
+      "factor": "path",
+      "level": "straight line",
+      "metrics": {
+        "controller_latency_median_ms": 0.009375,
+        "controller_latency_p95_ms": 0.010838100000000015,
+        "drop_rollouts": 5,
+        "episodes": 50,
+        "minimum_clearance_median_m": -0.04856043076424665,
+        "minimum_clearance_worst_m": -0.0531598625781528,
+        "object_collision_rollouts": 50,
+        "placement_error_median_m": 0.020210793032397548,
+        "placement_error_p95_m": 0.12293218124664422,
+        "safe_successes": 0,
+        "unintended_contact_rollouts": 50
+      },
+      "reused_phase5b_baseline": false
+    }
+  ],
+  "unique_simulated_conditions": [
+    "demo_5",
+    "demo_15",
+    "demo_30",
+    "naive_pixel_scaling",
+    "smoothing_disabled",
+    "filtering_disabled",
+    "straight_line"
+  ]
+}

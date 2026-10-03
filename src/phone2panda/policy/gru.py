@@ -31,10 +31,10 @@ class Normalizer:
         return cls(mean=mean, scale=scale)
 
     def transform(self, values: FloatArray) -> FloatArray:
-        return (np.asarray(values, dtype=np.float64) - self.mean) / self.scale
+        return (np.asarray(values, dtype=self.mean.dtype) - self.mean) / self.scale
 
     def inverse(self, values: FloatArray) -> FloatArray:
-        return np.asarray(values, dtype=np.float64) * self.scale + self.mean
+        return np.asarray(values, dtype=self.mean.dtype) * self.scale + self.mean
 
 
 @dataclass(frozen=True)
@@ -103,11 +103,14 @@ class GRUPolicy:
         return sum(int(value.size) for value in self.parameters.values())
 
     def initial_state(self, batch_size: int = 1) -> FloatArray:
-        return np.zeros((batch_size, self.hidden_dim), dtype=np.float64)
+        return np.zeros(
+            (batch_size, self.hidden_dim), dtype=self.parameters["Wz"].dtype
+        )
 
     def step(self, inputs: FloatArray, hidden: FloatArray) -> tuple[FloatArray, FloatArray]:
-        x = np.asarray(inputs, dtype=np.float64)
-        h_previous = np.asarray(hidden, dtype=np.float64)
+        dtype = self.parameters["Wz"].dtype
+        x = np.asarray(inputs, dtype=dtype)
+        h_previous = np.asarray(hidden, dtype=dtype)
         if x.ndim == 1:
             x = x[None, :]
         if h_previous.ndim == 1:
@@ -286,22 +289,23 @@ class GRUPolicy:
 
     @classmethod
     def load(
-        cls, path: Path
+        cls, path: Path, dtype: np.dtype[Any] | type[np.floating[Any]] = np.float64
     ) -> tuple[GRUPolicy, Normalizer, Normalizer, dict[str, Any]]:
+        target_dtype = np.dtype(dtype)
         with np.load(path, allow_pickle=False) as payload:
             input_dim, hidden_dim, output_dim = (
                 int(value) for value in payload["architecture"]
             )
             policy = cls(input_dim, hidden_dim, output_dim, seed=0)
             for name in policy.parameters:
-                policy.parameters[name] = np.asarray(payload[name], dtype=np.float64)
+                policy.parameters[name] = np.asarray(payload[name], dtype=target_dtype)
             input_normalizer = Normalizer(
-                np.asarray(payload["input_mean"], dtype=np.float64),
-                np.asarray(payload["input_scale"], dtype=np.float64),
+                np.asarray(payload["input_mean"], dtype=target_dtype),
+                np.asarray(payload["input_scale"], dtype=target_dtype),
             )
             output_normalizer = Normalizer(
-                np.asarray(payload["output_mean"], dtype=np.float64),
-                np.asarray(payload["output_scale"], dtype=np.float64),
+                np.asarray(payload["output_mean"], dtype=target_dtype),
+                np.asarray(payload["output_scale"], dtype=target_dtype),
             )
             metadata = json.loads(str(payload["metadata_json"]))
         return policy, input_normalizer, output_normalizer, metadata

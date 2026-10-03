@@ -100,6 +100,16 @@ make phase5b
 
 The seed manifest is written before rollout collection. Training uses 120 scenarios, early stopping monitors 20 episode-disjoint validation scenarios, and evaluation uses 50 untouched scenarios shared with the DMP teacher. The 24-unit GRU passed 50/50 with zero collisions, unintended contacts, or drops; no failure video exists because no held-out rollout failed.
 
+## Phase 6 fixed-seed ablations
+
+Run the no-video ablation and float32 comparison:
+
+```bash
+make phase6
+```
+
+All ablations use the frozen Phase 5B test manifest with exactly 50 episodes per condition. Balanced 5/15/30 demonstration IDs are saved before execution. Equivalent calibrated, smoothed, filtered, and human-path control rows reuse the Phase 5B teacher results. The precision check compares only the existing float64 checkpoint with float32 using fixed shapes, warm-up, repeated trials, and recorded hardware metadata.
+
 Outputs are written under `results/pilot_validation/`:
 
 - `quality_report.json` and `quality_report.csv`: aggregate machine-readable gate results.

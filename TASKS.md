@@ -99,3 +99,15 @@ Phase 5A is complete. Full policy training and optimization have not started.
 - [x] Save provenance, checkpoint, curve, per-rollout results, and one success video.
 
 Phase 5B is complete. Optimization and ablations have not started.
+
+## Phase 6 — Fixed-seed ablations and precision
+
+- [x] Freeze balanced 5, 15, and 30-demonstration subsets before execution.
+- [x] Run exactly 50 fixed calibrated episodes per ablation condition without videos.
+- [x] Compare calibrated versus naive mapping, smoothing on/off, filtering on/off, and human versus straight paths.
+- [x] Reuse equivalent Phase 5B baseline records where valid.
+- [x] Benchmark float64 and float32 with warm-up, fixed shapes, repeated trials, and hardware metadata.
+- [x] Rerun exactly 50 float32 closed-loop episodes because predictions differed numerically.
+- [x] Save one table, one plot, compact raw results, and the float32 checkpoint.
+
+Phase 6 is complete. Final presentation work has not started.

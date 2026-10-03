@@ -1,0 +1,90 @@
+{
+  "benchmark_protocol": {
+    "fixed_hidden_shape": [
+      1,
+      24
+    ],
+    "fixed_input_shape": [
+      1,
+      22
+    ],
+    "includes": "normalization, one GRU step, output denormalization",
+    "measured_trials": 5000,
+    "warmup_trials": 500
+  },
+  "float32": {
+    "checkpoint_bytes": 17795,
+    "closed_loop_rerun": true,
+    "held_out_closed_loop": {
+      "controller_latency_median_ms": 0.028917,
+      "controller_latency_p95_ms": 0.03625,
+      "drop_rollouts": 0,
+      "episodes": 50,
+      "minimum_clearance_median_m": 0.021725222886829522,
+      "minimum_clearance_worst_m": 0.01025876915937364,
+      "object_collision_rollouts": 0,
+      "placement_error_median_m": 0.0019526453901231185,
+      "placement_error_p95_m": 0.00431793054227279,
+      "safe_successes": 50,
+      "unintended_contact_rollouts": 0
+    },
+    "hidden_shape": [
+      1,
+      24
+    ],
+    "input_shape": [
+      1,
+      22
+    ],
+    "measured_trials": 5000,
+    "median_latency_ms": 0.012708,
+    "p95_latency_ms": 0.014252050000000007,
+    "warmup_trials": 500
+  },
+  "float64": {
+    "checkpoint_bytes": 31942,
+    "closed_loop_reused": true,
+    "held_out_closed_loop": {
+      "controller_latency_median_ms": 0.026917,
+      "controller_latency_p95_ms": 0.02825,
+      "drop_rollouts": 0,
+      "episodes": 50,
+      "minimum_clearance_median_m": 0.021718946906323845,
+      "minimum_clearance_worst_m": 0.01025787046425733,
+      "object_collision_rollouts": 0,
+      "placement_error_median_m": 0.0019515257843617136,
+      "placement_error_p95_m": 0.004315950776775077,
+      "safe_successes": 50,
+      "unintended_contact_rollouts": 0
+    },
+    "hidden_shape": [
+      1,
+      24
+    ],
+    "input_shape": [
+      1,
+      22
+    ],
+    "measured_trials": 5000,
+    "median_latency_ms": 0.012083,
+    "p95_latency_ms": 0.0135,
+    "warmup_trials": 500
+  },
+  "hardware": {
+    "logical_cpu_count": 10,
+    "machine": "arm64",
+    "numpy": "2.2.6",
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "processor": "arm",
+    "python": "3.11.17",
+    "python_implementation": "cpython"
+  },
+  "numerical_difference": {
+    "compared_actions": 4738,
+    "maximum_absolute_output_difference": 1.803634604113924e-06,
+    "mean_absolute_output_difference": 1.015292739602684e-07
+  },
+  "phase": "6_precision",
+  "predictions_differ": true,
+  "schema_version": 1
+}

@@ -1,0 +1,8 @@
+{
+  "ablation_summary": "ablation_summary.json",
+  "config_sha256": "b24518e6584c0aeeac310146442b7d4c096a042a1872116336385c1d33dbe601",
+  "phase": "6",
+  "precision_benchmark": "precision_benchmark.json",
+  "schema_version": 1,
+  "videos_generated": 0
+}

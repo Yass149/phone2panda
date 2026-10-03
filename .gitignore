@@ -105,6 +105,17 @@ results/**
 !results/phase5b/teacher_dataset.npz
 !results/phase5b/training_curve.csv
 !results/phase5b/training_curve.png
+!results/phase6/
+!results/phase6/ablation_plot.png
+!results/phase6/ablation_rollouts.jsonl
+!results/phase6/ablation_summary.json
+!results/phase6/ablation_table.md
+!results/phase6/demonstration_subsets.json
+!results/phase6/float32_rollouts.jsonl
+!results/phase6/gru_policy_float32.npz
+!results/phase6/precision_benchmark.json
+!results/phase6/run_config.json
+!results/phase6/summary.json
 
 # Large experiment outputs and trained weights must never enter ordinary commits.
 artifacts/

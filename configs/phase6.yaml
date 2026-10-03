@@ -1,0 +1,13 @@
+schema_version: 1
+phase5b_config: configs/phase5b.yaml
+output_dir: results/phase6
+
+demonstration_counts: [5, 15, 30]
+
+precision_benchmark:
+  warmup_trials: 500
+  measured_trials: 5000
+  reset_interval: 256
+
+float32:
+  rerun_if_predictions_differ: true

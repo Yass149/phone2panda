@@ -170,3 +170,15 @@ Final acceptance-command results are appended after the checked pipeline run.
 - Held-out result: **PASS**. GRU 50/50 and DMP teacher 50/50 safe successes; both had zero object collisions, unintended contacts, or drops.
 - GRU versus DMP: median placement error 1.95 vs 1.53 mm; median minimum clearance 21.72 vs 22.07 mm; median latency 0.0269 vs 0.0140 ms.
 - One representative GRU success video was generated. No failure video was generated because no held-out GRU rollout failed. Optimization and ablations were not started.
+
+## 2026-10-03 — Phase 6 fixed-seed ablations
+
+- Every condition used the same 50 calibrated Phase 5B scenarios; no ablation videos were generated. Four identical control conditions reused existing Phase 5B teacher records.
+- Demonstration subsets were selected before rollouts and balanced across starts/routes: 5, 15, and 30 episodes. All three achieved 50/50 safe success.
+- Calibrated homography achieved 50/50 with 22.07 mm median clearance; naive pixel scaling achieved 49/50 with one unintended contact and 14.35 mm median clearance.
+- Smoothing enabled and disabled both achieved 50/50; median clearance was 22.07 and 24.22 mm respectively.
+- Confidence/route filtering achieved 50/50; disabling it achieved 47/50, with three object-collision rollouts, one unintended-contact rollout, and one drop.
+- Human-derived paths achieved 50/50. Straight-line paths achieved 0/50, with 50 object-collision and 50 unintended-contact rollouts plus five drops.
+- Float32 differed from float64 by at most 1.80e-6 in action output, so it was rerun on all 50 scenarios and achieved 50/50 safe success.
+- Float32 reduced checkpoint size from 31,942 to 17,795 bytes, but did not improve this small-model CPU benchmark: median/p95 latency was 0.0127/0.0143 ms versus 0.0121/0.0135 ms for float64.
+- No ONNX, quantization framework, new dependency, optimization, or final presentation work was added.

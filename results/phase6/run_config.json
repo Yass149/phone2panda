@@ -1,0 +1,21 @@
+{
+  "config_sha256": "b24518e6584c0aeeac310146442b7d4c096a042a1872116336385c1d33dbe601",
+  "configuration": {
+    "demonstration_counts": [
+      5,
+      15,
+      30
+    ],
+    "float32": {
+      "rerun_if_predictions_differ": true
+    },
+    "output_dir": "results/phase6",
+    "phase5b_config": "configs/phase5b.yaml",
+    "precision_benchmark": {
+      "measured_trials": 5000,
+      "reset_interval": 256,
+      "warmup_trials": 500
+    },
+    "schema_version": 1
+  }
+}

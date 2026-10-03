@@ -22,6 +22,7 @@ PUBLIC_MEDIA = {
     "results/phase5a/training_curve.png",
     "results/phase5b/representative_success.mp4",
     "results/phase5b/training_curve.png",
+    "results/phase6/ablation_plot.png",
 }
 PRIVATE_PREFIXES = (
     ".cache/",
