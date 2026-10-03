@@ -37,7 +37,7 @@ render_pair() {
 render_image() {
   local input="$1" output="$2" duration="$3" title="$4" subtitle="$5"
   "$ffmpeg_bin" -loglevel error -y -loop 1 -i "$input" -t "$duration" \
-    -vf "scale=960:540:force_original_aspect_ratio=decrease,pad=960:540:(ow-iw)/2:(oh-ih)/2:white,drawbox=x=0:y=0:w=iw:h=72:color=0x0f172a@0.90:t=fill,drawtext=fontfile='${bold}':text='${title}':fontcolor=white:fontsize=28:x=28:y=12,drawtext=fontfile='${font}':text='${subtitle}':fontcolor=0xcbd5e1:fontsize=18:x=28:y=45" \
+    -vf "scale=960:468:force_original_aspect_ratio=decrease,pad=960:468:(ow-iw)/2:(oh-ih)/2:white,pad=960:540:0:72:white,drawbox=x=0:y=0:w=iw:h=72:color=0x0f172a:t=fill,drawtext=fontfile='${bold}':text='${title}':fontcolor=white:fontsize=28:x=28:y=12,drawtext=fontfile='${font}':text='${subtitle}':fontcolor=0xcbd5e1:fontsize=18:x=28:y=45" \
     "${common[@]}" "$output"
 }
 
@@ -54,7 +54,7 @@ render_video results/phase5b/representative_success.mp4 "$work_dir/04.mp4" 9 \
 render_video results/phase4e/representative_calibrated_failure.mp4 "$work_dir/05.mp4" 9 \
   "5  Straight-line failure" "Expected baseline collision · no human route geometry"
 render_image results/phase6/ablation_plot.png "$work_dir/06.mp4" 9 \
-  "6  Fixed-seed ablations" "50 calibrated scenarios per condition · dashed line = 90 percent gate"
+  "6  Fixed-seed ablations" "Exact safe rollouts and clearance across 50 scenarios per condition"
 render_card "$work_dir/07.mp4" 11 \
   "DMP 50/50   ·   GRU 50/50   ·   straight 0/50" \
   "Human path + calibration + route filtering preserved the safety margin"

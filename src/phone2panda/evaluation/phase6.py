@@ -364,23 +364,84 @@ def _ablation_markdown(summary: dict[str, Any]) -> str:
 
 
 def _plot_ablation(path: Path, table: list[dict[str, Any]]) -> None:
-    labels = [f"{row['factor']}: {row['level']}" for row in table]
-    success = [row["metrics"]["safe_successes"] * 2.0 for row in table]
-    clearance = [
-        1000.0 * row["metrics"]["minimum_clearance_median_m"] for row in table
-    ]
-    x = np.arange(len(table))
-    figure, axes = plt.subplots(2, 1, figsize=(10.0, 7.0), constrained_layout=True)
-    axes[0].bar(x, success, color="#4c78a8")
-    axes[0].axhline(90.0, color="#b22222", linestyle="--", linewidth=1.0)
-    axes[0].set_ylabel("Safe success (%)")
-    axes[0].set_ylim(0, 105)
-    axes[1].bar(x, clearance, color="#54a24b")
-    axes[1].axhline(0.0, color="black", linewidth=0.8)
-    axes[1].set_ylabel("Median clearance (mm)")
+    names = {
+        "demo_5": "5 demonstrations",
+        "demo_15": "15 demonstrations",
+        "demo_30": "30 demonstrations",
+        "homography_calibrated": "Calibrated homography",
+        "naive_pixel_scaling": "Naive pixel scaling",
+        "smoothing_enabled": "Smoothing enabled",
+        "smoothing_disabled": "Smoothing disabled",
+        "filtering_enabled": "Route filtering enabled",
+        "filtering_disabled": "Route filtering disabled",
+        "human_derived_path": "Human-derived path",
+        "straight_line": "Straight-line path",
+    }
+    labels = [names.get(row["condition"], f"{row['factor']}: {row['level']}") for row in table]
+    safe = np.asarray([row["metrics"]["safe_successes"] for row in table])
+    episodes = np.asarray([row["metrics"]["episodes"] for row in table])
+    failed = episodes - safe
+    clearance = np.asarray(
+        [1000.0 * row["metrics"]["minimum_clearance_median_m"] for row in table]
+    )
+    y = np.arange(len(table))
+    figure, axes = plt.subplots(
+        1,
+        2,
+        figsize=(12.5, 6.5),
+        sharey=True,
+        constrained_layout=True,
+        gridspec_kw={"width_ratios": [1.0, 0.9]},
+    )
+    axes[0].barh(y, safe, color="#0072B2", height=0.62)
+    axes[0].barh(
+        y,
+        failed,
+        left=safe,
+        color="#D55E00",
+        edgecolor="#5C310E",
+        linewidth=0.3,
+        hatch="///",
+        height=0.62,
+    )
+    for index, (count, total) in enumerate(zip(safe, episodes, strict=True)):
+        axes[0].text(51.5, index, f"{count}/{total}", va="center", fontweight="bold")
+    axes[0].set_xlim(0, 61)
+    axes[0].set_xticks([0, 10, 20, 30, 40, 50])
+    axes[0].set_yticks(y, labels)
+    axes[0].invert_yaxis()
+    axes[0].set_title("Safe placements", loc="left", fontweight="bold")
+    axes[0].set_xlabel("Rollouts (50 fixed scenarios)")
+
+    clearance_colors = ["#D55E00" if value < 0 else "#738694" for value in clearance]
+    for index, row in enumerate(table):
+        if row["condition"] == "human_derived_path":
+            clearance_colors[index] = "#0072B2"
+    axes[1].barh(y, clearance, color=clearance_colors, height=0.62)
+    for index, value in enumerate(clearance):
+        negative = value < 0
+        axes[1].text(
+            value / 2.0 if negative else value + 1.1,
+            index,
+            f"{value:.1f} mm",
+            ha="center" if negative else "left",
+            va="center",
+            fontweight="bold",
+            color="#202124",
+        )
+    axes[1].axvline(0.0, color="#202124", linewidth=0.9)
+    axes[1].set_xlim(-54, 45)
+    axes[1].set_title("Obstacle clearance", loc="left", fontweight="bold")
+    axes[1].set_xlabel("Median minimum clearance (mm)")
+
     for axis in axes:
-        axis.set_xticks(x, labels, rotation=35, ha="right")
-        axis.grid(axis="y", alpha=0.25)
+        for boundary in (2.5, 4.5, 6.5, 8.5):
+            axis.axhline(boundary, color="#D7DCE2", linewidth=0.8)
+        axis.grid(axis="x", color="#D7DCE2", linewidth=0.8, alpha=0.8)
+        axis.set_axisbelow(True)
+        axis.spines["top"].set_visible(False)
+        axis.spines["right"].set_visible(False)
+    figure.suptitle("One-factor ablations on 50 fixed scenarios", fontweight="bold")
     figure.savefig(path, dpi=160, metadata={"Software": "phone2panda"})
     plt.close(figure)
 

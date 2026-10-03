@@ -850,7 +850,7 @@ def _comparison_markdown(
 
 
 def _plot_comparison(
-    path: Path, aggregate: dict[str, Any], success_label: str = "Task success (%)"
+    path: Path, aggregate: dict[str, Any], success_label: str = "Object-level task success"
 ) -> None:
     methods = ["dmp_route_confidence", "dmp", "raw_replay", "straight"]
     labels = [
@@ -859,7 +859,7 @@ def _plot_comparison(
         "Nearest raw replay",
         "Straight line",
     ]
-    colors = ["#16877A", "#E18428", "#4477AA", "#A35D5D"]
+    colors = ["#0072B2", "#738694", "#A7B2B9", "#D55E00"]
     successes = np.asarray([aggregate[method]["successes"] for method in methods])
     episodes = np.asarray([aggregate[method]["episodes"] for method in methods])
     failures = episodes - successes
@@ -875,13 +875,24 @@ def _plot_comparison(
         gridspec_kw={"width_ratios": [1.15, 1.0]},
     )
     y = np.arange(len(methods))
-    axes[0].barh(y, successes, color="#16877A", height=0.58)
-    axes[0].barh(y, failures, left=successes, color="#C45B52", height=0.58)
+    safe_scope = success_label.startswith("Calibrated safe")
+    outcome_word = "safe" if safe_scope else "successful"
+    axes[0].barh(y, successes, color="#0072B2", height=0.58)
+    axes[0].barh(
+        y,
+        failures,
+        left=successes,
+        color="#D55E00",
+        edgecolor="#5C310E",
+        linewidth=0.3,
+        hatch="///",
+        height=0.58,
+    )
     for index, (safe, failed) in enumerate(zip(successes, failures, strict=True)):
         axes[0].text(
             52.0,
             index,
-            f"{safe} safe  /  {failed} failed",
+            f"{safe} {outcome_word}  /  {failed} failed",
             ha="left",
             va="center",
             fontsize=9,
@@ -894,7 +905,11 @@ def _plot_comparison(
     axes[0].set_yticks(y, labels)
     axes[0].invert_yaxis()
     axes[0].set_xlabel("Rollouts (50 fixed scenarios)")
-    axes[0].set_title("Observed safety outcomes", loc="left", fontweight="bold")
+    axes[0].set_title(
+        "Observed safety outcomes" if safe_scope else "Object-level task outcomes",
+        loc="left",
+        fontweight="bold",
+    )
 
     clearance_mm = 1000.0 * clearance
     bars = axes[1].barh(y, clearance_mm, color=colors, height=0.58)
@@ -908,7 +923,7 @@ def _plot_comparison(
             va="center",
             fontsize=9,
             fontweight="bold",
-            color="white" if negative else "#202124",
+            color="#202124",
         )
     axes[1].axvline(0.0, color="#202124", linewidth=0.9)
     axes[1].set_xlim(-58, 32)

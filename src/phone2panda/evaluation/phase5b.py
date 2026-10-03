@@ -340,6 +340,7 @@ def _save_curve(
         epochs,
         [float(row["validation_loss"]) for row in history],
         label="episode-disjoint validation",
+        linestyle="--",
     )
     axis.set_xlabel("Epoch")
     axis.set_ylabel("Normalized action MSE")
