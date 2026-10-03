@@ -1,71 +1,89 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
-  <title id="title">Phone2Panda architecture</title>
-  <desc id="desc">A private phone recording is calibrated and tracked into a normalized trajectory, which controls a DMP Panda teacher and provides supervision to a compact GRU policy. Fixed-seed safety evaluation compares both with a straight-line baseline.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="620" viewBox="0 0 1400 620" role="img" aria-labelledby="title desc">
+  <title id="title">Phone2Panda system architecture</title>
+  <desc id="desc">Personal phone videos are calibrated into left and right route priors. A safety-aware selector retargets the safer route through a DMP to a simulated Panda. Safe teacher rollouts train a compact GRU. DMP, GRU, and a direct baseline are compared on fixed held-out scenes.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
     </marker>
     <style>
-      .box { fill:#f8fafc; stroke:#64748b; stroke-width:2; rx:14; }
-      .human { fill:#eff6ff; stroke:#2563eb; }
-      .robot { fill:#ecfdf5; stroke:#059669; }
+      .section { fill:#64748b; font:600 13px system-ui, sans-serif; letter-spacing:1.5px; }
+      .title { fill:#0f172a; font:600 20px system-ui, sans-serif; text-anchor:middle; }
+      .detail { fill:#475569; font:15px system-ui, sans-serif; text-anchor:middle; }
+      .metric { fill:#0f172a; font:700 18px system-ui, sans-serif; text-anchor:middle; }
+      .box { stroke-width:2; rx:12; }
+      .data { fill:#eff6ff; stroke:#2563eb; }
+      .control { fill:#ecfdf5; stroke:#059669; }
       .policy { fill:#faf5ff; stroke:#9333ea; }
-      .eval { fill:#fff7ed; stroke:#ea580c; }
-      .label { fill:#0f172a; font:600 18px system-ui, sans-serif; text-anchor:middle; }
-      .small { fill:#475569; font:14px system-ui, sans-serif; text-anchor:middle; }
-      .arrow { stroke:#475569; stroke-width:2.5; fill:none; marker-end:url(#arrow); }
-      .branch { stroke:#64748b; stroke-width:2; fill:none; marker-end:url(#arrow); }
+      .baseline { fill:#fff7ed; stroke:#ea580c; }
+      .eval { fill:#f8fafc; stroke:#334155; }
+      .arrow { stroke:#334155; stroke-width:2.5; fill:none; marker-end:url(#arrow); }
+      .dashed { stroke:#ea580c; stroke-width:2.5; stroke-dasharray:7 6; fill:none; marker-end:url(#arrow); }
     </style>
   </defs>
 
-  <rect width="1200" height="500" fill="#ffffff"/>
+  <rect width="1400" height="620" fill="#ffffff"/>
+  <text class="section" x="45" y="42">PERSONAL DATA TO MOTION PRIOR</text>
 
-  <rect class="box human" x="35" y="65" width="190" height="100"/>
-  <text class="label" x="130" y="102">Private phone video</text>
-  <text class="small" x="130" y="130">fixed camera · red marker</text>
+  <rect class="box data" x="45" y="70" width="220" height="125"/>
+  <text class="title" x="155" y="111">36 phone videos</text>
+  <text class="detail" x="155" y="140">fixed overhead camera</text>
+  <text class="detail" x="155" y="165">red object marker</text>
 
-  <rect class="box human" x="285" y="65" width="200" height="100"/>
-  <text class="label" x="385" y="98">Vision pipeline</text>
-  <text class="small" x="385" y="125">HEVC decode · homography</text>
-  <text class="small" x="385" y="146">tracking · quality gate</text>
+  <rect class="box data" x="320" y="70" width="220" height="125"/>
+  <text class="title" x="430" y="106">Calibrate + track</text>
+  <text class="detail" x="430" y="137">four-marker homography</text>
+  <text class="detail" x="430" y="162">confidence + quality gates</text>
 
-  <rect class="box human" x="545" y="65" width="200" height="100"/>
-  <text class="label" x="645" y="98">Normalized path</text>
-  <text class="small" x="645" y="125">canvas coordinates</text>
-  <text class="small" x="645" y="146">route + confidence</text>
+  <rect class="box data" x="595" y="70" width="220" height="125"/>
+  <text class="title" x="705" y="106">Route library</text>
+  <text class="detail" x="705" y="137">normalized left + right</text>
+  <text class="detail" x="705" y="162">human path geometry</text>
 
-  <rect class="box robot" x="805" y="65" width="170" height="100"/>
-  <text class="label" x="890" y="102">DMP teacher</text>
-  <text class="small" x="890" y="130">retargeted to Panda</text>
+  <rect class="box control" x="870" y="70" width="220" height="125"/>
+  <text class="title" x="980" y="106">Counterfactual selector</text>
+  <text class="detail" x="980" y="137">score both route families</text>
+  <text class="detail" x="980" y="162">clearance + confidence</text>
 
-  <rect class="box robot" x="1015" y="65" width="150" height="100"/>
-  <text class="label" x="1090" y="102">Panda rollout</text>
-  <text class="small" x="1090" y="130">phased control</text>
+  <rect class="box control" x="1145" y="70" width="210" height="125"/>
+  <text class="title" x="1250" y="106">DMP + Panda</text>
+  <text class="detail" x="1250" y="137">retargeted start + goal</text>
+  <text class="detail" x="1250" y="162">phased closed-loop control</text>
 
-  <path class="arrow" d="M225 115 H275"/>
-  <path class="arrow" d="M485 115 H535"/>
-  <path class="arrow" d="M745 115 H795"/>
-  <path class="arrow" d="M975 115 H1005"/>
+  <path class="arrow" d="M265 132 H310"/>
+  <path class="arrow" d="M540 132 H585"/>
+  <path class="arrow" d="M815 132 H860"/>
+  <path class="arrow" d="M1090 132 H1135"/>
 
-  <rect class="box policy" x="725" y="265" width="220" height="110"/>
-  <text class="label" x="835" y="304">24-unit GRU policy</text>
-  <text class="small" x="835" y="332">22 state/context inputs</text>
-  <text class="small" x="835" y="353">7 bounded actions</text>
+  <text class="section" x="45" y="277">DISTILLATION AND CONTROLLED EVALUATION</text>
 
-  <rect class="box eval" x="1000" y="265" width="170" height="110"/>
-  <text class="label" x="1085" y="304">Safety evaluation</text>
-  <text class="small" x="1085" y="332">fixed held-out seeds</text>
-  <text class="small" x="1085" y="353">contacts · drops · error</text>
+  <rect class="box baseline" x="45" y="315" width="220" height="120"/>
+  <text class="title" x="155" y="353">Direct baseline</text>
+  <text class="detail" x="155" y="383">straight start-to-goal path</text>
+  <text class="detail" x="155" y="408">no human geometry</text>
 
-  <rect class="box eval" x="445" y="285" width="210" height="70"/>
-  <text class="label" x="550" y="316">Straight-line baseline</text>
-  <text class="small" x="550" y="340">no human path</text>
+  <rect class="box control" x="595" y="315" width="220" height="120"/>
+  <text class="title" x="705" y="353">Safe teacher episodes</text>
+  <text class="detail" x="705" y="383">state + route + confidence</text>
+  <text class="detail" x="705" y="408">bounded Panda actions</text>
 
-  <path class="branch" d="M890 165 V225 H835 V255"/>
-  <text class="small" x="835" y="215">teacher episodes</text>
-  <path class="arrow" d="M945 320 H990"/>
-  <path class="branch" d="M1090 165 V255"/>
-  <path class="branch" d="M655 320 H715"/>
+  <rect class="box policy" x="870" y="315" width="220" height="120"/>
+  <text class="title" x="980" y="353">24-unit GRU</text>
+  <text class="detail" x="980" y="383">3,559 parameters</text>
+  <text class="detail" x="980" y="408">17.8 KB float32</text>
 
-  <text class="small" x="600" y="445">Human geometry changes the route: the DMP transports around the selected side; the GRU learns the teacher's state-to-action behaviour.</text>
+  <rect class="box eval" x="1145" y="300" width="210" height="150"/>
+  <text class="title" x="1250" y="338">Fixed-seed evaluation</text>
+  <text class="detail" x="1250" y="369">50 held-out scenes</text>
+  <text class="detail" x="1250" y="395">contacts + drops + error</text>
+  <text class="metric" x="1250" y="425">DMP 50 · GRU 50 · direct 0</text>
+
+  <path class="arrow" d="M1250 195 V240 H705 V305"/>
+  <path class="arrow" d="M815 375 H860"/>
+  <path class="arrow" d="M1090 375 H1135"/>
+  <path class="arrow" d="M1250 195 V290"/>
+  <path class="dashed" d="M265 375 H555 V500 H1250 V460"/>
+
+  <rect x="45" y="515" width="1310" height="66" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text class="detail" x="700" y="544">The personal recordings change the route before policy learning begins.</text>
+  <text class="detail" x="700" y="568">Removing that geometry turns 50/50 safe transport into 0/50 on the same scenes.</text>
 </svg>
