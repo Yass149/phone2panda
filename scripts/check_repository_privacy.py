@@ -27,6 +27,7 @@ PUBLIC_MEDIA = {
     "results/phase6/ablation_plot.png",
     "media/phone_demo_sanitized.mp4",
     "media/phone2panda_demo.mp4",
+    "media/phone2panda_preview.gif",
 }
 PRIVATE_PREFIXES = (
     ".cache/",
@@ -39,7 +40,7 @@ PRIVATE_PREFIXES = (
 )
 PRIVATE_PARTS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"}
 RAW_SUFFIXES = {".heic", ".mov"}
-MEDIA_SUFFIXES = {".avi", ".mkv", ".mp4", ".png", ".webm"}
+MEDIA_SUFFIXES = {".avi", ".gif", ".mkv", ".mp4", ".png", ".webm"}
 SECRET_NAME_PARTS = ("credential", "secret")
 
 
@@ -73,7 +74,7 @@ def media_findings(path: Path, data: bytes | None = None) -> list[str]:
     relative = path.as_posix()
     if relative not in PUBLIC_MEDIA:
         return ["media is not on the public artifact allowlist"]
-    if path.suffix.lower() == ".png":
+    if path.suffix.lower() in {".gif", ".png"}:
         try:
             from PIL import Image
         except ImportError:
@@ -81,11 +82,13 @@ def media_findings(path: Path, data: bytes | None = None) -> list[str]:
         source = io.BytesIO(data) if data is not None else path
         with Image.open(source) as image:
             metadata = {str(key).lower(): str(value).lower() for key, value in image.info.items()}
-        if data is None and metadata:
-            return ["PNG retains descriptive metadata"]
+        allowed = {"background", "duration", "extension", "loop", "transparency", "version"}
+        unexpected = set(metadata) if path.suffix.lower() == ".png" else set(metadata) - allowed
+        if data is None and unexpected:
+            return ["image retains descriptive metadata"]
         unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
         if any(term in key or term in value for key, value in metadata.items() for term in unsafe):
-            return ["PNG contains location or device metadata"]
+            return ["image contains location or device metadata"]
         return []
 
     try:

@@ -4,12 +4,43 @@
 path geometry that makes a Panda robot move an object around an obstacle more
 safely than a direct controller?
 
+**Contribution:** Phone2Panda turns 36 personal phone demonstrations into a
+small library of calibrated left/right motion priors, scores both routes for a
+new scene, and distils the selected safe behaviour into a 3,559-parameter GRU.
+The demonstrations determine the robot's path; they are not labels or visual
+decoration around a simulator policy.
+
 ## Demo
 
-[Watch the 70-second silent demo](media/phone2panda_demo.mp4) — phone
+![Phone demonstration driving a Panda route](media/phone2panda_preview.gif)
+
+[Watch the 70-second silent demo](media/phone2panda_demo.mp4) - phone
 demonstration, calibrated path, DMP teacher, GRU policy, straight-line failure
 and fixed-seed comparison. The published clip contains no audio or personal
 device/location metadata.
+
+## What is original here
+
+This is not end-to-end behaviour cloning from a large public robot dataset. A
+phone observes one person's 2D path around a real obstacle. Calibration turns
+that path into embodiment-independent geometry; a route-aware DMP retargets it
+to a Panda; and a compact recurrent policy learns the resulting closed-loop
+actions. At evaluation time, both human-derived route families are considered
+and the route/confidence gate keeps the safer candidate.
+
+The useful result is not only 50/50 success. The same fixed scenarios reveal
+which choices mattered: removing the human path reduced safe success to 0/50,
+removing route filtering reduced it to 47/50, and naive image scaling reduced
+the clearance margin and caused a contact.
+
+## What changed my mind
+
+| Initial assumption | Evidence | Decision |
+| --- | --- | --- |
+| Every calibration marker had to remain visible throughout a recording. | Object tracking stayed at 100%, while a forearm briefly hid one corner during otherwise valid motion. | Calibrate from stable start/end windows and separately gate camera drift and jitter. |
+| A generic 140 mm obstacle was a reasonable first simulation proxy. | Contact-pair auditing found real Panda wrist collisions even when the object path was clear. | Measure the physical 40 mm obstacle, rebuild the geometry, and retain the failed setup as a stress test. |
+| More demonstrations would automatically improve the policy. | The 5, 15 and 30 demonstration ablations all achieved 50/50 safe success. | Report saturation honestly; for this task, route selection and calibration mattered more than volume. |
+| Float32 would be faster as well as smaller. | It cut checkpoint size by 44%, but was slightly slower in this CPU benchmark. | Keep the size result and make no speed claim. |
 
 ## Architecture
 

@@ -68,4 +68,8 @@ done > "$work_dir/concat.txt"
   -fflags +bitexact \
   media/phone2panda_demo.mp4
 
+"$ffmpeg_bin" -loglevel error -y -ss 5 -t 9 -i media/phone2panda_demo.mp4 \
+  -filter_complex "fps=10,scale=720:-1:flags=lanczos,split[gif][palette];[palette]palettegen=max_colors=96:stats_mode=diff[p];[gif][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle" \
+  -loop 0 -map_metadata -1 media/phone2panda_preview.gif
+
 .venv/bin/python scripts/check_submission.py --demo-only

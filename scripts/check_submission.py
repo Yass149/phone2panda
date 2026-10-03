@@ -65,21 +65,30 @@ def check_metrics() -> list[str]:
 def check_tracked_media() -> tuple[list[str], int]:
     errors: list[str] = []
     output = subprocess.check_output(
-        ["git", "ls-files", "-z", "*.mp4", "*.png"], cwd=ROOT
+        ["git", "ls-files", "-z", "*.gif", "*.mp4", "*.png"], cwd=ROOT
     )
     paths = [ROOT / item.decode() for item in output.split(b"\0") if item]
     unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
     for path in paths:
         try:
-            if path.suffix.lower() == ".png":
+            if path.suffix.lower() in {".gif", ".png"}:
                 with Image.open(path) as image:
                     metadata = dict(image.info)
+                    frames = getattr(image, "n_frames", 1)
                     image.verify()
-                if metadata:
+                allowed = {"background", "duration", "extension", "loop", "transparency", "version"}
+                unexpected = (
+                    set(metadata)
+                    if path.suffix.lower() == ".png"
+                    else set(metadata) - allowed
+                )
+                if unexpected:
                     errors.append(
-                        f"{path.relative_to(ROOT)} retains PNG metadata: "
-                        f"{', '.join(sorted(metadata))}"
+                        f"{path.relative_to(ROOT)} retains descriptive image metadata: "
+                        f"{', '.join(sorted(unexpected))}"
                     )
+                if frames == 0:
+                    errors.append(f"{path.relative_to(ROOT)} has no decodable frames")
                 if any(
                     term in str(key).lower() or term in str(value).lower()
                     for key, value in metadata.items()
