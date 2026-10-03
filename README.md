@@ -7,17 +7,19 @@ and used them to guide a Panda arm around a measured obstacle. On 50 fixed
 simulated scenes, the route-aware controller completed **50/50 safe placements**;
 a direct start-to-goal controller completed **0/50**.
 
-**[Watch the 70-second demo](media/phone2panda_demo.mp4)** ·
+**[Watch the 70-second demo](#demo)** ·
 [Inspect the results](#results) ·
 [How it works](#system) ·
 [Reproduce the checks](#quick-start-and-reproduction)
 
-<p>
-  <a href="media/phone2panda_demo.mp4"><img src="media/phone2panda_preview.gif" width="800" alt="Animated preview of a phone demonstration beside the corresponding simulated Panda motion; open the full 70-second demo"></a>
-</p>
+## Demo
 
-<p><sub>Phone demonstration → calibrated route → simulated Panda. Select the preview for the full MP4.</sub></p>
+https://github.com/user-attachments/assets/d6f34c27-e24b-484e-987e-88c90661ee87
 
+<p><sub>Phone demonstration → calibrated route → simulated Panda.</sub></p>
+
+[MP4 fallback](media/phone2panda_demo.mp4) ·
+[Animated preview](media/phone2panda_preview.gif) ·
 [Original phone footage](media/phone_demo_sanitized.mp4) ·
 [Experiment log](docs/experiments.md) ·
 [Model card](docs/model_card.md)
