@@ -1,18 +1,28 @@
+<div align="center">
+
 # Phone2Panda
 
-**Personal phone demonstrations to route-aware Panda control.**
+**Personal phone demonstrations to route-aware Panda control**
 
-[70-second demo](media/phone2panda_demo.mp4) ·
-[Design](docs/design.md) ·
+[Demo](media/phone2panda_demo.mp4) ·
+[Method](docs/design.md) ·
 [Results](results/phase5b/evaluation.json) ·
-[Experiment log](docs/experiments.md) ·
+[Experiments](docs/experiments.md) ·
 [Model card](docs/model_card.md)
+
+</div>
+
+<p align="center">
+  <img src="media/phone2panda_preview.gif" width="960" alt="A phone demonstration and the corresponding Panda motion">
+</p>
+
+<p align="center"><sub>The same human-derived route, calibrated from phone video and retargeted to a simulated Panda.</sub></p>
+
+## Overview
 
 **Research question:** can one person's overhead phone demonstrations provide
 path geometry that makes a Panda robot move an object around an obstacle more
 safely than a direct controller?
-
-![A phone demonstration and the corresponding Panda motion](media/phone2panda_preview.gif)
 
 Phone2Panda converts 36 personally recorded monocular videos into calibrated
 left/right motion priors, scores both routes for a new scene, and distils the
@@ -32,7 +42,9 @@ object-obstacle, robot-obstacle, robot-table, or self contact.
 
 ## System
 
-![Phone2Panda system architecture](docs/architecture.svg)
+<p align="center">
+  <img src="docs/architecture.svg" width="1200" alt="Phone2Panda system architecture">
+</p>
 
 1. Four canvas markers calibrate each overhead recording into a unit workspace.
 2. A red object marker becomes a confidence-weighted 2D trajectory.
@@ -43,6 +55,12 @@ object-obstacle, robot-obstacle, robot-table, or self contact.
    closed-loop rather than only by action-prediction loss.
 
 ## Results
+
+<p align="center">
+  <img src="results/phase4e/comparison.png" width="1100" alt="Safe success and obstacle clearance across four controller variants">
+</p>
+
+<p align="center"><sub>Fifty identical calibrated scenarios per controller. Error bars show Wilson 95% intervals.</sub></p>
 
 <!-- BEGIN GENERATED RESULTS -->
 The video dataset gate accepted **36/36 recordings**. On the same 50 held-out calibrated simulator scenarios:
