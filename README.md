@@ -68,6 +68,9 @@ robosuite · Matplotlib · pytest
 
 <p align="center"><sub>Observed outcomes and median footprint-adjusted clearance over 50 identical calibrated scenarios per controller.</sub></p>
 
+[Watch a route-aware success](results/phase4e/representative_calibrated_success.mp4) ·
+[Watch the straight-line collision](results/phase4e/representative_calibrated_failure.mp4)
+
 | Controller | Safe / 50 | Wilson 95% CI | Object collisions | Robot contacts | Drops | Median clearance |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | DMP + route/confidence | **50** | 92.9–100.0% | **0** | **0** | **0** | **22.4 mm** |
