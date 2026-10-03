@@ -1,0 +1,4804 @@
+{
+  "fixed_before_rollouts": true,
+  "schema_version": 1,
+  "split_seed_disjoint": true,
+  "splits": {
+    "testing": [
+      {
+        "goal_xy_m": [
+          0.2295465102861621,
+          -0.010610055479185249
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1355296941235719,
+          -0.001458673591461939
+        ],
+        "scenario_index": 0,
+        "seed": 300000,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.036775855002777975,
+          0.12235650648724572
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22788010112663962,
+          -0.00933104375386062
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13826897905486232,
+          -0.00042944964524236945
+        ],
+        "scenario_index": 1,
+        "seed": 301000,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03532454022202738,
+          -0.005837820616078636
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.227122738919257,
+          -0.01386166939655974
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13728109286665863,
+          0.0009888270751358982
+        ],
+        "scenario_index": 2,
+        "seed": 302000,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03992596358890538,
+          -0.11829231089476808
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22664020150784797,
+          -0.005142819785880747
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13852412765724578,
+          0.004626315747467653
+        ],
+        "scenario_index": 3,
+        "seed": 300001,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.042517703293517416,
+          0.1184744124033999
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22761036346792438,
+          -0.007427345898739192
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1395620001939289,
+          0.0022582171044931913
+        ],
+        "scenario_index": 4,
+        "seed": 301001,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03362138330813929,
+          -0.0016953228749250501
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2302343410792092,
+          -0.013056350523960817
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1382374280952932,
+          0.0003371728093582685
+        ],
+        "scenario_index": 5,
+        "seed": 302001,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03795324014141829,
+          -0.11805897795928501
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22796266657963005,
+          -0.011356149358680026
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13628906397914228,
+          0.00173071185964539
+        ],
+        "scenario_index": 6,
+        "seed": 300002,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03294138914026813,
+          0.11891560601556153
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22051873225041077,
+          -0.014837555759648895
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13540750866138412,
+          0.00019139668692011588
+        ],
+        "scenario_index": 7,
+        "seed": 301002,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.038513297227014624,
+          -0.0032251824259846478
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23189302462320432,
+          -0.009657500433948758
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13783662380849984,
+          -0.002393966306250816
+        ],
+        "scenario_index": 8,
+        "seed": 302002,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03583648706499281,
+          -0.11095682930218752
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22632763099530717,
+          -0.015300050396204298
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13873249063718274,
+          0.0029211354508023495
+        ],
+        "scenario_index": 9,
+        "seed": 300003,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.037913517833476074,
+          0.11122690779494365
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2232249629875945,
+          -0.007853381007757577
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1367181650108105,
+          0.002653376567107976
+        ],
+        "scenario_index": 10,
+        "seed": 301004,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.038089582966015466,
+          0.00017927568778012995
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2265831168891453,
+          -0.009121072543175355
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13929941833686907,
+          0.0013546624156569925
+        ],
+        "scenario_index": 11,
+        "seed": 302003,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.0500572571348423,
+          -0.11666804155514376
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2262357702331053,
+          -0.015049742547208663
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1376997068531794,
+          0.0008010074761744411
+        ],
+        "scenario_index": 12,
+        "seed": 300004,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03724705947156963,
+          0.11874175141009671
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2220536516793467,
+          -0.0054740861040000425
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13866546138400226,
+          0.001974456648759526
+        ],
+        "scenario_index": 13,
+        "seed": 301005,
+        "selected_route": "left",
+        "source_confidence": 0.90712,
+        "source_episode": "ep_020",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.044069717160055574,
+          -0.0007131394722160948
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.227760281798672,
+          -0.013104747791246272
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13889632700664323,
+          0.0014893222049217015
+        ],
+        "scenario_index": 14,
+        "seed": 302004,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.042602923796265464,
+          -0.10984811635029941
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2228332861846731,
+          -0.00815399688688078
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13986647065989297,
+          -0.0008762143332649527
+        ],
+        "scenario_index": 15,
+        "seed": 300005,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03816751470227688,
+          0.11466988729120046
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22472216117031532,
+          -0.011862018980685493
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13683007901358563,
+          0.004281769235148014
+        ],
+        "scenario_index": 16,
+        "seed": 301006,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03965338042252788,
+          -0.004442751962230045
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22270455575667883,
+          -0.017600097924733285
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1333830907503529,
+          -0.0008372663134888264
+        ],
+        "scenario_index": 17,
+        "seed": 302005,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.044523796168107185,
+          -0.11793790786143891
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22413117811465477,
+          -0.01169176356724286
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13909204303630882,
+          0.0014780330832085617
+        ],
+        "scenario_index": 18,
+        "seed": 300006,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.036086580334662374,
+          0.1126175302056714
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.222070370061701,
+          -0.01123325334040828
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13678602901967676,
+          0.0014135953845955756
+        ],
+        "scenario_index": 19,
+        "seed": 301007,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03861118003497275,
+          0.007148690986581866
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.225576714492372,
+          -0.007754672901529831
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13889385910286103,
+          -0.00205846864830583
+        ],
+        "scenario_index": 20,
+        "seed": 302006,
+        "selected_route": "right",
+        "source_confidence": 0.939853,
+        "source_episode": "ep_021",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.05069913416255994,
+          -0.11870306085033776
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22603151040659616,
+          -0.007609065300365588
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13747053448079996,
+          0.0020384464099025877
+        ],
+        "scenario_index": 21,
+        "seed": 300007,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.04004753024553152,
+          0.11430331801708497
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22439415884249359,
+          -0.008555605404340274
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13916047233493042,
+          0.0013078869061152478
+        ],
+        "scenario_index": 22,
+        "seed": 301008,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.039247609638150806,
+          0.0073954334698337135
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22852455557136128,
+          -0.012499456190248297
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1378398277700414,
+          0.0004307256242841492
+        ],
+        "scenario_index": 23,
+        "seed": 302007,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04653965342843369,
+          -0.11009968010335967
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2273504471085796,
+          -0.009770505295183028
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.140161210451276,
+          0.002084193476125751
+        ],
+        "scenario_index": 24,
+        "seed": 300008,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03659947998466868,
+          0.11966123013912622
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22825783681780987,
+          -0.013076487375372262
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1387499100696704,
+          0.003069761913334821
+        ],
+        "scenario_index": 25,
+        "seed": 301009,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03159270105908284,
+          -0.002487876157329861
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.225618833247315,
+          -0.01321499824859875
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1354713348144415,
+          -0.00037676211980804705
+        ],
+        "scenario_index": 26,
+        "seed": 302008,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03969148909529108,
+          -0.10886642509727931
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22256328186036078,
+          -0.011334817884417623
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13944680636180995,
+          0.00215924562569386
+        ],
+        "scenario_index": 27,
+        "seed": 300009,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03196754231211929,
+          0.11966172049514745
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2232284578535866,
+          -0.007500811986625748
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13864865694950096,
+          0.006239120246751498
+        ],
+        "scenario_index": 28,
+        "seed": 301010,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.0367930081456989,
+          0.0007764107401446987
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2248604411958608,
+          -0.0067067915464251605
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.136404418464898,
+          0.0010951243680476785
+        ],
+        "scenario_index": 29,
+        "seed": 302009,
+        "selected_route": "right",
+        "source_confidence": 0.939853,
+        "source_episode": "ep_021",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04886973602069007,
+          -0.11570752037636615
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23058623600383674,
+          -0.015283160760633612
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1346075699835911,
+          0.0012451737573420296
+        ],
+        "scenario_index": 30,
+        "seed": 300010,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03743525638492637,
+          0.11628267417490804
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2267975719784759,
+          -0.013185203214284454
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14253789424543015,
+          0.001202204215843004
+        ],
+        "scenario_index": 31,
+        "seed": 301011,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03265153177626984,
+          -0.004689849741612076
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2252360371873304,
+          -0.014747722464956366
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13935689125413037,
+          0.002870446866914927
+        ],
+        "scenario_index": 32,
+        "seed": 302010,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03661951355515782,
+          -0.12386894252562511
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22428514909877276,
+          -0.009107753467723651
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13914119391254687,
+          -0.002904985250396773
+        ],
+        "scenario_index": 33,
+        "seed": 300011,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03799472643706436,
+          0.11942432722351522
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2257216465960156,
+          -0.010451077615641855
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1332844579662268,
+          0.0018614708348014832
+        ],
+        "scenario_index": 34,
+        "seed": 301012,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.033543807099878996,
+          0.0029953905534506296
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2259050454777296,
+          -0.007501339562351696
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13521691260993737,
+          0.0005230958567978055
+        ],
+        "scenario_index": 35,
+        "seed": 302011,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.034794056075632754,
+          -0.11906181363753202
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23330218705405317,
+          -0.009738765984427415
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13801312665982238,
+          -0.0012628793811933535
+        ],
+        "scenario_index": 36,
+        "seed": 300012,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.035436058131335255,
+          0.12204471711693152
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22947390881442353,
+          -0.012857146240842969
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13849776698303626,
+          0.002335708388366241
+        ],
+        "scenario_index": 37,
+        "seed": 301014,
+        "selected_route": "right",
+        "source_confidence": 0.888839,
+        "source_episode": "ep_009",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04364207774180793,
+          0.003472129300716575
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2226994724366095,
+          -0.00965041998097874
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14023880295780794,
+          -0.0011442272776420366
+        ],
+        "scenario_index": 38,
+        "seed": 302012,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04454719239938624,
+          -0.10953045332377642
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22155443675355402,
+          -0.009670538601975828
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1344842891714053,
+          0.00550011135184398
+        ],
+        "scenario_index": 39,
+        "seed": 300013,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.031958907856971315,
+          0.1172887235938715
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23125992060711098,
+          -0.0042413541870113475
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13649948139465373,
+          -0.00028596834266229605
+        ],
+        "scenario_index": 40,
+        "seed": 301016,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.038159540663697124,
+          0.0006794983356520369
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2271103373014226,
+          -0.004885826522541527
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1384849272665307,
+          -0.000548538501938639
+        ],
+        "scenario_index": 41,
+        "seed": 302013,
+        "selected_route": "right",
+        "source_confidence": 0.939853,
+        "source_episode": "ep_021",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04266993427592121,
+          -0.11655079298463253
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22762808225041745,
+          -0.015048885013326376
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1377296405505202,
+          0.004277181734174398
+        ],
+        "scenario_index": 42,
+        "seed": 300014,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03698743343102348,
+          0.11532045427881167
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23152041645588087,
+          -0.009577218239668244
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1361889463228376,
+          0.0018556255170111098
+        ],
+        "scenario_index": 43,
+        "seed": 301018,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03518095898831733,
+          0.0025441697587976165
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2300348747061409,
+          -0.008194131034346394
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13840338880289027,
+          0.0035622503528835504
+        ],
+        "scenario_index": 44,
+        "seed": 302014,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03828787387767785,
+          -0.12154161988208614
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22391777136890412,
+          -0.015824536601589615
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13844186034908096,
+          -0.0007473844713198389
+        ],
+        "scenario_index": 45,
+        "seed": 300015,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.031536917528895245,
+          0.11195729967795608
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23188996688869973,
+          -0.01347182976961643
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13951957030952614,
+          2.812244962229133e-05
+        ],
+        "scenario_index": 46,
+        "seed": 301025,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "testing",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03509482736210451,
+          0.0036112224202562394
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2269742158647971,
+          -0.015327727799731393
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14007390681335796,
+          0.00013873442282758355
+        ],
+        "scenario_index": 47,
+        "seed": 302015,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04202240128237356,
+          -0.11645010877792687
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22031984728395124,
+          -0.004902546201329712
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13728880600269566,
+          0.002829129690668763
+        ],
+        "scenario_index": 48,
+        "seed": 300016,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "testing",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.0326794280279917,
+          0.11489183478884334
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22701823535119495,
+          -0.01877270371038745
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13962422858239273,
+          -0.0009317447973944432
+        ],
+        "scenario_index": 50,
+        "seed": 302016,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "testing",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04549988972760536,
+          -0.12548790653769892
+        ]
+      }
+    ],
+    "training": [
+      {
+        "goal_xy_m": [
+          0.22124699474739506,
+          -0.0076228803740217895
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13732590348103252,
+          0.0025824362822427427
+        ],
+        "scenario_index": 0,
+        "seed": 100000,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03732358387780441,
+          0.11270866184752484
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22523679790045734,
+          -0.007084225407123855
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13853625436237366,
+          0.002966257703223424
+        ],
+        "scenario_index": 1,
+        "seed": 101000,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.043133915283974464,
+          -0.00010372830196654875
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2329364138946086,
+          -0.00982195265247559
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13948948980180764,
+          0.0009040733110494996
+        ],
+        "scenario_index": 2,
+        "seed": 102000,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.044449099991319393,
+          -0.11058765539792137
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22418971999580287,
+          -0.012202114173809786
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1411279195019486,
+          0.0013698724974932496
+        ],
+        "scenario_index": 3,
+        "seed": 100001,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.031209283714973352,
+          0.1175147141246476
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2273515081844204,
+          -0.009173188508500617
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13853213668588374,
+          -0.000974595264558751
+        ],
+        "scenario_index": 4,
+        "seed": 101003,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.040078130745662924,
+          0.004355770689345348
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22955244360520075,
+          -0.010055129717856943
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14100181342948487,
+          -0.00021600471057106022
+        ],
+        "scenario_index": 5,
+        "seed": 102001,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04831632459905043,
+          -0.12130378590605564
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22649938925500354,
+          -0.008909299771020526
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13945421232553237,
+          0.0025271234970069226
+        ],
+        "scenario_index": 6,
+        "seed": 100002,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03272213817378504,
+          0.11915775138867983
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22695278612368994,
+          -0.013230414337299452
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13372430186888293,
+          -0.00028891525039625955
+        ],
+        "scenario_index": 7,
+        "seed": 101006,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04105100173829507,
+          -0.0026649914845386004
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22448383927950497,
+          -0.014652132955189186
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1328953717371861,
+          0.003988253778385555
+        ],
+        "scenario_index": 8,
+        "seed": 102002,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04210586842886305,
+          -0.12146905778903672
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22858532331659,
+          -0.010853131945416778
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13637315736641348,
+          0.0008928384336807369
+        ],
+        "scenario_index": 9,
+        "seed": 100003,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03840718860719022,
+          0.11242677625165808
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2280013858419301,
+          -0.008083846049600546
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1388745434576778,
+          0.0008406024950450102
+        ],
+        "scenario_index": 10,
+        "seed": 101008,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04155150522384908,
+          0.0022712655917362873
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22902458289312805,
+          -0.012405642292449013
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13735268730848194,
+          -0.0024228566699982506
+        ],
+        "scenario_index": 11,
+        "seed": 102003,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.05094190598831844,
+          -0.11563949427499405
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2224010825881849,
+          -0.005396136520745143
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13422486565094977,
+          0.004158314845138006
+        ],
+        "scenario_index": 12,
+        "seed": 100004,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03783702177092312,
+          0.11824856797795136
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22889484371235233,
+          -0.007833187819007737
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13886698288580435,
+          0.006893875318482541
+        ],
+        "scenario_index": 13,
+        "seed": 101009,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03977889678823757,
+          -0.00492091968259509
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2283033169530638,
+          -0.010606858955988226
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13718924868319834,
+          0.0004977231265793363
+        ],
+        "scenario_index": 14,
+        "seed": 102004,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04154088074119058,
+          -0.117214058498371
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22580668776803253,
+          -0.010902923771325424
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13877911883784846,
+          0.001277552246859631
+        ],
+        "scenario_index": 15,
+        "seed": 100005,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.0371703909127065,
+          0.11261194391592938
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22476979046106652,
+          -0.011623092965010129
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1356562325705573,
+          0.0036240452871751927
+        ],
+        "scenario_index": 16,
+        "seed": 101013,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03325932994456825,
+          -0.00015678474857002572
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22471440784477434,
+          -0.011114522827887212
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1398127541013863,
+          -0.00014145576558531462
+        ],
+        "scenario_index": 17,
+        "seed": 102005,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04649269392911501,
+          -0.11583033515192694
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22537037773181304,
+          -0.008792945440865028
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13845828158820742,
+          -0.0010109492272157238
+        ],
+        "scenario_index": 18,
+        "seed": 100006,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03764602227031853,
+          0.12437079799608504
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22813139463389534,
+          -0.010906980090757266
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13755103637372124,
+          -0.0007289506388110151
+        ],
+        "scenario_index": 19,
+        "seed": 101018,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04331614685907996,
+          0.004596689619090094
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2269337008468067,
+          -0.008838392515411308
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1414029120926806,
+          -0.001021988998735921
+        ],
+        "scenario_index": 20,
+        "seed": 102006,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.037762766655023886,
+          -0.11298663755391743
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22848689434323738,
+          -0.007051688575709179
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13763926449922598,
+          -0.0003823831262912598
+        ],
+        "scenario_index": 21,
+        "seed": 100007,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.02986198887644201,
+          0.11900047957877057
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2239343719360727,
+          -0.009813337045732621
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1384023889744303,
+          -0.003977824345193416
+        ],
+        "scenario_index": 22,
+        "seed": 101020,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03697607212014969,
+          -0.0031508224251365997
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22952330510766253,
+          -0.011233730712517927
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14027827102291954,
+          0.0018111896291518504
+        ],
+        "scenario_index": 23,
+        "seed": 102007,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04670147644688429,
+          -0.12180188441008682
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.230977310915877,
+          -0.013441377652470813
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1370017262928144,
+          0.002844479243237834
+        ],
+        "scenario_index": 24,
+        "seed": 100008,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03020046489023556,
+          0.1177267673833409
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22964635862196062,
+          -0.0081248103517901
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13512304868073752,
+          -2.2605249508193814e-06
+        ],
+        "scenario_index": 25,
+        "seed": 101021,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.02949724712413928,
+          0.008182210023971164
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22608393738851731,
+          -0.013749050786187548
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13933474190164868,
+          0.001262924073884637
+        ],
+        "scenario_index": 26,
+        "seed": 102008,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.044665387951793464,
+          -0.11817685348327311
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22877776075294742,
+          -0.010811920945281368
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13522772130488522,
+          7.483024150858029e-05
+        ],
+        "scenario_index": 27,
+        "seed": 100009,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03104368798871857,
+          0.11553590388887545
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22834243193296322,
+          -0.010220578469321971
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13882946161707788,
+          -0.001945985515619618
+        ],
+        "scenario_index": 28,
+        "seed": 101023,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.0394227597753937,
+          -0.002376285528820166
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22703114050292827,
+          -0.009053302997172556
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13499882508753183,
+          0.0007305221141303675
+        ],
+        "scenario_index": 29,
+        "seed": 102009,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04038448226143221,
+          -0.11797482189567628
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2240414824739233,
+          -0.010853884656842921
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13823923428219217,
+          0.003184981697782047
+        ],
+        "scenario_index": 30,
+        "seed": 100010,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03937916036634952,
+          0.1235151095457381
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22603070472914047,
+          -0.002696281948677667
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13976755263436502,
+          0.0007411574004088213
+        ],
+        "scenario_index": 31,
+        "seed": 101024,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04217006394081902,
+          0.0012604821730703636
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22782607083713668,
+          -0.01277427188099457
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1379973043185303,
+          0.0005318570503395581
+        ],
+        "scenario_index": 32,
+        "seed": 102010,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.0406230648205888,
+          -0.12164630074478765
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2212137080404968,
+          -0.01052734354505608
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13988284292049513,
+          -0.00044719638297748324
+        ],
+        "scenario_index": 33,
+        "seed": 100011,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03419196728402763,
+          0.11906651108340112
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22447773716242567,
+          -0.009548570068861067
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1390923865067915,
+          -0.00043036692608059974
+        ],
+        "scenario_index": 34,
+        "seed": 101025,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04083948050282149,
+          0.00613739447136275
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22745683162767596,
+          -0.010432906286185822
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1376387847936358,
+          -0.0012951121654036094
+        ],
+        "scenario_index": 35,
+        "seed": 102011,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04234978449871835,
+          -0.11464983958375977
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2268836060487449,
+          -0.016417546779717677
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1366914571445908,
+          0.000794825459004106
+        ],
+        "scenario_index": 36,
+        "seed": 100012,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.037434930996261405,
+          0.11757195164658552
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22754078744451176,
+          -0.01003236115581467
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14204563373051848,
+          1.8858251390369094e-05
+        ],
+        "scenario_index": 37,
+        "seed": 101026,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03194858954390733,
+          -0.006644542337587382
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22644033596888472,
+          -0.01502515185151308
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13589595567747642,
+          0.0015174297432293147
+        ],
+        "scenario_index": 38,
+        "seed": 102012,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.038352641456984256,
+          -0.11545111397495345
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22277634844445868,
+          -0.009553901260423076
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13731749248727967,
+          -0.003919587229015377
+        ],
+        "scenario_index": 39,
+        "seed": 100013,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03284858183952978,
+          0.11718080646341208
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22422400225202302,
+          -0.012420110798832451
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13975224289019417,
+          0.0015587384964246558
+        ],
+        "scenario_index": 40,
+        "seed": 101028,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.034731314981971455,
+          -0.003492090943148369
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22716503184842418,
+          -0.0061033706643153374
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13928124278163334,
+          0.0016655582060402293
+        ],
+        "scenario_index": 41,
+        "seed": 102013,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04357090113569107,
+          -0.11713355334200923
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22669186817826772,
+          -0.009870519010556468
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14067001165560594,
+          0.002030758411905354
+        ],
+        "scenario_index": 42,
+        "seed": 100014,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.02857913900896588,
+          0.11448895178414438
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22891510880361696,
+          -0.011055323899833663
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13437226644154818,
+          -0.0021562113268343746
+        ],
+        "scenario_index": 43,
+        "seed": 101030,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03988198065366061,
+          -0.001980892880586572
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22615416658996426,
+          -0.012874826138212593
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1369312412337733,
+          0.004712146361900025
+        ],
+        "scenario_index": 44,
+        "seed": 102014,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03712069007986952,
+          -0.1190232476874724
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2237430938545622,
+          -0.011848421470170586
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13528716225671095,
+          0.0001214125474350413
+        ],
+        "scenario_index": 45,
+        "seed": 100015,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03046469240829485,
+          0.11284497497881893
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2212039573593767,
+          -0.010264229441662049
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1372954345103652,
+          0.0007497483562734569
+        ],
+        "scenario_index": 46,
+        "seed": 101032,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03558206320257185,
+          -0.0036359915024052917
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22525361835105295,
+          -0.008576434848590792
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13586396759641964,
+          -0.0019815221751547
+        ],
+        "scenario_index": 47,
+        "seed": 102015,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.039609687263142346,
+          -0.11721589384141966
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22522450157779353,
+          -0.017097065458116293
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13804258189059512,
+          -0.0009415581885364574
+        ],
+        "scenario_index": 48,
+        "seed": 100016,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03380965655647692,
+          0.12292067589986884
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22263906261503372,
+          -0.011632283017022453
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.141099572423265,
+          0.005416542079483569
+        ],
+        "scenario_index": 49,
+        "seed": 101034,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.029358568275269174,
+          0.0017261927900898042
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22685018137025637,
+          -0.006945229511419959
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13846516347361384,
+          -0.0007100096960039525
+        ],
+        "scenario_index": 50,
+        "seed": 102016,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03579414305424927,
+          -0.11620144921817883
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22604722128975105,
+          -0.007286132931920974
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1354938647822817,
+          0.0016027962749329315
+        ],
+        "scenario_index": 51,
+        "seed": 100017,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.030051929789741832,
+          0.11064301962459377
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22613562498632345,
+          -0.004929706253407843
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13415795150964774,
+          -0.0007453936927576249
+        ],
+        "scenario_index": 52,
+        "seed": 101036,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.040150595787662655,
+          0.0069361671906523065
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22701377452361757,
+          -0.0105806103424295
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13983860956552838,
+          -0.002405107534637114
+        ],
+        "scenario_index": 53,
+        "seed": 102017,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.054775741536908784,
+          -0.11728413360348015
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22950479617060732,
+          -0.012754612850415821
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13664677229211372,
+          8.41687479719998e-06
+        ],
+        "scenario_index": 54,
+        "seed": 100018,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03393707896582908,
+          0.11572377731601566
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23093686633870086,
+          -0.010767757168570667
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13736522302809492,
+          -0.0017787431370456831
+        ],
+        "scenario_index": 55,
+        "seed": 101039,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04003085711281924,
+          -0.0014149954407653043
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22752834162794924,
+          -0.01319235674143842
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13872111128200468,
+          0.00037112074113871167
+        ],
+        "scenario_index": 56,
+        "seed": 102018,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.0439309156753353,
+          -0.11880362738760591
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2300837739651077,
+          -0.00873333021602698
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13619005709980503,
+          0.0039059014000133144
+        ],
+        "scenario_index": 57,
+        "seed": 100019,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.04111426167329067,
+          0.11358686273588645
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.225592769705791,
+          -0.009071629821443099
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13657806025264968,
+          -0.0011574044405573492
+        ],
+        "scenario_index": 58,
+        "seed": 101040,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.038133107928308894,
+          0.008862315438365331
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22832619181597438,
+          -0.013026962045300908
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1409824659095773,
+          0.005895752495548287
+        ],
+        "scenario_index": 59,
+        "seed": 102019,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03538050574796523,
+          -0.1178072164247226
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22761497872652886,
+          -0.010495812676582025
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13420482309298765,
+          0.00032866348391443227
+        ],
+        "scenario_index": 60,
+        "seed": 100020,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.04014971181665869,
+          0.11987642253373505
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22378129379149517,
+          -0.01178688431687209
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14336611347970507,
+          0.0036334784582689665
+        ],
+        "scenario_index": 61,
+        "seed": 101044,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.037625339282646816,
+          -0.0004674751183090422
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22396472240044438,
+          -0.011295263310477987
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13953339105430534,
+          0.0012558838541020525
+        ],
+        "scenario_index": 62,
+        "seed": 102020,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03847729731296917,
+          -0.12004707267051946
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22808917355473043,
+          -0.005110738953269401
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1372887977838551,
+          0.0035099330656064025
+        ],
+        "scenario_index": 63,
+        "seed": 100021,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.037456158594386134,
+          0.12288767739368944
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22678020782370792,
+          -0.01370426928451909
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13906826876768916,
+          0.001630572745876106
+        ],
+        "scenario_index": 64,
+        "seed": 101045,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03490378263488836,
+          0.003773126377148905
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22610701776213954,
+          -0.0120111448262919
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1343511444122655,
+          0.00016086432156346903
+        ],
+        "scenario_index": 65,
+        "seed": 102021,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.038255968508667075,
+          -0.11745562116866864
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22575118332689914,
+          -0.006385803991163323
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13724344308726796,
+          0.0013803532894124753
+        ],
+        "scenario_index": 66,
+        "seed": 100022,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.04495365895307274,
+          0.11758791259492254
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22514526245053781,
+          -0.01276170694293979
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13713743702640382,
+          0.002258306387041489
+        ],
+        "scenario_index": 67,
+        "seed": 101047,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03573769008191775,
+          0.0027636738743760277
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22641589195436015,
+          -0.011000528151740279
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.137530521259031,
+          0.00031936795722201653
+        ],
+        "scenario_index": 68,
+        "seed": 102022,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03647122272474582,
+          -0.1178579450440728
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2299364105354732,
+          -0.00690273461732997
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13773328948091107,
+          -0.0008378914360137094
+        ],
+        "scenario_index": 69,
+        "seed": 100023,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.04296184571983331,
+          0.1255069161251298
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22615176361225453,
+          -0.013875513240811373
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13543946482641228,
+          0.0003051707755379179
+        ],
+        "scenario_index": 70,
+        "seed": 101050,
+        "selected_route": "right",
+        "source_confidence": 0.888839,
+        "source_episode": "ep_009",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04187281169795752,
+          -0.000702412491710648
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2248869822438596,
+          -0.012817181169922644
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13917013812513387,
+          0.0021778761981345747
+        ],
+        "scenario_index": 71,
+        "seed": 102023,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.039857042397377244,
+          -0.11497998612202683
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2227328877599102,
+          -0.012187687607817568
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13604573303275733,
+          -0.0015829013642844553
+        ],
+        "scenario_index": 72,
+        "seed": 100024,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.029343024870016877,
+          0.11701456825378505
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2177640327724318,
+          -0.0077799071225795055
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14063385111242108,
+          -0.0007719544251440541
+        ],
+        "scenario_index": 73,
+        "seed": 101060,
+        "selected_route": "right",
+        "source_confidence": 0.877631,
+        "source_episode": "ep_023",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03931883400599458,
+          -0.00031220101450536134
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22627648746450818,
+          -0.013893871001306355
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13727455786305595,
+          0.0005761270593104697
+        ],
+        "scenario_index": 74,
+        "seed": 102024,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03535127466195947,
+          -0.12005663278581039
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2229209120919371,
+          -0.015729691782930905
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13454449406037466,
+          -0.003839213645976192
+        ],
+        "scenario_index": 75,
+        "seed": 100025,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03883281620008949,
+          0.11186987015134604
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22732646020946431,
+          -0.010403143208885985
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1388438528776236,
+          0.0016542107327789332
+        ],
+        "scenario_index": 76,
+        "seed": 101063,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.034834937847084,
+          0.0030189470840942274
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2268409123787447,
+          -0.011705828406345788
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13534557665683933,
+          -0.0001841406502699909
+        ],
+        "scenario_index": 77,
+        "seed": 102025,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04617236760979899,
+          -0.11615339850558605
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22991069385908866,
+          -0.012631906389101522
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1413709586503451,
+          0.0018377425280760799
+        ],
+        "scenario_index": 78,
+        "seed": 100026,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03853156874592429,
+          0.11871194731448047
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22656843213445874,
+          -0.016743974002949233
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1335496392227262,
+          0.002523522129434668
+        ],
+        "scenario_index": 79,
+        "seed": 101066,
+        "selected_route": "right",
+        "source_confidence": 0.831903,
+        "source_episode": "ep_030",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04436123170030311,
+          -0.008071842875971598
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23077349530513186,
+          -0.011771261638815514
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13872991370346965,
+          0.0012444896118907224
+        ],
+        "scenario_index": 80,
+        "seed": 102026,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03990620526629945,
+          -0.12374350614005694
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2284680359282665,
+          -0.009199803084818456
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13558896489510752,
+          0.0022161311552716884
+        ],
+        "scenario_index": 81,
+        "seed": 100027,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.04744017929914917,
+          0.1173887004904223
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2224847466315492,
+          -0.011664997850387198
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13359238324776906,
+          0.0020590621323332654
+        ],
+        "scenario_index": 82,
+        "seed": 101067,
+        "selected_route": "right",
+        "source_confidence": 0.888839,
+        "source_episode": "ep_009",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03991960767309039,
+          0.003248928276862244
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2270837297683341,
+          -0.010687788424747916
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13708250612333994,
+          0.0014780495444224272
+        ],
+        "scenario_index": 83,
+        "seed": 102027,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04179507093743919,
+          -0.11421841327675544
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2288700176404115,
+          -0.012588287256163035
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1399267741621399,
+          0.0016260603197588664
+        ],
+        "scenario_index": 84,
+        "seed": 100028,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.039941855700000514,
+          0.11564755783122727
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22915697146366074,
+          -0.010380112955801098
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13369801325432315,
+          0.0010558590828886386
+        ],
+        "scenario_index": 85,
+        "seed": 101070,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.0332770127952046,
+          -0.002042923809515153
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22528566199429007,
+          -0.006299865593931936
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13656811645476255,
+          0.00046532985371292046
+        ],
+        "scenario_index": 86,
+        "seed": 102028,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04348436804966472,
+          -0.11333596039483132
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2297483142285481,
+          -0.01194940325362506
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13806023292556793,
+          0.004252576310672665
+        ],
+        "scenario_index": 87,
+        "seed": 100029,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.040721324547415935,
+          0.12161572823769085
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22685424299292514,
+          -0.011265152331337135
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13578618927443842,
+          0.004640935553362101
+        ],
+        "scenario_index": 88,
+        "seed": 101073,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03569842387435939,
+          0.0007643577982002707
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22462598971452483,
+          -0.008061126850672742
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13522956107931897,
+          -0.00018726489661783003
+        ],
+        "scenario_index": 89,
+        "seed": 102029,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04350646238141207,
+          -0.11560609511488126
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23489848936067967,
+          -0.008914553481910822
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13872352382772843,
+          -0.0007621511293955379
+        ],
+        "scenario_index": 90,
+        "seed": 100030,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.04028794572160466,
+          0.12408277320190075
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23005054705994318,
+          -0.011642822904188915
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13344992963813596,
+          0.0012864842898161176
+        ],
+        "scenario_index": 91,
+        "seed": 101075,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04015960705517038,
+          0.0015781271478119462
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22551866802025675,
+          -0.013385768399122106
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1382849096570005,
+          0.0015731294427264804
+        ],
+        "scenario_index": 92,
+        "seed": 102030,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.048888292787001825,
+          -0.11725594337061183
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22811253758554234,
+          -0.00618537497791185
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13713450772557736,
+          7.621288045372315e-05
+        ],
+        "scenario_index": 93,
+        "seed": 100031,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.0393745211294807,
+          0.11954083453477066
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2222037408743849,
+          -0.014364550049357173
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13558134748714168,
+          0.0052058223642283494
+        ],
+        "scenario_index": 94,
+        "seed": 101078,
+        "selected_route": "right",
+        "source_confidence": 0.888839,
+        "source_episode": "ep_009",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03697556167992091,
+          0.004431653217849921
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22646293075975887,
+          -0.009992462080782622
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13688052759453148,
+          0.0024974701485928354
+        ],
+        "scenario_index": 95,
+        "seed": 102031,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.034965557622836985,
+          -0.12021834911007942
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22977737178241808,
+          -0.010067488867308058
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13404375052939674,
+          0.0002774997963641265
+        ],
+        "scenario_index": 96,
+        "seed": 100032,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.033726024903665504,
+          0.11819883275561971
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22874247604758377,
+          -0.010536813903159454
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13905225169688398,
+          0.0047047591781006265
+        ],
+        "scenario_index": 97,
+        "seed": 101084,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03841097453253225,
+          0.0017549432615320277
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22881628367696483,
+          -0.00809204713799157
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13449740406936309,
+          0.00023087186822563896
+        ],
+        "scenario_index": 98,
+        "seed": 102032,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.041219503978908695,
+          -0.11585631972478971
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22690307121635772,
+          -0.011845221815660197
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13690976606923738,
+          0.002124755355995234
+        ],
+        "scenario_index": 99,
+        "seed": 100033,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03870133718737692,
+          0.11707390710759741
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23240104014789628,
+          -0.00815530123010106
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13791466212380576,
+          0.0016633716588336023
+        ],
+        "scenario_index": 100,
+        "seed": 101085,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04223255356136825,
+          -0.0018815040822647287
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22263255624021572,
+          -0.007284092620071965
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1381830329950988,
+          0.0007074043287542529
+        ],
+        "scenario_index": 101,
+        "seed": 102033,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03902757893502581,
+          -0.11774094479551266
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23092598295877134,
+          -0.009351094978845544
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13718029987175095,
+          0.0020791329238616487
+        ],
+        "scenario_index": 102,
+        "seed": 100034,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.04126780410204613,
+          0.12071934508976702
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22597626069851467,
+          -0.013131265621489478
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13793948121112026,
+          0.0023686934674889
+        ],
+        "scenario_index": 103,
+        "seed": 101087,
+        "selected_route": "right",
+        "source_confidence": 0.888839,
+        "source_episode": "ep_009",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.035662509567603175,
+          0.00860179361864398
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22296048117686226,
+          -0.01709250154377693
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13628156540375,
+          5.0800818053895825e-06
+        ],
+        "scenario_index": 104,
+        "seed": 102034,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03460553440851098,
+          -0.1131806417386359
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22355639709436842,
+          -0.008624593084855987
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13938034847851,
+          0.00017755631991578326
+        ],
+        "scenario_index": 105,
+        "seed": 100035,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03868833190070486,
+          0.12700893974894545
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22550772099027783,
+          -0.013603996111991213
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13619466600451083,
+          -0.0015982082804446682
+        ],
+        "scenario_index": 106,
+        "seed": 101088,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.034105185164109375,
+          0.0005467418228824238
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22554301042265126,
+          -0.011671893464364582
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13737424500144016,
+          0.0003435632607292397
+        ],
+        "scenario_index": 107,
+        "seed": 102035,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.0456072088231252,
+          -0.11674013157955042
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22074746242847265,
+          -0.014981374519166153
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13538750919077655,
+          0.0016335024750504814
+        ],
+        "scenario_index": 108,
+        "seed": 100036,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.030536195574485298,
+          0.11617768936387873
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23221815699175202,
+          -0.014098863725485952
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13812379582021386,
+          0.002174427168738019
+        ],
+        "scenario_index": 109,
+        "seed": 101090,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.031586955693749794,
+          0.0021560242560146226
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22504423090912054,
+          -0.010550441601593732
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1362729093379273,
+          0.0009336549160469762
+        ],
+        "scenario_index": 110,
+        "seed": 102036,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04057206983570525,
+          -0.11642434235827752
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2250365715732606,
+          -0.00495693104601566
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1380995338343122,
+          0.00042846474632557836
+        ],
+        "scenario_index": 111,
+        "seed": 100037,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.039384996214405076,
+          0.11797544152752089
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22374352569047848,
+          -0.01356579260594231
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14114257711427802,
+          0.002805847873326557
+        ],
+        "scenario_index": 112,
+        "seed": 101095,
+        "selected_route": "right",
+        "source_confidence": 0.888839,
+        "source_episode": "ep_009",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03322626099626383,
+          0.003229149965222152
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22478556215948772,
+          -0.015526975819124473
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13486108362134058,
+          0.003017293295589166
+        ],
+        "scenario_index": 113,
+        "seed": 102037,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.036596307889934974,
+          -0.11693342913430457
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2248411011306226,
+          -0.016625871430585273
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14160258162055792,
+          0.0006563867735297388
+        ],
+        "scenario_index": 114,
+        "seed": 100038,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03564024288247308,
+          0.12006415296156994
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22653191330618447,
+          -0.012897947188867272
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1361372678009108,
+          0.0006724967016410994
+        ],
+        "scenario_index": 115,
+        "seed": 101098,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03489551800318022,
+          0.0003282686937402735
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22528978400636132,
+          -0.010125157344813554
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13344426936249199,
+          -0.0037395954443506605
+        ],
+        "scenario_index": 116,
+        "seed": 102038,
+        "selected_route": "right",
+        "source_confidence": 0.936694,
+        "source_episode": "ep_014",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04534156854565712,
+          -0.11321014232823985
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2298879215961616,
+          -0.012114336561469253
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1353912179212037,
+          0.0018753786772328599
+        ],
+        "scenario_index": 117,
+        "seed": 100039,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "training",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03804647195009289,
+          0.11416841420200369
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23401030936056658,
+          -0.0058881279919382355
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1348168919605588,
+          0.0007458791730773276
+        ],
+        "scenario_index": 118,
+        "seed": 101099,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "training",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.02778374381768567,
+          2.8884616990484382e-05
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22087103540280908,
+          -0.010323853174491582
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13653472491923205,
+          0.0012410803973362488
+        ],
+        "scenario_index": 119,
+        "seed": 102039,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "training",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.038655767343490376,
+          -0.12147127853962901
+        ]
+      }
+    ],
+    "validation": [
+      {
+        "goal_xy_m": [
+          0.22384070260301883,
+          -0.01147787511521532
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13784234745498025,
+          0.0017152039123128826
+        ],
+        "scenario_index": 0,
+        "seed": 200000,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "validation",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.033433983286059316,
+          0.11929633752702747
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.21895174298802791,
+          -0.008473362314045309
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13827000023164274,
+          0.001358691459542243
+        ],
+        "scenario_index": 1,
+        "seed": 201000,
+        "selected_route": "left",
+        "source_confidence": 0.90712,
+        "source_episode": "ep_020",
+        "split": "validation",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.04031567251914233,
+          0.002894588268235106
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22944439190189175,
+          -0.011269988766531836
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1364744917141355,
+          0.002643135085993828
+        ],
+        "scenario_index": 2,
+        "seed": 202000,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "validation",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.044007925786655286,
+          -0.1233843735564748
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.221119623708111,
+          -0.011358064788632521
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13576672642832033,
+          0.0020739906940276712
+        ],
+        "scenario_index": 3,
+        "seed": 200001,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "validation",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03615381344348111,
+          0.11594711710932312
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2270671612402404,
+          -0.014393042788194636
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1406750418877109,
+          0.0009608433646882645
+        ],
+        "scenario_index": 4,
+        "seed": 201002,
+        "selected_route": "left",
+        "source_confidence": 0.915705,
+        "source_episode": "ep_027",
+        "split": "validation",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03525477147926083,
+          0.005682140475790453
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2274542701206368,
+          -0.012184783552278283
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13661591281042335,
+          0.0034379715025630213
+        ],
+        "scenario_index": 5,
+        "seed": 202001,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "validation",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04245514840332157,
+          -0.12181893411503106
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22030300355450202,
+          -0.00999599992071168
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1403041756075661,
+          0.0019297953169812054
+        ],
+        "scenario_index": 6,
+        "seed": 200002,
+        "selected_route": "left",
+        "source_confidence": 0.917738,
+        "source_episode": "ep_022",
+        "split": "validation",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.039724707888202315,
+          0.11819766433955646
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22575375214447987,
+          -0.01060426757773964
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13428116628286688,
+          -0.001033288083998647
+        ],
+        "scenario_index": 7,
+        "seed": 201004,
+        "selected_route": "left",
+        "source_confidence": 0.905213,
+        "source_episode": "ep_013",
+        "split": "validation",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03453679271003415,
+          -0.0029701556995708183
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22550293843522803,
+          -0.01098930756920805
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13533386443777687,
+          0.005293338553692235
+        ],
+        "scenario_index": 8,
+        "seed": 202002,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "validation",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03825116998373667,
+          -0.11350044390341094
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22464510491202708,
+          -0.010212332376030288
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13873537658403198,
+          -0.0009413495203213233
+        ],
+        "scenario_index": 9,
+        "seed": 200003,
+        "selected_route": "left",
+        "source_confidence": 0.893594,
+        "source_episode": "ep_036",
+        "split": "validation",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.030913783452781462,
+          0.11659646816867132
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22502463608577708,
+          -0.015921429836048835
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13545479682717582,
+          0.0021112604609821355
+        ],
+        "scenario_index": 10,
+        "seed": 201005,
+        "selected_route": "right",
+        "source_confidence": 0.888839,
+        "source_episode": "ep_009",
+        "split": "validation",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.037720792308616136,
+          0.006844303483880248
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2251597794608369,
+          -0.01350974665506197
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14046574629054323,
+          0.0019755584004156586
+        ],
+        "scenario_index": 11,
+        "seed": 202003,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "validation",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.03896339664172383,
+          -0.11097093073899145
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22959104101810754,
+          -0.010823648888386979
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13868176293243886,
+          -0.001121793164311323
+        ],
+        "scenario_index": 12,
+        "seed": 200004,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "validation",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.040810822316064525,
+          0.12305182192128704
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.23047770376800483,
+          -0.009243990798879522
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14021727656324498,
+          0.003966311300812064
+        ],
+        "scenario_index": 13,
+        "seed": 201006,
+        "selected_route": "right",
+        "source_confidence": 0.888839,
+        "source_episode": "ep_009",
+        "split": "validation",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.0428268110349014,
+          0.006628199014027599
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22350792782317186,
+          -0.012212164773411263
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.1381423160733893,
+          -0.0003577535573660723
+        ],
+        "scenario_index": 14,
+        "seed": 202004,
+        "selected_route": "right",
+        "source_confidence": 0.936306,
+        "source_episode": "ep_028",
+        "split": "validation",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.041361274523516504,
+          -0.1192215841182847
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22582026296113908,
+          -0.012987750984354582
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13317836369584427,
+          0.00025177652826383437
+        ],
+        "scenario_index": 15,
+        "seed": 200005,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "validation",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.04683204683599449,
+          0.12313397922175756
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.2271859982314593,
+          -0.014057736510421984
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13686449324489133,
+          -0.001551236289728471
+        ],
+        "scenario_index": 16,
+        "seed": 201007,
+        "selected_route": "right",
+        "source_confidence": 0.875086,
+        "source_episode": "ep_016",
+        "split": "validation",
+        "start_id": "s2",
+        "start_xy_m": [
+          0.03188908800656724,
+          -0.00010257676552808911
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22318912062033697,
+          -0.011254479111873895
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13980080424281874,
+          -0.00023687906645677645
+        ],
+        "scenario_index": 17,
+        "seed": 202005,
+        "selected_route": "right",
+        "source_confidence": 0.930714,
+        "source_episode": "ep_035",
+        "split": "validation",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.04419124479978784,
+          -0.12321785739562179
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22316643837812503,
+          -0.011402255811957161
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.13567027584831504,
+          0.002876934117770526
+        ],
+        "scenario_index": 18,
+        "seed": 200006,
+        "selected_route": "left",
+        "source_confidence": 0.913943,
+        "source_episode": "ep_029",
+        "split": "validation",
+        "start_id": "s1",
+        "start_xy_m": [
+          0.03573438612202096,
+          0.12316115721291276
+        ]
+      },
+      {
+        "goal_xy_m": [
+          0.22165453115287276,
+          -0.00503393731243977
+        ],
+        "obstacle_half_size_m": [
+          0.022168062499999995,
+          0.062407350000000014
+        ],
+        "obstacle_xy_m": [
+          0.14299465015878093,
+          0.0026229381454695353
+        ],
+        "scenario_index": 20,
+        "seed": 202006,
+        "selected_route": "right",
+        "source_confidence": 0.939853,
+        "source_episode": "ep_021",
+        "split": "validation",
+        "start_id": "s3",
+        "start_xy_m": [
+          0.046462367017822956,
+          -0.11391597868515942
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "testing": {
+      "route_counts": {
+        "left": 25,
+        "right": 25
+      },
+      "scenarios": 50,
+      "seed_sha256": "fb767d22824100bc5f9d40ebcb62e60117e31657311a5f3b1733485333f6aece",
+      "start_counts": {
+        "s1": 17,
+        "s2": 16,
+        "s3": 17
+      }
+    },
+    "training": {
+      "route_counts": {
+        "left": 60,
+        "right": 60
+      },
+      "scenarios": 120,
+      "seed_sha256": "88225737ecf6a89b3fefe810ce1321bbb49bb850c467548e8c31108e013032e6",
+      "start_counts": {
+        "s1": 40,
+        "s2": 40,
+        "s3": 40
+      }
+    },
+    "validation": {
+      "route_counts": {
+        "left": 10,
+        "right": 10
+      },
+      "scenarios": 20,
+      "seed_sha256": "1eaba361e74ab5220e25edd9564f98d6ffe2e46a2ee233c895bdcffbfef2e0c8",
+      "start_counts": {
+        "s1": 7,
+        "s2": 6,
+        "s3": 7
+      }
+    }
+  }
+}

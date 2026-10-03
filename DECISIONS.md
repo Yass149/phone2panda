@@ -55,3 +55,7 @@ Treat the earlier 0.14 m obstacle as an uncalibrated tall-obstacle stress test a
 ## 2026-10-02 — Phase 5A compact recurrent policy
 
 Use a dependency-free, normalized 24-unit GRU rather than ACT, LeRobot, SmolVLA, or another framework. The GRU provides deterministic initialization and training, a 3,559-parameter checkpoint suitable for modest hardware, and direct controller-latency measurement. Limit Phase 5A to overfitting exactly five successful calibrated DMP episodes and require 5/5 safe closed-loop replay before any broader training.
+
+## 2026-10-03 — Phase 5B split isolation
+
+Fix the balanced seed manifest before generating rollouts: 120 training, 20 episode-disjoint validation, and 50 untouched testing scenarios. Fit normalization only on training data, select checkpoints only by validation loss, and compare the GRU with its DMP teacher on identical held-out geometry. Keep the validated 24-unit architecture because validation remained stable; do not tune after observing test outcomes.

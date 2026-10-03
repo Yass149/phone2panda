@@ -195,6 +195,7 @@ def _run_episode(
     provider_factory: Callable[[Scenario, dict[str, Any]], ActionProvider],
     *,
     render: bool = False,
+    method_name: str = "gru_policy",
 ) -> tuple[dict[str, Any], list[NDArray[np.uint8]]]:
     np.random.seed(seed)
     scenario, path, selection = _scenario_and_path(execution, demos, geometry, seed, index)
@@ -208,7 +209,7 @@ def _run_episode(
             execution,
             env,
             scenario,
-            "gru_policy",
+            method_name,
             path,
             selection,
             capture_video=render,

@@ -90,6 +90,16 @@ make phase5a
 
 The GRU is intentionally selected for reproducibility, modest hardware requirements, and controlled latency measurement. The bounded overfit gate passed 5/5 on the same scenarios with zero object collisions, unintended robot contacts, or drops. This is an overfit/reloadability check only; it is not evidence of generalization and does not start full policy training.
 
+## Phase 5B held-out GRU evaluation
+
+Run the fixed, balanced, calibrated train/validation/test experiment:
+
+```bash
+make phase5b
+```
+
+The seed manifest is written before rollout collection. Training uses 120 scenarios, early stopping monitors 20 episode-disjoint validation scenarios, and evaluation uses 50 untouched scenarios shared with the DMP teacher. The 24-unit GRU passed 50/50 with zero collisions, unintended contacts, or drops; no failure video exists because no held-out rollout failed.
+
 Outputs are written under `results/pilot_validation/`:
 
 - `quality_report.json` and `quality_report.csv`: aggregate machine-readable gate results.

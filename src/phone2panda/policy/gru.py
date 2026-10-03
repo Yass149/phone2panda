@@ -200,6 +200,13 @@ class GRUPolicy:
             hidden_gradient += update_pre @ p["Uz"].T
         return loss, gradients
 
+    def loss(self, batch: SequenceBatch) -> float:
+        predictions, _ = self._forward(batch)
+        active = batch.mask[:, :, None].astype(np.float64)
+        difference = (predictions - batch.targets) * active
+        denominator = float(np.sum(batch.mask) * self.output_dim)
+        return float(np.sum(difference * difference) / denominator)
+
     def fit(
         self,
         batch: SequenceBatch,
@@ -210,6 +217,7 @@ class GRUPolicy:
         minimum_improvement: float,
         target_loss: float,
         gradient_clip_norm: float,
+        validation_batch: SequenceBatch | None = None,
     ) -> list[dict[str, float | int]]:
         first_moment = {name: np.zeros_like(value) for name, value in self.parameters.items()}
         second_moment = {name: np.zeros_like(value) for name, value in self.parameters.items()}
@@ -218,7 +226,7 @@ class GRUPolicy:
         stale_epochs = 0
         history: list[dict[str, float | int]] = []
         for epoch in range(1, maximum_epochs + 1):
-            loss, gradients = self.loss_and_gradients(batch)
+            training_loss, gradients = self.loss_and_gradients(batch)
             gradient_norm = float(
                 np.sqrt(sum(np.sum(value * value) for value in gradients.values()))
             )
@@ -232,14 +240,25 @@ class GRUPolicy:
                 first_unbiased = first_moment[name] / (1.0 - 0.9**epoch)
                 second_unbiased = second_moment[name] / (1.0 - 0.999**epoch)
                 parameter -= learning_rate * first_unbiased / (np.sqrt(second_unbiased) + 1e-8)
-            history.append({"epoch": epoch, "loss": loss, "gradient_norm": gradient_norm})
-            if best_loss - loss > minimum_improvement:
-                best_loss = loss
+            validation_loss = (
+                self.loss(validation_batch) if validation_batch is not None else training_loss
+            )
+            history.append(
+                {
+                    "epoch": epoch,
+                    "loss": training_loss,
+                    "train_loss": training_loss,
+                    "validation_loss": validation_loss,
+                    "gradient_norm": gradient_norm,
+                }
+            )
+            if best_loss - validation_loss > minimum_improvement:
+                best_loss = validation_loss
                 best = {name: value.copy() for name, value in self.parameters.items()}
                 stale_epochs = 0
             else:
                 stale_epochs += 1
-            if loss <= target_loss or stale_epochs >= patience:
+            if validation_loss <= target_loss or stale_epochs >= patience:
                 break
         self.parameters = best
         return history

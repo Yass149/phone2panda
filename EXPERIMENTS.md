@@ -160,3 +160,13 @@ Final acceptance-command results are appended after the checked pipeline run.
 - Placement errors: 1.68, 2.72, 0.43, 2.15, and 0.53 mm; maximum 2.72 mm against the 10 mm gate.
 - Policy latency: 0.0271 ms median and 0.0283 ms p95. Exactly one passing rollout video was rendered after the gate passed.
 - This is an overfit gate only. Full policy training, hyperparameter optimization, ACT, LeRobot, and SmolVLA were not started.
+
+## 2026-10-03 — Phase 5B held-out calibrated evaluation
+
+- Fixed disjoint manifests before rollout generation: training 120 (40 per start, 60/60 routes), validation 20 (7/6/7 starts, 10/10 routes), and testing 50 (17/16/17 starts, 25/25 routes).
+- Teacher provenance records accepted human episode, selected route/confidence, smoothed DMP retargeting, and bounded Panda action for every training and validation episode.
+- Reused normalized 24-unit GRU: 3,559 parameters and a 31,942-byte checkpoint.
+- Validation-monitored training reached the 250-epoch cap in 12.01 seconds; best validation MSE 0.00472591. No test seed was used for normalization, training, or checkpoint selection.
+- Held-out result: **PASS**. GRU 50/50 and DMP teacher 50/50 safe successes; both had zero object collisions, unintended contacts, or drops.
+- GRU versus DMP: median placement error 1.95 vs 1.53 mm; median minimum clearance 21.72 vs 22.07 mm; median latency 0.0269 vs 0.0140 ms.
+- One representative GRU success video was generated. No failure video was generated because no held-out GRU rollout failed. Optimization and ablations were not started.

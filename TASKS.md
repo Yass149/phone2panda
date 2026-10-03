@@ -88,3 +88,14 @@ The calibrated route/confidence DMP achieved 50/50 safe successes with zero unin
 - [x] Save one passing video, checkpoint, schema, curve, and machine-readable evaluation.
 
 Phase 5A is complete. Full policy training and optimization have not started.
+
+## Phase 5B — Held-out calibrated GRU evaluation
+
+- [x] Fix disjoint balanced manifests for 120 training, 20 validation, and 50 test scenarios.
+- [x] Generate headless teacher actions from human-derived route/confidence DMP trajectories.
+- [x] Reuse the normalized 24-unit GRU and train with episode-disjoint validation early stopping.
+- [x] Evaluate GRU and DMP teacher on the identical 50 untouched calibrated scenarios.
+- [x] Pass the 45/50 gate: GRU 50/50 and teacher 50/50, with zero safety failures.
+- [x] Save provenance, checkpoint, curve, per-rollout results, and one success video.
+
+Phase 5B is complete. Optimization and ablations have not started.

@@ -1,0 +1,30 @@
+schema_version: 1
+phase5a_config: configs/phase5a.yaml
+output_dir: results/phase5b
+
+splits:
+  training:
+    seed_base: 100000
+    start_counts: {s1: 40, s2: 40, s3: 40}
+  validation:
+    seed_base: 200000
+    start_counts: {s1: 7, s2: 6, s3: 7}
+  testing:
+    seed_base: 300000
+    start_counts: {s1: 17, s2: 16, s3: 17}
+
+policy:
+  hidden_size: 24
+  seed: 5101
+
+training:
+  maximum_epochs: 250
+  learning_rate: 0.003
+  patience: 25
+  minimum_improvement: 0.00001
+  target_validation_loss: 0.002
+  gradient_clip_norm: 5.0
+
+gate:
+  minimum_safe_successes: 45
+  maximum_placement_error_m: 0.01

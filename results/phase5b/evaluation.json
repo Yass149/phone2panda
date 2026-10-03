@@ -1,0 +1,107 @@
+{
+  "config_sha256": "6381c0f9b1e16c74f3d2237909ee4926272dcc44529aa8ba7569e11fc845fa45",
+  "environment": {
+    "cube_bottom_z_m": 0.812,
+    "cube_center_z_m": 0.8340000000000001,
+    "cube_top_z_m": 0.8560000000000001,
+    "eef_transport_z_m": 0.8477150000000001,
+    "obstacle_top_z_m": 0.8400000000000001,
+    "table_z_m": 0.8,
+    "vertical_overlap_m": 0.028000000000000025
+  },
+  "held_out_evaluation": {
+    "dmp_route_confidence": {
+      "controller_latency_median_ms": 0.014,
+      "controller_latency_p95_ms": 0.014791,
+      "drop_rollouts": 0,
+      "episodes": 50,
+      "minimum_clearance_median_m": 0.02206528441084604,
+      "minimum_clearance_worst_m": 0.013304287214381302,
+      "object_collision_rollouts": 0,
+      "placement_error_median_m": 0.0015349513544927044,
+      "placement_error_p95_m": 0.002414881101145414,
+      "safe_successes": 50,
+      "unintended_contact_rollouts": 0
+    },
+    "gate_minimum_safe_successes": 45,
+    "gru_policy": {
+      "controller_latency_median_ms": 0.026917,
+      "controller_latency_p95_ms": 0.02825,
+      "drop_rollouts": 0,
+      "episodes": 50,
+      "minimum_clearance_median_m": 0.021718946906323845,
+      "minimum_clearance_worst_m": 0.01025787046425733,
+      "object_collision_rollouts": 0,
+      "placement_error_median_m": 0.0019515257843617136,
+      "placement_error_p95_m": 0.004315950776775077,
+      "safe_successes": 50,
+      "unintended_contact_rollouts": 0
+    },
+    "scenarios": 50,
+    "seeds_fixed_before_training": true
+  },
+  "passed": true,
+  "phase": "5B",
+  "policy": {
+    "checkpoint_bytes": 31942,
+    "hidden_size": 24,
+    "parameter_count": 3559,
+    "type": "normalized_gru"
+  },
+  "representative_artifacts": [
+    {
+      "kind": "success",
+      "path": "representative_success.mp4",
+      "seed": 300000
+    }
+  ],
+  "schema_version": 1,
+  "splits": {
+    "testing": {
+      "route_counts": {
+        "left": 25,
+        "right": 25
+      },
+      "scenarios": 50,
+      "seed_sha256": "fb767d22824100bc5f9d40ebcb62e60117e31657311a5f3b1733485333f6aece",
+      "start_counts": {
+        "s1": 17,
+        "s2": 16,
+        "s3": 17
+      }
+    },
+    "training": {
+      "route_counts": {
+        "left": 60,
+        "right": 60
+      },
+      "scenarios": 120,
+      "seed_sha256": "88225737ecf6a89b3fefe810ce1321bbb49bb850c467548e8c31108e013032e6",
+      "start_counts": {
+        "s1": 40,
+        "s2": 40,
+        "s3": 40
+      }
+    },
+    "validation": {
+      "route_counts": {
+        "left": 10,
+        "right": 10
+      },
+      "scenarios": 20,
+      "seed_sha256": "1eaba361e74ab5220e25edd9564f98d6ffe2e46a2ee233c895bdcffbfef2e0c8",
+      "start_counts": {
+        "s1": 7,
+        "s2": 6,
+        "s3": 7
+      }
+    }
+  },
+  "training": {
+    "best_validation_loss": 0.004725911555349011,
+    "epochs": 250,
+    "final_validation_loss": 0.004725911555349011,
+    "maximum_epochs": 250,
+    "seconds": 12.009598624994396
+  }
+}
