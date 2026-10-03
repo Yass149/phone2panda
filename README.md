@@ -12,29 +12,26 @@ a direct start-to-goal controller completed **0/50**.
 [How it works](#system) ·
 [Reproduce the checks](#quick-start-and-reproduction)
 
-<p align="center">
+<p>
   <a href="media/phone2panda_demo.mp4"><img src="media/phone2panda_preview.gif" width="800" alt="Animated preview of a phone demonstration beside the corresponding simulated Panda motion; open the full 70-second demo"></a>
 </p>
 
-<p align="center"><sub>Phone demonstration → calibrated route → simulated Panda. Select the preview for the full MP4.</sub></p>
+<p><sub>Phone demonstration → calibrated route → simulated Panda. Select the preview for the full MP4.</sub></p>
 
 [Original phone footage](media/phone_demo_sanitized.mp4) ·
 [Experiment log](docs/experiments.md) ·
 [Model card](docs/model_card.md)
 
-## Overview
+## Study
 
 **Research question:** can one person's overhead phone demonstrations provide
 path geometry that makes a Panda robot move an object around an obstacle more
 safely than a direct controller?
 
-Phone2Panda converts 36 personally recorded monocular videos into calibrated
-left/right motion priors, scores both routes for a new scene, and distils the
-selected behaviour into a 3,559-parameter GRU. The recordings determine the
-robot's path; they are not labels or presentation footage around an unrelated
-simulator policy.
-
-## At a glance
+The videos become calibrated left/right motion priors. The controller scores
+both routes for each scene and distils the selected behaviour into a
+3,559-parameter GRU. The recordings determine the robot's path; they are not
+merely labels or presentation footage around an unrelated simulator policy.
 
 | Personal data | DMP teacher | GRU policy | Direct baseline | Float32 model |
 | ---: | ---: | ---: | ---: | ---: |
@@ -49,8 +46,8 @@ object-obstacle, robot-obstacle, robot-table, or self contact.
 **Stack:** Python 3.11 · NumPy · SciPy · OpenCV · PyAV/FFmpeg · MuJoCo ·
 robosuite · Matplotlib · pytest
 
-<p align="center">
-  <img src="docs/architecture.svg" width="1200" alt="Phone2Panda system architecture">
+<p>
+  <img src="docs/architecture.svg" width="1100" alt="Phone2Panda system architecture">
 </p>
 
 1. Four canvas markers calibrate each overhead recording into a unit workspace.
@@ -65,11 +62,11 @@ robosuite · Matplotlib · pytest
 
 ### Controller selection
 
-<p align="center">
+<p>
   <img src="results/phase4e/comparison.png" width="1100" alt="Exact safe and failed rollout counts with median obstacle clearance across four controller variants">
 </p>
 
-<p align="center"><sub>Observed outcomes and median footprint-adjusted clearance over 50 identical calibrated scenarios per controller.</sub></p>
+<p><sub>Observed outcomes and median footprint-adjusted clearance over 50 identical calibrated scenarios per controller.</sub></p>
 
 [Watch a route-aware success](results/phase4e/representative_calibrated_success.mp4) ·
 [Watch the straight-line collision](results/phase4e/representative_calibrated_failure.mp4)
@@ -106,9 +103,11 @@ Ablations are one-factor-at-a-time on 50 fixed scenarios:
 
 ### What changed the result
 
-<p align="center">
-  <img src="results/phase6/ablation_plot.png" width="1050" alt="Eleven controlled ablations: exact safe-placement counts and median obstacle clearance, with human-derived paths and route filtering compared to their removed alternatives">
+<p>
+  <img src="results/phase6/ablation_plot.png" width="1100" alt="Eleven controlled ablations: exact safe-placement counts and median obstacle clearance, with human-derived paths and route filtering compared to their removed alternatives">
 </p>
+
+<p><sub>Each row changes one factor on the same 50 fixed simulator scenarios.</sub></p>
 
 The fixed-scenario ablations isolate the effects of the recorded route, camera
 calibration, filtering, smoothing, and demonstration count. In particular,
