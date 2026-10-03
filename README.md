@@ -5,8 +5,9 @@
 **Personal phone demonstrations to route-aware Panda control**
 
 [Demo](media/phone2panda_demo.mp4) ·
+[Phone footage](media/phone_demo_sanitized.mp4) ·
+[Results](#results) ·
 [Method](docs/design.md) ·
-[Results](results/phase5b/evaluation.json) ·
 [Experiments](docs/experiments.md) ·
 [Model card](docs/model_card.md)
 
@@ -34,7 +35,7 @@ simulator policy.
 
 | Personal data | DMP teacher | GRU policy | Direct baseline | Float32 model |
 | ---: | ---: | ---: | ---: | ---: |
-| 36/36 accepted videos | 50/50 safe | 50/50 safe | 0/50 safe | 17.8 KB |
+| 36 final videos | 50/50 safe | 50/50 safe | 0/50 safe | 17.8 KB |
 
 All three controllers were evaluated on the same 50 fixed, held-out calibrated
 scenarios. A safe success requires correct placement, a retained grasp, and no
@@ -74,10 +75,13 @@ robosuite · Matplotlib · pytest
 | Nearest raw replay | 49 | 89.5–99.6% | 0 | 1 | 0 | 20.6 mm |
 | Straight line | 0 | 0.0–7.1% | 50 | 50 | 6 | -48.3 mm |
 
+The 50/50 result has a Wilson 95% lower bound of 92.9%; it establishes success
+on these fixed simulated scenarios, not industrial reliability.
+
 ### Policy distillation
 
 <!-- BEGIN GENERATED RESULTS -->
-The video dataset gate accepted **36/36 recordings**. On the same 50 held-out calibrated simulator scenarios:
+All **36 final selected recordings** passed the quality gate; the raw manifest preserves **45 recordings** including pilots and retakes. On the same 50 held-out calibrated simulator scenarios:
 
 | System | Safe success | Object collisions | Unintended contacts | Drops | Median placement error | Median clearance |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |

@@ -36,6 +36,7 @@ def condition(table: list[dict], name: str) -> dict:
 
 def generated_block() -> str:
     dataset = load("results/dataset_quality/quality_report.json")
+    source_manifest = load("results/dataset_quality/source_manifest.json")
     phase5b = load("results/phase5b/evaluation.json")
     phase6 = load("results/phase6/ablation_summary.json")
     precision = load("results/phase6/precision_benchmark.json")
@@ -57,8 +58,9 @@ def generated_block() -> str:
 
     lines = [
         START,
-        f"The video dataset gate accepted **{dataset['accepted_count']}/"
-        f"{len(dataset['episodes'])} recordings**. On the same 50 held-out calibrated "
+        f"All **{dataset['accepted_count']} final selected recordings** passed the quality "
+        f"gate; the raw manifest preserves **{source_manifest['recording_count']} recordings** "
+        "including pilots and retakes. On the same 50 held-out calibrated "
         "simulator scenarios:",
         "",
         "| System | Safe success | Object collisions | Unintended contacts | Drops | "
