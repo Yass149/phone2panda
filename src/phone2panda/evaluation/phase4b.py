@@ -860,8 +860,9 @@ def _plot_comparison(
         "Straight line",
     ]
     colors = ["#16877A", "#E18428", "#4477AA", "#A35D5D"]
-    success = np.asarray([aggregate[method]["success_rate"] for method in methods])
-    intervals = np.asarray([aggregate[method]["success_rate_ci95"] for method in methods])
+    successes = np.asarray([aggregate[method]["successes"] for method in methods])
+    episodes = np.asarray([aggregate[method]["episodes"] for method in methods])
+    failures = episodes - successes
     clearance = np.asarray(
         [aggregate[method]["minimum_obstacle_clearance_median_m"] for method in methods]
     )
@@ -874,64 +875,45 @@ def _plot_comparison(
         gridspec_kw={"width_ratios": [1.15, 1.0]},
     )
     y = np.arange(len(methods))
-    success_percent = 100.0 * success
-    low = 100.0 * intervals[:, 0]
-    high = 100.0 * intervals[:, 1]
-    axes[0].hlines(y, low, high, color=colors, linewidth=3.0, zorder=2)
-    axes[0].scatter(
-        success_percent,
-        y,
-        c=colors,
-        s=105,
-        edgecolors="white",
-        linewidths=1.5,
-        zorder=3,
-    )
-    for index, method in enumerate(methods):
-        row = aggregate[method]
-        axes[0].annotate(
-            f"{row['successes']}/{row['episodes']}",
-            (success_percent[index], index),
-            xytext=(0, 10),
-            textcoords="offset points",
-            ha="center",
-            va="bottom",
-            fontsize=9,
-            fontweight="bold",
-            color="#202124",
-            bbox={
-                "facecolor": "white",
-                "edgecolor": "none",
-                "pad": 0.5,
-                "alpha": 0.9,
-            },
-        )
-    axes[0].set_xlim(-4, 106)
-    axes[0].set_xticks([0, 20, 40, 60, 80, 100])
-    axes[0].set_yticks(y, labels)
-    axes[0].invert_yaxis()
-    axes[0].set_xlabel(success_label)
-    axes[0].set_title(
-        "Safe success with Wilson 95% CI", loc="left", fontweight="bold"
-    )
-
-    clearance_mm = 1000.0 * clearance
-    bars = axes[1].barh(y, clearance_mm, color=colors, height=0.58)
-    for bar, value in zip(bars, clearance_mm, strict=True):
-        axes[1].text(
-            value + (1.2 if value >= 0 else -1.2),
-            bar.get_y() + bar.get_height() / 2.0,
-            f"{value:.1f} mm",
-            ha="left" if value >= 0 else "right",
+    axes[0].barh(y, successes, color="#16877A", height=0.58)
+    axes[0].barh(y, failures, left=successes, color="#C45B52", height=0.58)
+    for index, (safe, failed) in enumerate(zip(successes, failures, strict=True)):
+        axes[0].text(
+            52.0,
+            index,
+            f"{safe} safe  /  {failed} failed",
+            ha="left",
             va="center",
             fontsize=9,
             fontweight="bold",
             color="#202124",
         )
+    axes[0].axvline(50, color="#8A939F", linewidth=0.8)
+    axes[0].set_xlim(0, 69)
+    axes[0].set_xticks([0, 10, 20, 30, 40, 50])
+    axes[0].set_yticks(y, labels)
+    axes[0].invert_yaxis()
+    axes[0].set_xlabel("Rollouts (50 fixed scenarios)")
+    axes[0].set_title("Observed safety outcomes", loc="left", fontweight="bold")
+
+    clearance_mm = 1000.0 * clearance
+    bars = axes[1].barh(y, clearance_mm, color=colors, height=0.58)
+    for bar, value in zip(bars, clearance_mm, strict=True):
+        negative = value < 0
+        axes[1].text(
+            value / 2.0 if negative else value + 1.2,
+            bar.get_y() + bar.get_height() / 2.0,
+            f"{value:.1f} mm",
+            ha="center" if negative else "left",
+            va="center",
+            fontsize=9,
+            fontweight="bold",
+            color="white" if negative else "#202124",
+        )
     axes[1].axvline(0.0, color="#202124", linewidth=0.9)
     axes[1].set_xlim(-58, 32)
     axes[1].set_xlabel("Median footprint-adjusted clearance (mm)")
-    axes[1].set_title("Obstacle clearance", loc="left", fontweight="bold")
+    axes[1].set_title("Median obstacle clearance", loc="left", fontweight="bold")
 
     for axis in axes:
         axis.grid(axis="x", color="#D7DCE2", linewidth=0.8, alpha=0.8)

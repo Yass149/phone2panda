@@ -59,11 +59,22 @@ robosuite · Matplotlib · pytest
 
 ## Results
 
+### Controller selection
+
 <p align="center">
-  <img src="results/phase4e/comparison.png" width="1100" alt="Safe success and obstacle clearance across four controller variants">
+  <img src="results/phase4e/comparison.png" width="1100" alt="Exact safe and failed rollout counts with median obstacle clearance across four controller variants">
 </p>
 
-<p align="center"><sub>Fifty identical calibrated scenarios per controller. Points show observed safe success, horizontal lines show Wilson 95% intervals, and bars show median footprint-adjusted clearance.</sub></p>
+<p align="center"><sub>Observed outcomes and median footprint-adjusted clearance over 50 identical calibrated scenarios per controller.</sub></p>
+
+| Controller | Safe / 50 | Wilson 95% CI | Object collisions | Robot contacts | Drops | Median clearance |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| DMP + route/confidence | **50** | 92.9–100.0% | **0** | **0** | **0** | **22.4 mm** |
+| DMP retargeting | 49 | 89.5–99.6% | 0 | 1 | 0 | 19.9 mm |
+| Nearest raw replay | 49 | 89.5–99.6% | 0 | 1 | 0 | 20.6 mm |
+| Straight line | 0 | 0.0–7.1% | 50 | 50 | 6 | -48.3 mm |
+
+### Policy distillation
 
 <!-- BEGIN GENERATED RESULTS -->
 The video dataset gate accepted **36/36 recordings**. On the same 50 held-out calibrated simulator scenarios:
@@ -87,6 +98,7 @@ These are simulator measurements for the physically calibrated **40 mm**
 glasses-case obstacle. The earlier 140 mm environment is retained as an
 uncalibrated stress test and is not used as a headline physical result.
 Machine-readable sources are
+[`phase4e/aggregate.json`](results/phase4e/aggregate.json),
 [`phase5b/evaluation.json`](results/phase5b/evaluation.json),
 [`phase6/ablation_summary.json`](results/phase6/ablation_summary.json), and
 [`phase6/precision_benchmark.json`](results/phase6/precision_benchmark.json).
@@ -113,7 +125,7 @@ The complete chronological record is in the
 [experiment log](docs/experiments.md) and
 [decision log](docs/decisions.md).
 
-## Reproduce
+## Quick start and reproduction
 
 The bootstrap installs uv and CPython 3.11.17 inside the checkout, creates a
 project-local environment, and does not modify global Anaconda.
