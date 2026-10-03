@@ -853,17 +853,19 @@ def _plot_comparison(
     path: Path, aggregate: dict[str, Any], success_label: str = "Task success (%)"
 ) -> None:
     labels = ["Straight", "Raw replay", "DMP", "DMP + route"]
+    colors = ["#777777", "#4c78a8", "#f58518", "#54a24b"]
     success = np.asarray([aggregate[method]["success_rate"] for method in METHODS])
     intervals = np.asarray([aggregate[method]["success_rate_ci95"] for method in METHODS])
     clearance = np.asarray(
         [aggregate[method]["minimum_obstacle_clearance_median_m"] for method in METHODS]
     )
-    figure, axes = plt.subplots(1, 2, figsize=(9.0, 3.7), constrained_layout=True)
+    figure, axes = plt.subplots(1, 2, figsize=(10.2, 4.1), constrained_layout=True)
     x = np.arange(len(METHODS))
-    axes[0].bar(x, 100.0 * success, color=["#777777", "#4c78a8", "#f58518", "#54a24b"])
+    success_percent = 100.0 * success
+    axes[0].vlines(x, 0.0, success_percent, color=colors, linewidth=7, alpha=0.18)
     axes[0].errorbar(
         x,
-        100.0 * success,
+        success_percent,
         yerr=np.maximum(
             0.0,
             np.vstack(
@@ -874,18 +876,59 @@ def _plot_comparison(
             ),
         ),
         fmt="none",
-        ecolor="black",
-        capsize=3,
+        ecolor="#202124",
+        elinewidth=1.6,
+        capsize=5,
+        capthick=1.6,
+        zorder=2,
     )
+    axes[0].scatter(
+        x,
+        success_percent,
+        c=colors,
+        s=88,
+        edgecolors="white",
+        linewidths=1.2,
+        zorder=3,
+    )
+    for index, method in enumerate(METHODS):
+        row = aggregate[method]
+        is_zero = success_percent[index] < 1.0
+        axes[0].annotate(
+            f"{row['successes']}/{row['episodes']}",
+            (index, success_percent[index]),
+            xytext=(8, 3) if is_zero else (0, -18),
+            textcoords="offset points",
+            ha="left" if is_zero else "center",
+            va="bottom" if is_zero else "top",
+            fontsize=9,
+            fontweight="bold",
+        )
     axes[0].set_ylabel(success_label)
-    axes[0].set_ylim(0, 105)
-    axes[0].set_title("50 fixed scenarios per method")
-    axes[1].bar(x, 1000.0 * clearance, color=["#777777", "#4c78a8", "#f58518", "#54a24b"])
-    axes[1].axhline(0.0, color="black", linewidth=0.8)
-    axes[1].set_ylabel("Median minimum clearance (mm)")
-    axes[1].set_title("Footprint-adjusted obstacle clearance")
+    axes[0].set_ylim(-4, 106)
+    axes[0].set_yticks([0, 20, 40, 60, 80, 100])
+    axes[0].set_title(
+        "Safe success rate (Wilson 95% CI)", loc="left", fontweight="bold"
+    )
+    clearance_mm = 1000.0 * clearance
+    bars = axes[1].bar(x, clearance_mm, color=colors, width=0.72)
+    axes[1].axhline(0.0, color="#202124", linewidth=0.9)
+    for bar, value in zip(bars, clearance_mm, strict=True):
+        axes[1].annotate(
+            f"{value:.1f} mm",
+            (bar.get_x() + bar.get_width() / 2.0, value),
+            xytext=(0, 5 if value >= 0 else -6),
+            textcoords="offset points",
+            ha="center",
+            va="bottom" if value >= 0 else "top",
+            fontsize=9,
+            fontweight="bold",
+        )
+    axes[1].set_ylim(-56, 29)
+    axes[1].set_ylabel("Median footprint-adjusted clearance (mm)")
+    axes[1].set_title("Median obstacle clearance", loc="left", fontweight="bold")
     for axis in axes:
-        axis.set_xticks(x, labels, rotation=18, ha="right")
+        axis.set_xticks(x, labels, rotation=14, ha="right")
         axis.grid(axis="y", alpha=0.25)
     figure.savefig(path, dpi=160, metadata={"Software": "phone2panda"})
     plt.close(figure)
