@@ -63,3 +63,7 @@ Fix the balanced seed manifest before generating rollouts: 120 training, 20 epis
 ## 2026-10-03 — Phase 6 fixed controls and precision scope
 
 Use the untouched Phase 5B test manifest for every ablation and choose balanced demonstration IDs by deterministic round-robin over start/route cells before running outcomes. Reuse Phase 5B DMP records only for identical calibrated, smoothed, filtered, human-path control conditions. Compare the existing float64 GRU only with a direct float32 checkpoint; because outputs differ numerically, require a 50-scenario float32 replay, but do not add conversion or quantization frameworks.
+
+## 2026-10-03 — Phase 7 public artifact boundary
+
+Publish only a privacy-reviewed, silent derived phone excerpt and a 70-second composite demo. Strip descriptive metadata, chapters, audio and non-video streams; retain only unavoidable technical MP4 fields. Generate README numbers from committed JSON and make the public clean-clone check validate existing results rather than rerun experiments. Keep raw recordings and full processed trajectories private, and describe that reproduction boundary explicitly.

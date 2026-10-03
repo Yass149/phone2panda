@@ -1,4 +1,4 @@
-.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c phase4d-preflight phase4d phase4e-diagnostics phase4e-preflight phase4e phase5a phase5b phase6 test lint check
+.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c phase4d-preflight phase4d phase4e-diagnostics phase4e-preflight phase4e phase5a phase5b phase6 test lint check readme-results build-demo smoke-demo evaluate-existing submission-check reproduce-public privacy-history
 
 UV_ENV = UV_CACHE_DIR=$(CURDIR)/.cache/uv UV_PYTHON_INSTALL_DIR=$(CURDIR)/.local/share/uv/python
 UV = $(UV_ENV) ./tools/run-uv.sh
@@ -53,6 +53,28 @@ phase5b:
 
 phase6:
 	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase6.py --config configs/phase6.yaml
+
+readme-results:
+	.venv/bin/python scripts/generate_readme_results.py
+
+build-demo:
+	./scripts/build_demo.sh
+
+smoke-demo:
+	.venv/bin/python scripts/check_submission.py --demo-only
+
+evaluate-existing:
+	.venv/bin/python scripts/check_submission.py
+
+submission-check:
+	.venv/bin/python scripts/generate_readme_results.py --check
+	.venv/bin/python scripts/check_submission.py
+	.venv/bin/python scripts/check_repository_privacy.py --tracked
+
+privacy-history:
+	.venv/bin/python scripts/check_repository_privacy.py --history
+
+reproduce-public: lint test submission-check
 
 test:
 	.venv/bin/pytest

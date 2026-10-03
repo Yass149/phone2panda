@@ -182,3 +182,11 @@ Final acceptance-command results are appended after the checked pipeline run.
 - Float32 differed from float64 by at most 1.80e-6 in action output, so it was rerun on all 50 scenarios and achieved 50/50 safe success.
 - Float32 reduced checkpoint size from 31,942 to 17,795 bytes, but did not improve this small-model CPU benchmark: median/p95 latency was 0.0127/0.0143 ms versus 0.0121/0.0135 ms for float64.
 - No ONNX, quantization framework, new dependency, optimization, or final presentation work was added.
+
+## 2026-10-03 — Phase 7 submission preparation
+
+- No new experiment or simulator rollout was run; the demo uses committed Phase 3, 4E, 5B and 6 artifacts.
+- Published phone media was re-encoded video-only from a privacy-reviewed derived overlay; audio, chapters and descriptive source metadata were not copied.
+- README result tables are generated from the committed dataset-quality, Phase 5B and Phase 6 JSON files and checked for staleness.
+- The 70-second demo includes the phone motion, calibrated trajectory, human-derived DMP, GRU, expected straight-line collision, ablations and final 50-scenario comparison.
+- Public clean-clone reproduction covers setup, lint, 25 tests, README/result validation, full demo decode and tracked-file privacy checks. Raw-video regeneration remains intentionally unavailable without private inputs.

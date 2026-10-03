@@ -132,6 +132,11 @@ wandb/
 *.mkv
 *.webm
 
+# Selected Phase 7 publication media are privacy-audited and intentionally tracked.
+!media/
+!media/phone_demo_sanitized.mp4
+!media/phone2panda_demo.mp4
+
 # Build and coverage outputs
 build/
 dist/

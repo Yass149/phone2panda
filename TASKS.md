@@ -111,3 +111,16 @@ Phase 5B is complete. Optimization and ablations have not started.
 - [x] Save one table, one plot, compact raw results, and the float32 checkpoint.
 
 Phase 6 is complete. Final presentation work has not started.
+
+## Phase 7 — Submission preparation
+
+- [x] Build a 60–90 second silent demo from existing artifacts only.
+- [x] Add a compact, result-generated README and architecture diagram.
+- [x] Add design, collection, dataset-card and model-card documentation.
+- [x] Add software licence, third-party notices, acknowledgements and citations.
+- [x] Add one-command public reproduction, demo and result checks.
+- [x] Audit tracked files and complete Git history for private or oversized content.
+- [x] Verify all tracked media decodes and contains no audio or personal metadata.
+- [x] Reproduce the documented public checks from a clean clone.
+
+Phase 7 submission preparation is complete. The repository remains private pending final public-release review.

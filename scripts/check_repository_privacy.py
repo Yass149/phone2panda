@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import argparse
+import io
 import re
 import subprocess
 import sys
@@ -23,6 +25,8 @@ PUBLIC_MEDIA = {
     "results/phase5b/representative_success.mp4",
     "results/phase5b/training_curve.png",
     "results/phase6/ablation_plot.png",
+    "media/phone_demo_sanitized.mp4",
+    "media/phone2panda_demo.mp4",
 }
 PRIVATE_PREFIXES = (
     ".cache/",
@@ -46,8 +50,7 @@ def staged_paths() -> list[Path]:
     return [Path(item.decode()) for item in output.split(b"\0") if item]
 
 
-def text_findings(path: Path) -> list[str]:
-    data = path.read_bytes()
+def text_findings_bytes(data: bytes) -> list[str]:
     if b"\0" in data:
         return []
     text = data.decode("utf-8", errors="replace")
@@ -62,7 +65,11 @@ def text_findings(path: Path) -> list[str]:
     return [label for label, pattern in patterns.items() if pattern.search(text)]
 
 
-def media_findings(path: Path) -> list[str]:
+def text_findings(path: Path) -> list[str]:
+    return text_findings_bytes(path.read_bytes())
+
+
+def media_findings(path: Path, data: bytes | None = None) -> list[str]:
     relative = path.as_posix()
     if relative not in PUBLIC_MEDIA:
         return ["media is not on the public artifact allowlist"]
@@ -71,7 +78,8 @@ def media_findings(path: Path) -> list[str]:
             from PIL import Image
         except ImportError:
             return ["Pillow is required to audit staged PNG metadata"]
-        with Image.open(path) as image:
+        source = io.BytesIO(data) if data is not None else path
+        with Image.open(source) as image:
             metadata = {str(key).lower(): str(value).lower() for key, value in image.info.items()}
         unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
         if any(term in key or term in value for key, value in metadata.items() for term in unsafe):
@@ -82,7 +90,8 @@ def media_findings(path: Path) -> list[str]:
         import av
     except ImportError:
         return ["PyAV is required to audit staged video metadata"]
-    with av.open(str(path)) as container:
+    source = io.BytesIO(data) if data is not None else str(path)
+    with av.open(source) as container:
         if any(stream.type == "audio" for stream in container.streams):
             return ["video contains an audio stream"]
         metadata = dict(container.metadata)
@@ -98,40 +107,99 @@ def media_findings(path: Path) -> list[str]:
     return []
 
 
+def path_findings(path: Path, size: int, data: bytes) -> list[str]:
+    relative = path.as_posix()
+    lowered = relative.lower()
+    reasons: list[str] = []
+    if lowered.startswith(PRIVATE_PREFIXES) or PRIVATE_PARTS.intersection(path.parts):
+        reasons.append("private or machine-local path")
+    if path.suffix.lower() in RAW_SUFFIXES:
+        reasons.append("raw phone media")
+    if path.name == ".env" or path.name.startswith(".env."):
+        reasons.append("environment file")
+    if any(part in path.name.lower() for part in SECRET_NAME_PARTS):
+        reasons.append("secret-like filename")
+    if size > MAX_FILE_BYTES:
+        reasons.append(f"file exceeds {MAX_FILE_BYTES // (1024 * 1024)} MiB")
+    reasons.extend(text_findings_bytes(data))
+    if path.suffix.lower() in MEDIA_SUFFIXES:
+        reasons.extend(media_findings(path, data))
+    return sorted(set(reasons))
+
+
 def audit(paths: list[Path]) -> list[str]:
     errors: list[str] = []
     for path in paths:
-        relative = path.as_posix()
-        lowered = relative.lower()
         if not path.is_file():
             continue
-        reasons: list[str] = []
-        if lowered.startswith(PRIVATE_PREFIXES) or PRIVATE_PARTS.intersection(path.parts):
-            reasons.append("private or machine-local path")
-        if path.suffix.lower() in RAW_SUFFIXES:
-            reasons.append("raw phone media")
-        if path.name == ".env" or path.name.startswith(".env."):
-            reasons.append("environment file")
-        if any(part in path.name.lower() for part in SECRET_NAME_PARTS):
-            reasons.append("secret-like filename")
-        if path.stat().st_size > MAX_FILE_BYTES:
-            reasons.append(f"file exceeds {MAX_FILE_BYTES // (1024 * 1024)} MiB")
-        reasons.extend(text_findings(path))
-        if path.suffix.lower() in MEDIA_SUFFIXES:
-            reasons.extend(media_findings(path))
+        relative = path.as_posix()
+        data = path.read_bytes()
+        reasons = path_findings(path, len(data), data)
         if reasons:
-            errors.append(f"{relative}: {', '.join(sorted(set(reasons)))}")
+            errors.append(f"{relative}: {', '.join(reasons)}")
+    return errors
+
+
+def tracked_paths() -> list[Path]:
+    output = subprocess.check_output(["git", "ls-files", "-z"])
+    return [Path(item.decode()) for item in output.split(b"\0") if item]
+
+
+def history_blobs() -> list[tuple[str, Path]]:
+    output = subprocess.check_output(["git", "rev-list", "--objects", "--all"])
+    object_paths: list[tuple[str, Path]] = []
+    for line in output.decode(errors="replace").splitlines():
+        oid, separator, name = line.partition(" ")
+        if separator and name:
+            object_paths.append((oid, Path(name)))
+    unique_oids = sorted({oid for oid, _ in object_paths})
+    batch = subprocess.run(
+        ["git", "cat-file", "--batch-check=%(objectname) %(objecttype)"],
+        input="\n".join(unique_oids) + "\n",
+        text=True,
+        check=True,
+        capture_output=True,
+    ).stdout
+    blob_oids = {line.split()[0] for line in batch.splitlines() if line.endswith(" blob")}
+    return [(oid, path) for oid, path in object_paths if oid in blob_oids]
+
+
+def audit_history() -> list[str]:
+    errors: list[str] = []
+    audited: set[tuple[str, str]] = set()
+    for oid, path in history_blobs():
+        key = (oid, path.as_posix())
+        if key in audited:
+            continue
+        audited.add(key)
+        data = subprocess.check_output(["git", "cat-file", "blob", oid])
+        reasons = path_findings(path, len(data), data)
+        if reasons:
+            errors.append(f"{path.as_posix()}@{oid[:12]}: {', '.join(reasons)}")
     return errors
 
 
 def main() -> int:
-    errors = audit(staged_paths())
+    parser = argparse.ArgumentParser()
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--tracked", action="store_true", help="audit the current Git index")
+    group.add_argument("--history", action="store_true", help="audit every blob in Git history")
+    args = parser.parse_args()
+    if args.history:
+        errors = audit_history()
+        scope = "history"
+    elif args.tracked:
+        errors = audit(tracked_paths())
+        scope = "tracked repository"
+    else:
+        errors = audit(staged_paths())
+        scope = "staged content"
     if errors:
-        print("Repository privacy check failed:", file=sys.stderr)
+        print(f"Repository privacy check failed ({scope}):", file=sys.stderr)
         for error in errors:
             print(f"  - {error}", file=sys.stderr)
         return 1
-    print("Repository privacy check passed.")
+    print(f"Repository privacy check passed ({scope}).")
     return 0
 
 

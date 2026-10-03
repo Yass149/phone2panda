@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Phone2Panda architecture</title>
+  <desc id="desc">A private phone recording is calibrated and tracked into a normalized trajectory, which controls a DMP Panda teacher and provides supervision to a compact GRU policy. Fixed-seed safety evaluation compares both with a straight-line baseline.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+    <style>
+      .box { fill:#f8fafc; stroke:#64748b; stroke-width:2; rx:14; }
+      .human { fill:#eff6ff; stroke:#2563eb; }
+      .robot { fill:#ecfdf5; stroke:#059669; }
+      .policy { fill:#faf5ff; stroke:#9333ea; }
+      .eval { fill:#fff7ed; stroke:#ea580c; }
+      .label { fill:#0f172a; font:600 18px system-ui, sans-serif; text-anchor:middle; }
+      .small { fill:#475569; font:14px system-ui, sans-serif; text-anchor:middle; }
+      .arrow { stroke:#475569; stroke-width:2.5; fill:none; marker-end:url(#arrow); }
+      .branch { stroke:#64748b; stroke-width:2; fill:none; marker-end:url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="500" fill="#ffffff"/>
+
+  <rect class="box human" x="35" y="65" width="190" height="100"/>
+  <text class="label" x="130" y="102">Private phone video</text>
+  <text class="small" x="130" y="130">fixed camera · red marker</text>
+
+  <rect class="box human" x="285" y="65" width="200" height="100"/>
+  <text class="label" x="385" y="98">Vision pipeline</text>
+  <text class="small" x="385" y="125">HEVC decode · homography</text>
+  <text class="small" x="385" y="146">tracking · quality gate</text>
+
+  <rect class="box human" x="545" y="65" width="200" height="100"/>
+  <text class="label" x="645" y="98">Normalized path</text>
+  <text class="small" x="645" y="125">canvas coordinates</text>
+  <text class="small" x="645" y="146">route + confidence</text>
+
+  <rect class="box robot" x="805" y="65" width="170" height="100"/>
+  <text class="label" x="890" y="102">DMP teacher</text>
+  <text class="small" x="890" y="130">retargeted to Panda</text>
+
+  <rect class="box robot" x="1015" y="65" width="150" height="100"/>
+  <text class="label" x="1090" y="102">Panda rollout</text>
+  <text class="small" x="1090" y="130">phased control</text>
+
+  <path class="arrow" d="M225 115 H275"/>
+  <path class="arrow" d="M485 115 H535"/>
+  <path class="arrow" d="M745 115 H795"/>
+  <path class="arrow" d="M975 115 H1005"/>
+
+  <rect class="box policy" x="725" y="265" width="220" height="110"/>
+  <text class="label" x="835" y="304">24-unit GRU policy</text>
+  <text class="small" x="835" y="332">22 state/context inputs</text>
+  <text class="small" x="835" y="353">7 bounded actions</text>
+
+  <rect class="box eval" x="1000" y="265" width="170" height="110"/>
+  <text class="label" x="1085" y="304">Safety evaluation</text>
+  <text class="small" x="1085" y="332">fixed held-out seeds</text>
+  <text class="small" x="1085" y="353">contacts · drops · error</text>
+
+  <rect class="box eval" x="445" y="285" width="210" height="70"/>
+  <text class="label" x="550" y="316">Straight-line baseline</text>
+  <text class="small" x="550" y="340">no human path</text>
+
+  <path class="branch" d="M890 165 V225 H835 V255"/>
+  <text class="small" x="835" y="215">teacher episodes</text>
+  <path class="arrow" d="M945 320 H990"/>
+  <path class="branch" d="M1090 165 V255"/>
+  <path class="branch" d="M655 320 H715"/>
+
+  <text class="small" x="600" y="445">Human geometry changes the route: the DMP transports around the selected side; the GRU learns the teacher's state-to-action behaviour.</text>
+</svg>
