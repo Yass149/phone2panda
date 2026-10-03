@@ -63,7 +63,7 @@ robosuite · Matplotlib · pytest
   <img src="results/phase4e/comparison.png" width="1100" alt="Safe success and obstacle clearance across four controller variants">
 </p>
 
-<p align="center"><sub>Fifty identical calibrated scenarios per controller. Points show observed safe success and whiskers show Wilson 95% intervals; bars show median footprint-adjusted clearance.</sub></p>
+<p align="center"><sub>Fifty identical calibrated scenarios per controller. Points show observed safe success, horizontal lines show Wilson 95% intervals, and bars show median footprint-adjusted clearance.</sub></p>
 
 <!-- BEGIN GENERATED RESULTS -->
 The video dataset gate accepted **36/36 recordings**. On the same 50 held-out calibrated simulator scenarios:
