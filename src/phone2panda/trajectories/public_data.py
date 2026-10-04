@@ -19,6 +19,8 @@ PUBLIC_FIELDS = (
 )
 FLAG_FIELDS = ("object_detected", "object_interpolated", "all_corners_direct", "valid")
 FLOAT_FIELDS = ("object_x", "object_y", "smoothed_x", "smoothed_y", "tracking_confidence")
+# BLAS implementations can round DMP fitting differently; one nanometre in robot coordinates.
+REBUILT_PRIOR_ATOL_M = 1e-9
 
 
 def digest(data: bytes) -> str:

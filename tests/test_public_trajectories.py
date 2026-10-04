@@ -19,6 +19,7 @@ from phone2panda.trajectories.public_data import (
     PRIVATE_DIRECTORY,
     PUBLIC_DIRECTORY,
     PUBLIC_FIELDS,
+    REBUILT_PRIOR_ATOL_M,
     digest,
     resolve_processed_path,
     validate_numeric_csv,
@@ -49,7 +50,9 @@ def test_public_release_and_rebuilt_priors_do_not_need_private_files(public_clon
     saved, expected_geometry = load_motion_priors(ROOT / BUNDLE_DIRECTORY)
     assert [row.episode_id for row in rebuilt] == [row.episode_id for row in saved]
     for actual, expected in zip(rebuilt, saved, strict=True):
-        np.testing.assert_allclose(actual.dmp_robot, expected.dmp_robot, rtol=0, atol=1e-12)
+        np.testing.assert_allclose(
+            actual.dmp_robot, expected.dmp_robot, rtol=0, atol=REBUILT_PRIOR_ATOL_M,
+        )
         np.testing.assert_allclose(
             actual.raw_robot[[0, -1]], expected.raw_robot, rtol=0, atol=1e-12,
         )

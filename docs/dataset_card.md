@@ -76,5 +76,9 @@ derived DMP control points, endpoint anchors and task geometry for a short
 saved-model simulation without refitting.
 `results/dataset_quality/source_manifest.json` provides
 integrity hashes. Run `make verify-data` to validate the public release and
-rebuild its 36 DMPs against the saved bundle. Anyone receiving private recordings must establish separate
-consent, access control, retention and deletion policies.
+rebuild its 36 DMPs against the saved bundle. CSV checksums and original
+numerical strings are exact. Refitted robot-space DMP points use an absolute
+comparison tolerance of 1e-9 metres to accommodate cross-platform linear
+algebra rounding; the audit reports the measured maximum difference.
+Anyone receiving private recordings must establish separate consent, access
+control, retention and deletion policies.
