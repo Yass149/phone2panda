@@ -1,5 +1,7 @@
 # Phone2Panda
 
+[![Checks](https://github.com/Yass149/phone2panda/actions/workflows/checks.yml/badge.svg)](https://github.com/Yass149/phone2panda/actions/workflows/checks.yml)
+
 **Hand-recorded phone routes become obstacle-avoiding motion for a simulated Panda robot.**
 
 I recorded 36 overhead demonstrations with a phone, extracted the object paths,
@@ -180,7 +182,8 @@ when the rollouts do not render video:
 sudo apt-get install -y libegl1 libgl1 libgl1-mesa-dri
 ```
 
-The GitHub workflow runs the same saved-model check on an Ubuntu runner.
+The saved-model check passed on macOS and on the Ubuntu GitHub runner. The
+workflow above repeats setup, tests, simulation, media and privacy checks.
 
 The complete historical experiment sweeps require the private frame-level
 processed trajectories:
