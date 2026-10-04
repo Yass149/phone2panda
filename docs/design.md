@@ -60,7 +60,9 @@ of the physical setup.
 Dependencies and Python 3.11.17 are locked locally. Public results include
 fixed seed manifests, configurations, per-rollout records and compact
 checkpoints. The derived 80-point DMP bundle permits five saved-model simulation
-rollouts from a clone without decoding videos or retraining. Raw phone recordings
-and frame-level trajectories remain private, so regenerating the vision dataset
-and historical experiment sweeps requires the unreleased inputs. Test seeds are
+rollouts from a clone without decoding videos or retraining. The sanitized
+36-episode numerical release also allows refitting motion priors and rerunning
+controller, training and ablation workflows. Raw phone recordings and original
+timestamped processing outputs remain private; video extraction and independent
+visual quality validation still require those unreleased inputs. Test seeds are
 held out from training; the demonstration library itself is shared across splits.

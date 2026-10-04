@@ -33,6 +33,7 @@ from phone2panda.sim.phase4a import (
 )
 from phone2panda.trajectories.dmp import fit_dmp, rollout_dmp
 from phone2panda.trajectories.processing import load_processed_path, smooth_and_resample
+from phone2panda.trajectories.public_data import resolve_processed_path
 
 matplotlib.use("Agg")
 from matplotlib import pyplot as plt  # noqa: E402
@@ -150,7 +151,9 @@ def _load_raw_path(path: Path) -> FloatArray:
     return points
 
 
-def build_library(config: Phase4BConfig) -> tuple[list[Demonstration], dict[str, Any]]:
+def build_library(
+    config: Phase4BConfig, *, public_only: bool = False
+) -> tuple[list[Demonstration], dict[str, Any]]:
     report = json.loads(config.project_path("dataset_report").read_text(encoding="utf-8"))
     report_by_id = {str(item["episode_id"]): item for item in report["episodes"]}
     with config.project_path("metadata_csv").open(newline="", encoding="utf-8") as handle:
@@ -171,7 +174,9 @@ def build_library(config: Phase4BConfig) -> tuple[list[Demonstration], dict[str,
         episode = report_by_id[episode_id]
         if not episode["accepted"] or (required_split != "all" and row["split"] != required_split):
             continue
-        trajectory_path = config.root / str(episode["processed_trajectory"])
+        trajectory_path = resolve_processed_path(
+            config.root, str(episode["processed_trajectory"]), public_only=public_only
+        )
         raw = _resample(_load_raw_path(trajectory_path), samples)
         smoothed = smooth_and_resample(
             load_processed_path(trajectory_path),

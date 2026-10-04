@@ -44,6 +44,7 @@ from phone2panda.policy.gru import GRUPolicy, Normalizer
 from phone2panda.retarget.mapping import WorkspaceMap
 from phone2panda.trajectories.dmp import fit_dmp, rollout_dmp
 from phone2panda.trajectories.processing import load_processed_path, smooth_and_resample
+from phone2panda.trajectories.public_data import resolve_processed_path
 
 matplotlib.use("Agg")
 from matplotlib import pyplot as plt  # noqa: E402
@@ -156,7 +157,7 @@ def build_ablation_library(
     for episode_id in episode_ids:
         episode = report_by_id[episode_id]
         row = metadata[episode_id]
-        trajectory_path = config.root / str(episode["processed_trajectory"])
+        trajectory_path = resolve_processed_path(config.root, str(episode["processed_trajectory"]))
         raw = _resample(_load_raw_path(trajectory_path), samples)
         if smoothing_enabled:
             source = smooth_and_resample(

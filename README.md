@@ -11,6 +11,7 @@ a direct start-to-goal controller completed **0/50**.
 
 **[Watch the 70-second demo](#demo)** ·
 [Inspect the results](#results) ·
+[Inspect the collected data](data/public/) ·
 [How it works](#system) ·
 [Reproduce the checks](#quick-start-and-reproduction)
 
@@ -67,6 +68,12 @@ robosuite · Matplotlib · pytest
 The 120/20/50 training, validation and test split is over simulator seeds.
 All 36 accepted demonstrations contribute motion priors; the reported test
 result is not a held-out-human-recording evaluation.
+
+The [public numerical dataset](data/public/) contains **7,963 frame-level
+observations from those 36 recordings**. It preserves normalized object
+coordinates, tracking confidence and validity flags without images, timestamps
+or device metadata. Checksums connect each released CSV to its unchanged
+private source. `make verify-data` rebuilds all 36 DMPs against the saved bundle.
 
 ## Results
 
@@ -164,6 +171,7 @@ project-local environment, and does not modify global Anaconda.
 ```bash
 make setup
 make test                 # unit and integration tests
+make verify-data          # audit 36 released trajectories and rebuild their DMPs
 make simulate-demo        # five saved-model Panda rollouts; no private data or training
 make smoke-demo           # decode and validate the public demo
 make evaluate-existing    # verify committed results and README numbers
@@ -185,17 +193,25 @@ sudo apt-get install -y libegl1 libgl1 libgl1-mesa-dri
 The saved-model check passed on macOS and on the Ubuntu GitHub runner. The
 workflow above repeats setup, tests, simulation, media and privacy checks.
 
-The complete historical experiment sweeps require the private frame-level
-processed trajectories:
+The numerical inputs for controller comparison, policy training and ablations
+are also public. A clone falls back to `data/public/trajectories/` when the
+private processing directory is absent. To rerun the longer experiments, use a
+separate clone: these commands regenerate files in `results/`.
 
 ```bash
+make phase4e-diagnostics  # expected direct-path failure and safe DMP diagnostic
+make phase4e-preflight   # five safe teacher rollouts before the comparison
 make phase4e   # calibrated controller comparison
 make phase5b   # fixed train/validation/test GRU evaluation
 make phase6    # fixed-seed ablations and precision comparison
 ```
 
-The commands use pinned dependencies and fixed seed manifests. Raw recordings
-are read-only and excluded from Git.
+The commands use pinned dependencies and fixed seed manifests. Numerical
+physics and timing measurements can differ across operating systems; the
+committed results remain the historical reference. The five-case smoke test
+and public-input reconstruction are checked in CI, not the full sweeps. Raw
+recordings remain read-only and excluded from Git. Regenerating the vision
+extraction and its quality gate still requires those private recordings.
 
 ## Scope
 
@@ -212,9 +228,10 @@ Main limitations:
 - Simulation only; no claim of safe transfer to a physical Panda.
 - One demonstrator, camera, object, and obstacle family.
 - The tracker observes a marked 2D object path, not full 6D pose or contact.
-- A clone can run saved-model simulation using derived motion priors, validate
-  code and media, and inspect committed results. It cannot regenerate the
-  private vision dataset or the full historical experiment sweeps.
+- A clone can rebuild motion priors from the released numerical trajectories,
+  run saved-model simulation and rerun the numerical experiments. It cannot
+  regenerate video extraction or independently recheck the visual quality gate
+  without the private recordings.
 
 See [known issues](KNOWN_ISSUES.md), the [dataset card](docs/dataset_card.md),
 and the [model card](docs/model_card.md) for exact boundaries.
@@ -227,6 +244,7 @@ and the [model card](docs/model_card.md) for exact boundaries.
 - `src/phone2panda/policy/`: dependency-free normalized GRU
 - `src/phone2panda/evaluation/`: fixed-scenario comparisons and ablations
 - `configs/`: versioned experiment settings
+- `data/public/`: sanitized numerical trajectories, schema and provenance hashes
 - `results/`: selected machine-readable records and public-safe media
 
 ## Licence and citation

@@ -1,4 +1,4 @@
-.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c phase4d-preflight phase4d phase4e-diagnostics phase4e-preflight phase4e phase5a phase5b phase6 test lint check readme-results build-demo sanitize-media smoke-demo simulate-demo evaluate-existing submission-check reproduce-public privacy-history
+.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c phase4d-preflight phase4d phase4e-diagnostics phase4e-preflight phase4e phase5a phase5b phase6 test lint check readme-results build-demo sanitize-media smoke-demo simulate-demo verify-data evaluate-existing submission-check reproduce-public privacy-history
 
 UV_ENV = UV_CACHE_DIR=$(CURDIR)/.cache/uv UV_PYTHON_INSTALL_DIR=$(CURDIR)/.local/share/uv/python
 UV = $(UV_ENV) ./tools/run-uv.sh
@@ -13,46 +13,46 @@ validate-dataset:
 	.venv/bin/python scripts/validate_dataset.py --config configs/dataset_validation.yaml
 
 phase4a:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4a.py --config configs/phase4a.yaml
+	.venv/bin/python scripts/run_phase4a.py --config configs/phase4a.yaml
 
 phase4b-preflight:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4b.py --config configs/phase4b.yaml --preflight-only
+	.venv/bin/python scripts/run_phase4b.py --config configs/phase4b.yaml --preflight-only
 
 phase4b:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4b.py --config configs/phase4b.yaml --evaluate
+	.venv/bin/python scripts/run_phase4b.py --config configs/phase4b.yaml --evaluate
 
 phase4c-audit:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4c.py --config configs/phase4c.yaml --audit-original
+	.venv/bin/python scripts/run_phase4c.py --config configs/phase4c.yaml --audit-original
 
 phase4c-preflight:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4c.py --config configs/phase4c.yaml --preflight-only
+	.venv/bin/python scripts/run_phase4c.py --config configs/phase4c.yaml --preflight-only
 
 phase4c:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4c.py --config configs/phase4c.yaml --evaluate
+	.venv/bin/python scripts/run_phase4c.py --config configs/phase4c.yaml --evaluate
 
 phase4d-preflight:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4d.py --config configs/phase4d.yaml --preflight-only
+	.venv/bin/python scripts/run_phase4d.py --config configs/phase4d.yaml --preflight-only
 
 phase4d:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4d.py --config configs/phase4d.yaml --evaluate
+	.venv/bin/python scripts/run_phase4d.py --config configs/phase4d.yaml --evaluate
 
 phase4e-diagnostics:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4e.py --config configs/phase4e.yaml --diagnostics
+	.venv/bin/python scripts/run_phase4e.py --config configs/phase4e.yaml --diagnostics
 
 phase4e-preflight:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4e.py --config configs/phase4e.yaml --preflight-only
+	.venv/bin/python scripts/run_phase4e.py --config configs/phase4e.yaml --preflight-only
 
 phase4e:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase4e.py --config configs/phase4e.yaml --evaluate
+	.venv/bin/python scripts/run_phase4e.py --config configs/phase4e.yaml --evaluate
 
 phase5a:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase5a.py --config configs/phase5a.yaml
+	.venv/bin/python scripts/run_phase5a.py --config configs/phase5a.yaml
 
 phase5b:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase5b.py --config configs/phase5b.yaml
+	.venv/bin/python scripts/run_phase5b.py --config configs/phase5b.yaml
 
 phase6:
-	MUJOCO_GL=cgl .venv/bin/python scripts/run_phase6.py --config configs/phase6.yaml
+	.venv/bin/python scripts/run_phase6.py --config configs/phase6.yaml
 
 readme-results:
 	.venv/bin/python scripts/generate_readme_results.py
@@ -69,10 +69,14 @@ smoke-demo:
 simulate-demo:
 	.venv/bin/python scripts/run_public_demo.py
 
+verify-data:
+	.venv/bin/python scripts/check_public_trajectories.py
+
 evaluate-existing:
 	.venv/bin/python scripts/check_submission.py
 
 submission-check:
+	.venv/bin/python scripts/check_public_trajectories.py
 	.venv/bin/python scripts/generate_readme_results.py --check
 	.venv/bin/python scripts/check_submission.py
 	.venv/bin/python scripts/check_repository_privacy.py --tracked

@@ -35,7 +35,7 @@ __pycache__/
 *.heic
 data/raw_private/
 
-# Derived full-resolution trajectories and bulk generated artifacts are reproducible.
+# Original timestamped processing outputs remain private; audited data/public is tracked.
 data/processed/
 results/**
 

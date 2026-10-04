@@ -4,11 +4,14 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import io
 import re
 import subprocess
 import sys
 from pathlib import Path
+
+from phone2panda.trajectories.public_data import validate_numeric_csv
 
 MAX_FILE_BYTES = 5 * 1024 * 1024
 PUBLIC_MEDIA = {
@@ -134,6 +137,11 @@ def path_findings(path: Path, size: int, data: bytes) -> list[str]:
         reasons.append("secret-like filename")
     if size > MAX_FILE_BYTES:
         reasons.append(f"file exceeds {MAX_FILE_BYTES // (1024 * 1024)} MiB")
+    if path.parts[:2] == ("data", "public") and path.suffix.lower() == ".csv":
+        try:
+            validate_numeric_csv(data)
+        except (ValueError, UnicodeError, csv.Error) as error:
+            reasons.append(f"unapproved public trajectory content: {error}")
     reasons.extend(text_findings_bytes(data))
     if path.suffix.lower() in MEDIA_SUFFIXES:
         reasons.extend(media_findings(path, data))

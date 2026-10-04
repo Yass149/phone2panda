@@ -25,5 +25,7 @@ jobs:
         run: make lint test
       - name: Run saved-model simulation
         run: make simulate-demo
+      - name: Rebuild public-data priors and check teacher safety
+        run: make verify-data phase4e-preflight
       - name: Check results and publication privacy
         run: make submission-check

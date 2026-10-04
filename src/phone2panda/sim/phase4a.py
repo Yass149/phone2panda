@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-os.environ.setdefault("MUJOCO_GL", "cgl")
+os.environ.setdefault("MUJOCO_GL", "cgl" if platform.system() == "Darwin" else "egl")
 
 import imageio.v2 as imageio
 import mujoco
@@ -24,6 +24,7 @@ from robosuite.utils.placement_samplers import UniformRandomSampler
 from phone2panda.retarget.mapping import WorkspaceMap, bounded_action
 from phone2panda.trajectories.dmp import fit_dmp, rollout_dmp
 from phone2panda.trajectories.processing import load_processed_path, smooth_and_resample
+from phone2panda.trajectories.public_data import resolve_processed_path
 
 FloatArray = NDArray[np.float64]
 
@@ -154,7 +155,9 @@ def _episode_report(config: Phase4AConfig) -> dict[str, Any]:
 def prepare_human_transport(config: Phase4AConfig) -> dict[str, Any]:
     trajectory = config.raw["trajectory"]
     workspace = config.raw["workspace"]
-    raw_points = load_processed_path(config.path("trajectory_csv"))
+    raw_points = load_processed_path(
+        resolve_processed_path(config.root, config.raw["trajectory_csv"])
+    )
     smoothed = smooth_and_resample(
         raw_points,
         int(trajectory["transport_samples"]),

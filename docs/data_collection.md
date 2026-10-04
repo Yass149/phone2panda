@@ -36,3 +36,9 @@ re-encoded video-only with metadata stripped; repository checks reject audio,
 location/device fields, raw MOV extensions, absolute home paths and oversized
 artifacts. Review frames before publication for faces, documents, reflections
 or other identifying background content.
+
+The separately approved public numerical release strips timestamps and retains
+only ordered, normalized object coordinates, confidence and binary flags. Its
+manifest records episode labels and original/public CSV checksums. Export reads
+the private processed files without modifying them; originals are not staged.
+`make verify-data` checks the schema and reconstructs the saved motion priors.

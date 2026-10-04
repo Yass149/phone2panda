@@ -82,3 +82,18 @@ and learns bounded reference-tracking actions. Route selection and phase
 sequencing are not learned. The 120/20/50 split holds out simulator seeds, not
 human recordings; all 36 accepted demonstrations contribute priors. Do not claim
 end-to-end vision control or generalization to new demonstrators.
+
+## 2026-10-04 - Sanitized numerical data release
+
+After explicit author approval, release the 36 accepted trajectories as 7,963
+numerical rows. Preserve the original coordinate strings, confidence, frame
+order and binary flags; remove timestamps and redundant labels. Keep source
+and released CSV hashes, source report/metadata hashes and a strict numerical
+schema. Do not publish original videos or timestamped processing outputs.
+
+When private inputs are absent, the original simulation and ablation loaders
+resolve the sanitized release. Validate all 36 refitted DMPs against the saved
+bundle and test that the ablation loaders work from a public-only copy. Keep
+historical benchmark results unchanged; use bounded preflight reproduction
+rather than retraining or retuning. This supersedes the earlier full-trajectory
+privacy boundary, but does not enable regeneration of the private video stage.

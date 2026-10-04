@@ -190,3 +190,11 @@ Final acceptance-command results are appended after the checked pipeline run.
 - README result tables are generated from the committed dataset-quality, Phase 5B and Phase 6 JSON files and checked for staleness.
 - The 70-second demo includes the phone motion, calibrated trajectory, human-derived DMP, GRU, expected straight-line collision, ablations and final 50-scenario comparison.
 - Public clean-clone reproduction covers setup, lint, 25 tests, README/result validation, full demo decode and tracked-file privacy checks. Raw-video regeneration remains intentionally unavailable without private inputs.
+
+## 2026-10-04 - Public numerical data reproduction
+
+- Released 36 accepted trajectories containing 7,963 frame-level numerical observations after explicit author approval. Coordinates, confidence, frame order and flags match the private source strings exactly; timestamps and original media remain private.
+- Reconciled every released row against its unchanged source CSV and recorded source/public SHA-256 hashes. All 36 refitted DMPs match the saved motion-prior bundle within absolute tolerance 1e-12.
+- A fresh directory with its own locked environment and no private trajectories or raw MOVs passed lint, all 36 tests, data reconstruction, README/result consistency, complete demo decoding, and tracked-file privacy checks.
+- The public-input diagnostic reproduced the expected direct-path collision and contact-free DMP placement. The five-seed DMP preflight and five saved-GRU rollouts each achieved 5/5 safe placements.
+- Numerical experiment loaders now fall back to the released CSVs. Full sweeps and training were not repeated, and historical benchmark results and checkpoints were not changed. Video extraction and independent visual-quality validation still require private recordings.

@@ -61,4 +61,6 @@ fresh calibration and safety evaluation.
 - Evaluation: `results/phase5b/evaluation.json`
 - Derived motion priors: `assets/motion_priors/` (80 control points per route,
   endpoint anchors, geometry and hashes; no frame-level recordings)
+- Public numerical trajectories: `data/public/` (36 episodes, 7,963 observations;
+  no timestamps or source media; sufficient to refit the motion priors)
 - Public smoke test: `make simulate-demo` (five fixed held-out cases)
