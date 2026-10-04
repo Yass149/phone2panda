@@ -172,8 +172,15 @@ derived from the personal recordings. It covers all three starts and both
 route families, checks saved geometry and route selection against the test
 manifest, and writes contact/placement results to `results/public_demo/`.
 This is a bounded reproduction check, not a fresh generalization benchmark.
-It needs no GPU or video rendering. macOS was tested locally; the loader also
-selects EGL on Linux, but Linux simulation has not been validated here.
+It needs no GPU or video rendering. macOS was tested locally. On Debian/Ubuntu,
+install the system graphics libraries before setup; MuJoCo imports EGL even
+when the rollouts do not render video:
+
+```bash
+sudo apt-get install -y libegl1 libgl1 libgl1-mesa-dri
+```
+
+The GitHub workflow runs the same saved-model check on an Ubuntu runner.
 
 The complete historical experiment sweeps require the private frame-level
 processed trajectories:

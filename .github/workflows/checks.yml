@@ -15,9 +15,15 @@ jobs:
       MUJOCO_GL: egl
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Install headless graphics libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libegl1 libgl1 libgl1-mesa-dri
       - name: Install locked environment
         run: make setup
       - name: Lint and test
         run: make lint test
+      - name: Run saved-model simulation
+        run: make simulate-demo
       - name: Check results and publication privacy
         run: make submission-check
