@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "phone2panda"
 version = "0.1.0"
-description = "Pilot video validation for Phone2Panda"
+description = "Calibrated phone-video motion priors and compact Panda reference tracking"
 requires-python = ">=3.11,<3.12"
 dependencies = [
   "av==16.0.1",

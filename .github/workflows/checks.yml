@@ -1,0 +1,23 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      MUJOCO_GL: egl
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Install locked environment
+        run: make setup
+      - name: Lint and test
+        run: make lint test
+      - name: Check results and publication privacy
+        run: make submission-check

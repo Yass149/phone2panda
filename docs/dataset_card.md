@@ -6,15 +6,20 @@ The private dataset contains 36 short overhead phone demonstrations of one
 person moving a marked box from one of three start regions to a target by a
 left or right route around a glasses case. The final validated split is 20
 train, 4 validation and 12 test recordings; all 36 passed the Phase 3 quality
-gate. Only aggregate reports, hashes without local paths, and a selected
-privacy-reviewed derived plot are tracked publicly.
+gate. Aggregate reports, hashes without local paths, derived plots, and a
+compact 80-point DMP-prior bundle are tracked. Videos and full frame-level
+trajectories remain private.
+
+The recording split labels document collection. The DMP/GRU experiments use
+all 36 accepted recordings as priors, with separate held-out simulator seeds.
+They do not measure generalization to unseen human demonstrations.
 
 ## Fields and derived data
 
 Metadata supplies episode ID, filename, split, start region and route label.
 Processing produces timestamps, direct/interpolated marker state, confidence,
 homography-normalized `(x, y)`, calibration diagnostics and task checks. Phase
-5 teacher records add state, task context, route one-hot values, gripper state,
+5 teacher records add state, active DMP/phase targets, task context, route one-hot values, gripper state,
 bounded teacher action and source episode/confidence provenance.
 
 ## Collection and consent
@@ -42,7 +47,10 @@ factories. The simulation results do not establish physical Panda safety.
 
 ## Access and retention
 
-Raw MOV files and processed full trajectories remain local and are excluded
-from Git history. `results/dataset_quality/source_manifest.json` provides
+Raw MOV files and processed frame-level trajectories remain local and are
+excluded from Git history. `assets/motion_priors/` contains only derived DMP
+control points, endpoint anchors and task geometry for saved-model simulation.
+It cannot reconstruct the original video or its frame-level measurements.
+`results/dataset_quality/source_manifest.json` provides
 integrity hashes. Anyone receiving private recordings must establish separate
 consent, access control, retention and deletion policies.

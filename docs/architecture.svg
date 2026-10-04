@@ -40,7 +40,7 @@
   <text class="detail" x="705" y="162">human path geometry</text>
 
   <rect class="box control" x="870" y="70" width="220" height="125"/>
-  <text class="title" x="980" y="106">Counterfactual selector</text>
+  <text class="title" x="980" y="106">Route selection</text>
   <text class="detail" x="980" y="137">score both route families</text>
   <text class="detail" x="980" y="162">clearance + confidence</text>
 
@@ -62,20 +62,20 @@
   <text class="detail" x="155" y="408">no human geometry</text>
 
   <rect class="box control" x="595" y="315" width="220" height="120"/>
-  <text class="title" x="705" y="353">Safe teacher episodes</text>
-  <text class="detail" x="705" y="383">state + route + confidence</text>
+  <text class="title" x="705" y="353">Teacher episodes</text>
+  <text class="detail" x="705" y="383">state + reference + route</text>
   <text class="detail" x="705" y="408">bounded Panda actions</text>
 
   <rect class="box policy" x="870" y="315" width="220" height="120"/>
   <text class="title" x="980" y="353">24-unit GRU</text>
-  <text class="detail" x="980" y="383">3,559 parameters</text>
-  <text class="detail" x="980" y="408">17.8 KB float32</text>
+  <text class="detail" x="980" y="383">reference tracking</text>
+  <text class="detail" x="980" y="408">3,559 params · 17.8 KB</text>
 
   <rect class="box eval" x="1145" y="300" width="210" height="150"/>
-  <text class="title" x="1250" y="338">Fixed-seed evaluation</text>
+  <text class="title" x="1250" y="338">Safety evaluation</text>
   <text class="detail" x="1250" y="369">50 held-out scenes</text>
   <text class="detail" x="1250" y="395">contacts + drops + error</text>
-  <text class="metric" x="1250" y="425">DMP 50 · GRU 50 · direct 0</text>
+  <text class="metric" x="1250" y="423" style="font-size:14px">DMP 50 · GRU 50 · direct 0</text>
 
   <path class="arrow" d="M1250 195 V240 H705 V305"/>
   <path class="arrow" d="M815 375 H860"/>

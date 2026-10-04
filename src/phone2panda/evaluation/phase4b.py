@@ -13,7 +13,7 @@ from pathlib import Path
 from time import perf_counter_ns
 from typing import Any
 
-os.environ.setdefault("MUJOCO_GL", "cgl")
+os.environ.setdefault("MUJOCO_GL", "cgl" if platform.system() == "Darwin" else "egl")
 
 import imageio.v2 as imageio
 import matplotlib

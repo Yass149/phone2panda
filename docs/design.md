@@ -25,8 +25,10 @@ human-derived DMP teacher, and a compact recurrent policy.
    by a similarity transform into the Panda workspace. Pick, grasp, lift,
    transport, lower, release and retreat remain explicit phases.
 6. The DMP + route/confidence controller generates teacher episodes. A
-   normalized 24-unit GRU maps 22 state/context features to seven bounded
-   actions. Episode boundaries and human-trajectory provenance are retained.
+   normalized 24-unit GRU maps 22 state/reference/context features to seven
+   bounded actions. It receives active DMP targets and retains explicit phases,
+   so this is reference tracking rather than autonomous route learning.
+   Episode boundaries and human-trajectory provenance are retained.
 
 ## Coordinates and control
 
@@ -57,6 +59,8 @@ of the physical setup.
 
 Dependencies and Python 3.11.17 are locked locally. Public results include
 fixed seed manifests, configurations, per-rollout records and compact
-checkpoints. Raw phone recordings and full processed trajectories are private;
-therefore a clean public clone can run tests, inspect results and validate the
-demo, but regenerating the vision dataset requires the unreleased recordings.
+checkpoints. The derived 80-point DMP bundle permits five saved-model simulation
+rollouts from a clone without decoding videos or retraining. Raw phone recordings
+and frame-level trajectories remain private, so regenerating the vision dataset
+and historical experiment sweeps requires the unreleased inputs. Test seeds are
+held out from training; the demonstration library itself is shared across splits.

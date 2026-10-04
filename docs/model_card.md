@@ -8,6 +8,11 @@ frameworks for reproducibility, modest hardware requirements and controlled
 latency measurement. The action represents OSC_POSE translation, rotation and
 gripper control.
 
+The 22 features include the current DMP/phase reference target and its delta
+from the end effector. The learned component is a reference-tracking controller,
+not an independent route planner or an end-to-end video-to-action policy.
+Route selection and pick/place phase sequencing remain outside the GRU.
+
 ## Training data
 
 The teacher is the calibrated DMP + route/confidence controller. Each teacher
@@ -15,6 +20,8 @@ path traces back to an accepted human recording, then smoothing, DMP fitting,
 scenario retargeting and bounded Panda control. Phase 5B uses 120 balanced
 training scenarios and 20 episode-disjoint validation scenarios. The 50 fixed
 test seeds are never used for fitting or checkpoint selection.
+These are held-out simulator seeds, not held-out demonstrations: all 36 accepted
+human recordings form the motion-prior library used across simulator splits.
 
 ## Evaluation
 
@@ -52,3 +59,6 @@ fresh calibration and safety evaluation.
 - Schema/provenance: `results/phase5b/dataset_schema.json`
 - Fixed split manifest: `results/phase5b/split_manifest.json`
 - Evaluation: `results/phase5b/evaluation.json`
+- Derived motion priors: `assets/motion_priors/` (80 control points per route,
+  endpoint anchors, geometry and hashes; no frame-level recordings)
+- Public smoke test: `make simulate-demo` (five fixed held-out cases)

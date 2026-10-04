@@ -30,10 +30,12 @@ https://github.com/user-attachments/assets/d6f34c27-e24b-484e-987e-88c90661ee87
 path geometry that makes a Panda robot move an object around an obstacle more
 safely than a direct controller?
 
-The videos become calibrated left/right motion priors. The controller scores
-both routes for each scene and distils the selected behaviour into a
-3,559-parameter GRU. The recordings determine the robot's path; they are not
-merely labels or presentation footage around an unrelated simulator policy.
+The videos become calibrated left/right motion priors. A selector scores both
+routes for each scene; DMP reference targets guide transport. A 3,559-parameter
+GRU learns the bounded tracking actions while retaining those reference targets
+and explicit pick/place phases. It does not independently learn route planning.
+The recordings determine the robot's path, rather than merely supplying labels
+or presentation footage around an unrelated simulator policy.
 
 | Personal data | DMP teacher | GRU policy | Direct baseline | Float32 model |
 | ---: | ---: | ---: | ---: | ---: |
@@ -57,8 +59,12 @@ robosuite · Matplotlib · pytest
 3. Left and right demonstrations form route-specific DMP motion priors.
 4. Candidate routes are retargeted to the seeded Panda scene and scored for
    obstacle clearance and demonstration confidence.
-5. Safe DMP rollouts supervise a normalized 24-unit GRU, which is evaluated
-   closed-loop rather than only by action-prediction loss.
+5. Safe DMP rollouts supervise a normalized 24-unit GRU reference tracker,
+   evaluated closed-loop rather than only by action-prediction loss.
+
+The 120/20/50 training, validation and test split is over simulator seeds.
+All 36 accepted demonstrations contribute motion priors; the reported test
+result is not a held-out-human-recording evaluation.
 
 ## Results
 
@@ -156,11 +162,21 @@ project-local environment, and does not modify global Anaconda.
 ```bash
 make setup
 make test                 # unit and integration tests
+make simulate-demo        # five saved-model Panda rollouts; no private data or training
 make smoke-demo           # decode and validate the public demo
 make evaluate-existing    # verify committed results and README numbers
 ```
 
-Full simulator runs require the private processed trajectories:
+`simulate-demo` uses the committed checkpoint and 80-point DMP motion priors
+derived from the personal recordings. It covers all three starts and both
+route families, checks saved geometry and route selection against the test
+manifest, and writes contact/placement results to `results/public_demo/`.
+This is a bounded reproduction check, not a fresh generalization benchmark.
+It needs no GPU or video rendering. macOS was tested locally; the loader also
+selects EGL on Linux, but Linux simulation has not been validated here.
+
+The complete historical experiment sweeps require the private frame-level
+processed trajectories:
 
 ```bash
 make phase4e   # calibrated controller comparison
@@ -186,8 +202,9 @@ Main limitations:
 - Simulation only; no claim of safe transfer to a physical Panda.
 - One demonstrator, camera, object, and obstacle family.
 - The tracker observes a marked 2D object path, not full 6D pose or contact.
-- A public clone can validate code, media, checkpoints, and committed results,
-  but cannot regenerate the private vision dataset.
+- A clone can run saved-model simulation using derived motion priors, validate
+  code and media, and inspect committed results. It cannot regenerate the
+  private vision dataset or the full historical experiment sweeps.
 
 See [known issues](KNOWN_ISSUES.md), the [dataset card](docs/dataset_card.md),
 and the [model card](docs/model_card.md) for exact boundaries.

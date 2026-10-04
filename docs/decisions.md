@@ -67,3 +67,18 @@ Use the untouched Phase 5B test manifest for every ablation and choose balanced 
 ## 2026-10-03 — Phase 7 public artifact boundary
 
 Publish only a privacy-reviewed, silent derived phone excerpt and a 70-second composite demo. Strip descriptive metadata, chapters, audio and non-video streams; retain only unavoidable technical MP4 fields. Generate README numbers from committed JSON and make the public clean-clone check validate existing results rather than rerun experiments. Keep raw recordings and full processed trajectories private, and describe that reproduction boundary explicitly.
+
+## 2026-10-04 — Reviewer reproduction and claim audit
+
+Release an explicitly derived 80-point DMP-prior bundle with endpoint anchors,
+geometry and input hashes. It lets a clone run five fixed held-out GRU scenes
+without raw videos, frame-level trajectories or retraining. The bundle reproduces
+all 50 saved test geometries and route selections in unit tests; the five-run
+command is a smoke test, not another benchmark. Keep the historical results
+unchanged. Add a checks workflow for lint, tests, result consistency and privacy.
+
+State the learned component precisely: the GRU receives active DMP/phase targets
+and learns bounded reference-tracking actions. Route selection and phase
+sequencing are not learned. The 120/20/50 split holds out simulator seeds, not
+human recordings; all 36 accepted demonstrations contribute priors. Do not claim
+end-to-end vision control or generalization to new demonstrators.

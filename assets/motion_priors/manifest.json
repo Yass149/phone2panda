@@ -1,0 +1,310 @@
+{
+  "archive_sha256": "4fa461fbfd0debdc0383314060bcbda750b2be4e80063707138e119aaffe19d3",
+  "demonstrations": [
+    {
+      "confidence": 0.91021,
+      "coverage": 1.0,
+      "episode_id": "ep_001",
+      "route": "left",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.88131,
+      "coverage": 1.0,
+      "episode_id": "ep_002",
+      "route": "right",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.919031,
+      "coverage": 1.0,
+      "episode_id": "ep_003",
+      "route": "left",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.884,
+      "coverage": 1.0,
+      "episode_id": "ep_004",
+      "route": "right",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.933908,
+      "coverage": 1.0,
+      "episode_id": "ep_005",
+      "route": "left",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.667131,
+      "coverage": 1.0,
+      "episode_id": "ep_006",
+      "route": "right",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.70107,
+      "coverage": 1.0,
+      "episode_id": "ep_007",
+      "route": "right",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.906177,
+      "coverage": 1.0,
+      "episode_id": "ep_008",
+      "route": "left",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.888839,
+      "coverage": 0.996032,
+      "episode_id": "ep_009",
+      "route": "right",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.923229,
+      "coverage": 1.0,
+      "episode_id": "ep_010",
+      "route": "left",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.874641,
+      "coverage": 1.0,
+      "episode_id": "ep_011",
+      "route": "right",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.905898,
+      "coverage": 1.0,
+      "episode_id": "ep_012",
+      "route": "left",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.905213,
+      "coverage": 1.0,
+      "episode_id": "ep_013",
+      "route": "left",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.936694,
+      "coverage": 1.0,
+      "episode_id": "ep_014",
+      "route": "right",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.91281,
+      "coverage": 1.0,
+      "episode_id": "ep_015",
+      "route": "left",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.875086,
+      "coverage": 1.0,
+      "episode_id": "ep_016",
+      "route": "right",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.642737,
+      "coverage": 0.990909,
+      "episode_id": "ep_017",
+      "route": "left",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.886119,
+      "coverage": 1.0,
+      "episode_id": "ep_018",
+      "route": "right",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.899683,
+      "coverage": 1.0,
+      "episode_id": "ep_019",
+      "route": "right",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.90712,
+      "coverage": 1.0,
+      "episode_id": "ep_020",
+      "route": "left",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.939853,
+      "coverage": 1.0,
+      "episode_id": "ep_021",
+      "route": "right",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.917738,
+      "coverage": 1.0,
+      "episode_id": "ep_022",
+      "route": "left",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.877631,
+      "coverage": 1.0,
+      "episode_id": "ep_023",
+      "route": "right",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.707104,
+      "coverage": 1.0,
+      "episode_id": "ep_024",
+      "route": "left",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.894355,
+      "coverage": 1.0,
+      "episode_id": "ep_025",
+      "route": "left",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.913143,
+      "coverage": 1.0,
+      "episode_id": "ep_026",
+      "route": "right",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.915705,
+      "coverage": 1.0,
+      "episode_id": "ep_027",
+      "route": "left",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.936306,
+      "coverage": 1.0,
+      "episode_id": "ep_028",
+      "route": "right",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.913943,
+      "coverage": 1.0,
+      "episode_id": "ep_029",
+      "route": "left",
+      "split": "train",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.831903,
+      "coverage": 0.995074,
+      "episode_id": "ep_030",
+      "route": "right",
+      "split": "train",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.88477,
+      "coverage": 1.0,
+      "episode_id": "ep_031",
+      "route": "right",
+      "split": "validation",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.916393,
+      "coverage": 1.0,
+      "episode_id": "ep_032",
+      "route": "left",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.89591,
+      "coverage": 1.0,
+      "episode_id": "ep_033",
+      "route": "right",
+      "split": "validation",
+      "start_id": "s1"
+    },
+    {
+      "confidence": 0.850395,
+      "coverage": 1.0,
+      "episode_id": "ep_034",
+      "route": "left",
+      "split": "validation",
+      "start_id": "s2"
+    },
+    {
+      "confidence": 0.930714,
+      "coverage": 1.0,
+      "episode_id": "ep_035",
+      "route": "right",
+      "split": "test",
+      "start_id": "s3"
+    },
+    {
+      "confidence": 0.893594,
+      "coverage": 1.0,
+      "episode_id": "ep_036",
+      "route": "left",
+      "split": "validation",
+      "start_id": "s1"
+    }
+  ],
+  "description": "80-point mapped DMP priors and endpoint anchors from 36 personal videos",
+  "privacy": "No frames, audio, timestamps, hand imagery or frame-level trajectories",
+  "reproduction_sha256": {
+    "configs/phase4a.yaml": "7cf2638e46c1d03b2c266f0410e70a78d04ecc3b52cbd901a05b6200f86d5e57",
+    "configs/phase4b.yaml": "34e8e466b26257a1a21d6e042e482d4ba685c8a4436e814e781ab29c1c68ecb2",
+    "configs/phase4e.yaml": "d4d8b79192460d9d35e1f3a7740bc8982c60d29abc2583ef90c91bff74cc6efa",
+    "configs/phase5a.yaml": "652ffe4bfd8700c0870c85b0e906ddd5bab209661f3b8e9ebebc5e327f56a5c0",
+    "configs/phase5b.yaml": "6381c0f9b1e16c74f3d2237909ee4926272dcc44529aa8ba7569e11fc845fa45",
+    "results/phase5b/gru_policy.npz": "3ee390a97224b269e785753ae3bedbcaad390d0b0fb41f2d29279807a9313b83",
+    "results/phase5b/split_manifest.json": "6fc628c18c2d26c67eb01eea1bc12e8dac33161fb970268e37a66c8fc002f31b"
+  },
+  "schema_version": 1,
+  "source_dataset_report_sha256": "8dd519280c23f849cca9cd0a7ff5fac779c8b7a770dbd068a01d3dc0325f33c9",
+  "supported_methods": [
+    "dmp_route_confidence",
+    "gru_reference_tracking"
+  ]
+}
