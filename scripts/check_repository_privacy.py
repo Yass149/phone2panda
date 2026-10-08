@@ -6,11 +6,11 @@ from __future__ import annotations
 import argparse
 import csv
 import io
-import re
 import subprocess
 import sys
 from pathlib import Path
 
+from phone2panda.privacy import text_findings_bytes
 from phone2panda.trajectories.public_data import validate_numeric_csv
 
 MAX_FILE_BYTES = 5 * 1024 * 1024
@@ -52,21 +52,6 @@ def staged_paths() -> list[Path]:
         ["git", "diff", "--cached", "--name-only", "-z", "--diff-filter=ACMR"]
     )
     return [Path(item.decode()) for item in output.split(b"\0") if item]
-
-
-def text_findings_bytes(data: bytes) -> list[str]:
-    if b"\0" in data:
-        return []
-    text = data.decode("utf-8", errors="replace")
-    patterns = {
-        "absolute macOS home path": re.compile("/" + r"Users/[^/\s]+/"),
-        "absolute Linux home path": re.compile("/" + r"home/[^/\s]+/"),
-        "absolute Windows home path": re.compile(r"[A-Za-z]:\\Users\\[^\\\s]+\\"),
-        "AWS access key": re.compile("AK" + r"IA[0-9A-Z]{16}"),
-        "GitHub token": re.compile("gh" + r"[pousr]_[A-Za-z0-9_]{20,}"),
-        "private key": re.compile("-----BEGIN " + r"(?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
-    }
-    return [label for label, pattern in patterns.items() if pattern.search(text)]
 
 
 def text_findings(path: Path) -> list[str]:
