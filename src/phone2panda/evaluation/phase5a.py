@@ -33,6 +33,7 @@ from phone2panda.evaluation.phase4e import (
     _execution_config,
     load_phase4e_config,
 )
+from phone2panda.evaluation.safety import evaluate_safe_task
 from phone2panda.policy.gru import GRUPolicy, Normalizer, pad_sequences
 from phone2panda.retarget.mapping import bounded_action
 
@@ -175,13 +176,15 @@ def _complete_record(
     record["acceptable_placement"] = bool(
         record["target_placed"] and record["placement_error_m"] <= placement_limit
     )
-    record["phase5a_gate_success"] = bool(
-        record["acceptable_placement"]
-        and record["object_collision_steps"] == 0
-        and not record["unintended_contact"]
-        and not record["drop"]
-        and record["object_remained_grasped"]
+    outcome = evaluate_safe_task(
+        placement_succeeded=record["acceptable_placement"],
+        object_collision=record["object_collision_steps"] > 0,
+        unintended_robot_contact=record["unintended_contact"],
+        dropped=record["drop"],
+        grasp_retained=record["object_remained_grasped"],
     )
+    record["phase5a_gate_success"] = outcome.success
+    record["safety_failure_reasons"] = list(outcome.failure_reasons)
     return record
 
 

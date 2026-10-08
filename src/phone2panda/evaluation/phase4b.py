@@ -24,6 +24,7 @@ import yaml
 from numpy.typing import NDArray
 from robosuite.controllers import load_composite_controller_config
 
+from phone2panda.evaluation.safety import evaluate_object_task
 from phone2panda.retarget.mapping import WorkspaceMap, bounded_action
 from phone2panda.sim.phase4a import (
     HumanPathPickPlace,
@@ -615,22 +616,21 @@ def execute_rollout(
     placement_error = float(np.linalg.norm(cube_final[:2] - scenario.goal_xy))
     collision_steps = object_collision_steps
     target_placed = bool(env._check_success())
-    success = bool(target_placed and collision_steps == 0 and not dropped)
-    reasons: list[str] = []
-    if not target_placed:
-        reasons.append("final_placement_outside_target")
-    if object_collision_steps:
-        reasons.append("object_obstacle_collision")
-    if dropped:
-        reasons.append("object_drop_during_transport")
+    object_outcome = evaluate_object_task(
+        placement_succeeded=target_placed,
+        object_collision=bool(object_collision_steps),
+        dropped=dropped,
+    )
     result = {
         "schema_version": 1,
         "method": method,
         "scenario": scenario.serialise(),
         **selection,
-        "task_success": success,
+        "object_task_success": object_outcome.success,
+        "task_success": object_outcome.success,
+        "task_success_semantics": "legacy_alias_of_object_task_success",
         "target_placed": target_placed,
-        "failure_reasons": reasons,
+        "failure_reasons": list(object_outcome.failure_reasons),
         "collision": bool(collision_steps),
         "collision_steps": collision_steps,
         "object_collision_steps": object_collision_steps,

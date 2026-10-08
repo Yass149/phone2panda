@@ -33,6 +33,7 @@ from phone2panda.evaluation.phase4c import (
     ContactAccumulator,
 )
 from phone2panda.evaluation.phase4d import aggregate_phase_contacts
+from phone2panda.evaluation.safety import evaluate_safe_task
 from phone2panda.sim.phase4a import Phase4AConfig
 
 FloatArray = NDArray[np.float64]
@@ -171,11 +172,16 @@ def _run_rollout(
         for category in UNINTENDED_CATEGORIES
     )
     record["placement_success"] = bool(record["target_placed"])
-    record["calibrated_safety_success"] = bool(
-        record["task_success"]
-        and record["object_remained_grasped"]
-        and not record["unintended_contact"]
+    outcome = evaluate_safe_task(
+        placement_succeeded=record["placement_success"],
+        object_collision=record["object_collision_steps"] > 0,
+        unintended_robot_contact=record["unintended_contact"],
+        dropped=record["drop"],
+        grasp_retained=record["object_remained_grasped"],
     )
+    record["object_task_success"] = outcome.object_task_success
+    record["calibrated_safety_success"] = outcome.success
+    record["safety_failure_reasons"] = list(outcome.failure_reasons)
     return record, frames
 
 
