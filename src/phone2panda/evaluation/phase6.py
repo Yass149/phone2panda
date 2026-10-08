@@ -41,6 +41,7 @@ from phone2panda.evaluation.phase5b import (
 )
 from phone2panda.pilot_validation.geometry import homography_from_corners, transform_points
 from phone2panda.policy.gru import GRUPolicy, Normalizer
+from phone2panda.provenance import build_run_manifest
 from phone2panda.retarget.mapping import WorkspaceMap
 from phone2panda.trajectories.dmp import fit_dmp, rollout_dmp
 from phone2panda.trajectories.processing import load_processed_path, smooth_and_resample
@@ -788,6 +789,6 @@ def run_phase6(config: Phase6Config) -> dict[str, Any]:
     _write_json(output / "summary.json", summary)
     _write_json(
         output / "run_config.json",
-        {"config_sha256": config.digest, "configuration": config.raw},
+        build_run_manifest(config.root, config_sha256=config.digest, configuration=config.raw),
     )
     return summary

@@ -31,6 +31,7 @@ from phone2panda.evaluation.phase4c import (
     UNINTENDED_CATEGORIES,
     ContactAccumulator,
 )
+from phone2panda.provenance import build_run_manifest
 from phone2panda.sim.phase4a import Phase4AConfig
 
 FloatArray = NDArray[np.float64]
@@ -333,6 +334,6 @@ def run_evaluation(config: Phase4DConfig) -> dict[str, Any]:
     _write_json(output / "aggregate.json", report)
     _write_json(
         output / "run_config.json",
-        {"config_sha256": config.digest, "configuration": config.raw},
+        build_run_manifest(config.root, config_sha256=config.digest, configuration=config.raw),
     )
     return report

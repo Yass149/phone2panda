@@ -25,6 +25,7 @@ from numpy.typing import NDArray
 from robosuite.controllers import load_composite_controller_config
 
 from phone2panda.evaluation.safety import evaluate_object_task
+from phone2panda.provenance import build_run_manifest
 from phone2panda.retarget.mapping import WorkspaceMap, bounded_action
 from phone2panda.sim.phase4a import (
     HumanPathPickPlace,
@@ -1073,6 +1074,6 @@ def run_evaluation(config: Phase4BConfig) -> dict[str, Any]:
     _plot_comparison(output / "comparison.png", aggregate)
     _write_json(
         output / "run_config.json",
-        {"config_sha256": config.digest, "configuration": config.raw},
+        build_run_manifest(config.root, config_sha256=config.digest, configuration=config.raw),
     )
     return report

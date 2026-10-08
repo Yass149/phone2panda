@@ -35,6 +35,7 @@ from phone2panda.evaluation.phase4e import (
 )
 from phone2panda.evaluation.safety import evaluate_safe_task
 from phone2panda.policy.gru import GRUPolicy, Normalizer, pad_sequences
+from phone2panda.provenance import build_run_manifest
 from phone2panda.retarget.mapping import bounded_action
 
 matplotlib.use("Agg")
@@ -563,6 +564,6 @@ def run_phase5a(config: Phase5AConfig) -> dict[str, Any]:
     _write_json(output / "evaluation.json", report)
     _write_json(
         output / "run_config.json",
-        {"config_sha256": config.digest, "configuration": config.raw},
+        build_run_manifest(config.root, config_sha256=config.digest, configuration=config.raw),
     )
     return report
