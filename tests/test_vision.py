@@ -8,6 +8,7 @@ from phone2panda.pilot_validation.vision import (
     ObjectCandidate,
     corner_observation,
     corner_reference,
+    detect_corner_markers,
     detect_object_candidates,
     track_object,
 )
@@ -19,6 +20,7 @@ def _settings() -> dict[str, object]:
         "corner_area_min": 200,
         "corner_area_max": 5000,
         "corner_min_extent_px": 20,
+        "corner_min_l_score": 0.30,
         "red_hue_low": [0, 18],
         "red_hue_high": [170, 180],
         "red_saturation_min": 130,
@@ -51,6 +53,7 @@ def test_corner_and_red_marker_detection() -> None:
     references = corner_reference(frame, _settings())
     assert set(references) == {"tl", "tr", "bl", "br"}
     for reference in references.values():
+        assert reference.l_shape_score >= _settings()["corner_min_l_score"]
         direct, confidence, distance = corner_observation(reference, reference, 10.0)
         assert direct
         assert confidence == 1.0
@@ -63,6 +66,21 @@ def test_corner_and_red_marker_detection() -> None:
     assert len(candidates) == 1
     assert 0.4 < candidates[0].normalised[0] < 0.6
     assert 0.7 < candidates[0].normalised[1] < 1.0
+
+
+def test_solid_corner_rectangles_are_not_accepted_as_l_markers() -> None:
+    frame = np.full((400, 600, 3), 245, dtype=np.uint8)
+    for start, end in (
+        ((30, 30), (94, 94)),
+        ((505, 30), (569, 94)),
+        ((30, 305), (94, 369)),
+        ((505, 305), (569, 369)),
+    ):
+        cv2.rectangle(frame, start, end, (30, 30, 30), -1)
+
+    detections = detect_corner_markers(frame, _settings())
+
+    assert all(detection is None for detection in detections.values())
 
 
 def test_short_tracking_gap_is_interpolated() -> None:

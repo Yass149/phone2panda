@@ -38,6 +38,7 @@ detection:
   corner_area_min: 700
   corner_area_max: 12000
   corner_min_extent_px: 60
+  corner_min_l_score: 0.30
   corner_reference_tolerance_px: 20
   median_sample_count: 17
   red_hue_low: [0, 18]
