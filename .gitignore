@@ -15,6 +15,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+graphify-out/
 *.py[cod]
 
 # Secrets and machine-local configuration
