@@ -67,14 +67,9 @@ def read_manifest(directory: Path) -> dict[str, Any]:
     return manifest
 
 
-def validate_public_release(directory: Path) -> dict[str, Any]:
-    manifest = read_manifest(directory)
-    expected = {row["path"] for row in manifest["episodes"]}
-    actual = {path.relative_to(directory).as_posix() for path in directory.rglob("*.csv")}
-    if actual != expected:
-        raise ValueError("Public trajectory files do not match the manifest")
+def _validate_episode_files(directory: Path, episodes: list[dict[str, Any]]) -> int:
     total = 0
-    for row in manifest["episodes"]:
+    for row in episodes:
         data = (directory / row["path"]).read_bytes()
         if digest(data) != row["public_csv_sha256"]:
             raise ValueError(f"Public trajectory checksum mismatch: {row['episode_id']}")
@@ -82,22 +77,41 @@ def validate_public_release(directory: Path) -> dict[str, Any]:
         if any(counts[key] != row[key] for key in counts):
             raise ValueError(f"Public trajectory row count mismatch: {row['episode_id']}")
         total += counts["rows"]
-    if total != manifest["total_rows"]:
-        raise ValueError("Public release total row count mismatch")
-    root = directory.parent.parent
-    approved_inputs = {"data/metadata.csv", "results/dataset_quality/quality_report.json"}
-    if set(manifest["input_sha256"]) != approved_inputs:
+    return total
+
+
+def _validate_provenance(root: Path, checksums: dict[str, str]) -> None:
+    approved = {"data/metadata.csv", "results/dataset_quality/quality_report.json"}
+    if set(checksums) != approved:
         raise ValueError("Public release is missing its provenance inputs")
-    for relative, expected_hash in manifest["input_sha256"].items():
+    for relative, expected_hash in checksums.items():
         if digest((root / relative).read_bytes()) != expected_hash:
             raise ValueError(f"Public release provenance input changed: {relative}")
+
+
+def _validate_episode_labels(root: Path, episodes: list[dict[str, Any]]) -> None:
     with (root / "data/metadata.csv").open(newline="", encoding="utf-8") as handle:
         metadata = {row["episode_id"]: row for row in csv.DictReader(handle)}
-    for row in manifest["episodes"]:
+    for row in episodes:
         source = metadata[row["episode_id"]]
         labels = (row["route"], row["start_id"], row["collection_split"])
         if labels != (source["route"], source["start_id"], source["split"]):
             raise ValueError(f"Public episode labels changed: {row['episode_id']}")
+
+
+def validate_public_release(directory: Path) -> dict[str, Any]:
+    manifest = read_manifest(directory)
+    episodes = manifest["episodes"]
+    expected = {row["path"] for row in episodes}
+    actual = {path.relative_to(directory).as_posix() for path in directory.rglob("*.csv")}
+    if actual != expected:
+        raise ValueError("Public trajectory files do not match the manifest")
+    total = _validate_episode_files(directory, episodes)
+    if total != manifest["total_rows"]:
+        raise ValueError("Public release total row count mismatch")
+    root = directory.parent.parent
+    _validate_provenance(root, manifest["input_sha256"])
+    _validate_episode_labels(root, episodes)
     return {"passed": True, "episodes": len(expected), "rows": total}
 
 
