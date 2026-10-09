@@ -4,116 +4,45 @@
 
 **Hand-recorded phone routes become obstacle-avoiding motion for a simulated Panda robot.**
 
-I recorded 36 overhead demonstrations with a phone, extracted the object paths,
-and used them to guide a Panda arm around a measured obstacle. On 50 fixed
-simulated scenes, the route-aware controller completed **50/50 safe placements**;
-a direct start-to-goal controller completed **0/50**.
+Research question: can one person's overhead phone demonstrations provide path
+geometry that moves an object around an obstacle more safely than a direct
+start-to-goal controller?
 
-**[Watch the 70-second demo](#demo)** ·
-[Inspect the results](#results) ·
-[Inspect the collected data](data/public/) ·
-[How it works](#system) ·
-[Engineering assurance](#engineering-assurance) ·
-[Reproduce the checks](#quick-start-and-reproduction)
+[Demo](#demo) · [How it works](#how-it-works) · [Results](#results) ·
+[Reproduce](#reproduce) · [Documentation](#documentation) ·
+[Limitations](#scope-and-limitations)
 
 ## Demo
 
 https://github.com/user-attachments/assets/d6f34c27-e24b-484e-987e-88c90661ee87
 
-<p><sub>Phone demonstration → calibrated route → simulated Panda.</sub></p>
+<p><sub>70 seconds: phone demonstration → calibrated route → DMP rollout → GRU rollout → direct-path failure → measured comparison.</sub></p>
 
 [MP4 fallback](media/phone2panda_demo.mp4) ·
 [Animated preview](media/phone2panda_preview.gif) ·
-[Original phone footage](media/phone_demo_sanitized.mp4) ·
+[Sanitized phone clip](media/phone_demo_sanitized.mp4) ·
 [Experiment log](docs/experiments.md) ·
 [Model card](docs/model_card.md)
 
-## Choose your path
-
-| Reader | Recommended route | What you will get |
-| --- | --- | --- |
-| **Recruitment reviewer · 2 min** | [Demo](#demo) → [headline results](#results) → [scope](#scope) | The problem, the visible robot behaviour, the strongest measured result and the boundaries of the claim. |
-| **Project or research lead · 5 min** | [Study](#study) → [what changed the result](#what-changed-the-result) → [research decisions](#research-decisions) | Why the project was built this way, which interventions mattered and what failed. |
-| **Robotics / ML reviewer · 10 min** | [System](#system) → [controller selection](#controller-selection) → [policy distillation](#policy-distillation) → [model card](docs/model_card.md) | Calibration, DMP retargeting, contact-aware evaluation, GRU distillation and limitations. |
-| **Reproducer or code reviewer · 15 min** | [Engineering assurance](#engineering-assurance) → [quick start](#quick-start-and-reproduction) → [dataset card](docs/dataset_card.md) → [experiment log](docs/experiments.md) | Exact commands, public inputs, quality gates, provenance and the evidence trail behind the claims. |
-
-**Shortest useful review:** watch the demo, inspect the two result plots, then
-read [Scope](#scope). **Deep technical review:** follow the final row and use the
-machine-readable artifacts linked beside each result.
-
-## Study
-
-**Research question:** can one person's overhead phone demonstrations provide
-path geometry that makes a Panda robot move an object around an obstacle more
-safely than a direct controller?
-
-The videos become calibrated left/right motion priors. A selector scores both
-routes for each scene; DMP reference targets guide transport. A 3,559-parameter
-GRU learns the bounded tracking actions while retaining those reference targets
-and explicit pick/place phases. It does not independently learn route planning.
-The recordings determine the robot's path, rather than merely supplying labels
-or presentation footage around an unrelated simulator policy.
-
-| Personal data | DMP teacher | GRU policy | Direct baseline | Float32 model |
-| ---: | ---: | ---: | ---: | ---: |
-| 36 final videos | 50/50 safe | 50/50 safe | 0/50 safe | 17.8 KB |
-
-All three controllers were evaluated on the same 50 fixed, held-out calibrated
-scenarios. A safe success requires correct placement, a retained grasp, and no
-object-obstacle, robot-obstacle, robot-table, or self contact.
-
-## System
-
-**Stack:** Python 3.11 · NumPy · SciPy · OpenCV · PyAV/FFmpeg · MuJoCo ·
-robosuite · Matplotlib · pytest
+## How it works
 
 <p>
   <img src="docs/architecture.svg" width="1100" alt="Phone2Panda system architecture">
 </p>
 
-1. Four L-shaped canvas markers calibrate each overhead recording into a unit
-   workspace; shape validation rejects corner-adjacent dark impostors.
+1. Four L-shaped markers calibrate each phone recording into normalized canvas coordinates.
 2. A red object marker becomes a confidence-weighted 2D trajectory.
-3. Left and right demonstrations form route-specific DMP motion priors.
-4. Candidate routes are retargeted to the seeded Panda scene and scored for
-   obstacle clearance and demonstration confidence.
-5. Safe DMP rollouts supervise a normalized 24-unit GRU reference tracker,
-   evaluated closed-loop rather than only by action-prediction loss.
+3. Accepted left and right demonstrations form route-specific DMP motion priors.
+4. The simulator retargets and scores both route families for the seeded Panda scene.
+5. Safe teacher rollouts supervise a compact, normalized 24-unit GRU controller.
 
-The 120/20/50 training, validation and test split is over simulator seeds.
-All 36 accepted demonstrations contribute motion priors; the reported test
-result is not a held-out-human-recording evaluation.
-
-The [public numerical dataset](data/public/) contains **7,963 frame-level
-observations from those 36 recordings**. It preserves normalized object
-coordinates, tracking confidence and validity flags without images, timestamps
-or device metadata. Checksums connect each released CSV to its unchanged
-private source. `make verify-data` rebuilds all 36 DMPs against the saved bundle.
+The DMP remains the reference path for the GRU, so the recorded human motion
+materially controls transport rather than serving only as labels or presentation
+footage. The public numerical release contains 7,963 frame-level observations
+from 36 accepted recordings without images, timestamps, audio, or device
+metadata.
 
 ## Results
-
-### Controller selection
-
-<p>
-  <img src="results/phase4e/comparison.png" width="1100" alt="Exact safe and failed rollout counts with median obstacle clearance across four controller variants">
-</p>
-
-<p><sub>Observed outcomes and median footprint-adjusted clearance over 50 identical calibrated scenarios per controller.</sub></p>
-
-[Watch a route-aware success](results/phase4e/representative_calibrated_success.mp4) ·
-[Watch the straight-line collision](results/phase4e/representative_calibrated_failure.mp4)
-
-| Controller | Safe / 50 | Wilson 95% CI | Object collisions | Robot contacts | Drops | Median clearance |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| DMP + route/confidence | **50** | 92.9–100.0% | **0** | **0** | **0** | **22.4 mm** |
-| DMP retargeting | 49 | 89.5–99.6% | 0 | 1 | 0 | 19.9 mm |
-| Nearest raw replay | 49 | 89.5–99.6% | 0 | 1 | 0 | 20.6 mm |
-| Straight line | 0 | 0.0–7.1% | 50 | 50 | 6 | -48.3 mm |
-
-The 50/50 result has a Wilson 95% lower bound of 92.9%; it establishes success
-on these fixed simulated scenarios, not industrial reliability.
-
-### Policy distillation
 
 <!-- BEGIN GENERATED RESULTS -->
 All **36 final selected recordings** passed the quality gate; the raw manifest preserves **45 recordings** including pilots and retakes. On the same 50 held-out calibrated simulator scenarios:
@@ -133,165 +62,153 @@ Ablations are one-factor-at-a-time on 50 fixed scenarios:
 - Float32 reduced the checkpoint from 31,942 to 17,795 bytes but was slightly slower in this CPU benchmark (0.0127 vs 0.0121 ms median).
 <!-- END GENERATED RESULTS -->
 
-### What changed the result
-
 <p>
-  <img src="results/phase6/ablation_plot.png" width="1100" alt="Eleven controlled ablations: exact safe-placement counts and median obstacle clearance, with human-derived paths and route filtering compared to their removed alternatives">
+  <img src="results/phase6/ablation_plot.png" width="1100" alt="Controlled ablations showing safe-placement counts and median obstacle clearance">
 </p>
 
-<p><sub>Each row changes one factor on the same 50 fixed simulator scenarios.</sub></p>
+The decisive intervention was the recorded path: replacing it with a straight
+line changed safe success from 50/50 to 0/50. Calibration and route filtering
+improved safety margins. More demonstrations and smoothing did not improve safe
+success in this experiment. Float32 made the checkpoint smaller, but not faster
+on the tested CPU.
 
-The fixed-scenario ablations isolate the effects of the recorded route, camera
-calibration, filtering, smoothing, and demonstration count. In particular,
-removing the human-derived path changes safe success from 50/50 to 0/50;
-removing route filtering reduces it to 47/50. The
-[GRU training curve](results/phase5b/training_curve.png) is available separately.
+A safe success requires correct placement, retained grasp, and no
+object-obstacle, robot-obstacle, unintended robot-table, or self contact. These
+are results for the physically calibrated **40 mm** glasses-case obstacle. The
+earlier **140 mm** environment is an **uncalibrated tall-obstacle stress test**,
+not a headline physical result.
 
-These are simulator measurements for the physically calibrated **40 mm**
-glasses-case obstacle. The earlier 140 mm environment is retained as an
-uncalibrated stress test and is not used as a headline physical result.
-Machine-readable sources are
-[`phase4e/aggregate.json`](results/phase4e/aggregate.json),
-[`phase5b/evaluation.json`](results/phase5b/evaluation.json),
-[`phase6/ablation_summary.json`](results/phase6/ablation_summary.json), and
-[`phase6/precision_benchmark.json`](results/phase6/precision_benchmark.json).
+Machine-readable evidence:
+[`controller comparison`](results/phase4e/aggregate.json) ·
+[`GRU evaluation`](results/phase5b/evaluation.json) ·
+[`ablation summary`](results/phase6/ablation_summary.json) ·
+[`precision benchmark`](results/phase6/precision_benchmark.json)
 
-## Why the personal data matters
+<details>
+<summary><strong>See the four-controller comparison</strong></summary>
 
-The strongest causal check is removal. Replacing the human path with a direct
-start-to-goal line changed safe success from 50/50 to 0/50 and caused an object
-collision in every scenario. Keeping human paths but removing route/confidence
-selection reduced safe success to 47/50. The contribution is therefore not
-that a GRU can imitate a controller; it is the explicit path geometry extracted
-from the recordings and the safety-aware choice between route families.
+<p>
+  <img src="results/phase4e/comparison.png" width="1100" alt="Safe and failed rollout counts with median obstacle clearance across four controllers">
+</p>
 
-## Research decisions
+| Controller | Safe / 50 | Wilson 95% CI | Object collisions | Robot contacts | Drops | Median clearance |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| DMP + route/confidence | **50** | 92.9–100.0% | **0** | **0** | **0** | **22.4 mm** |
+| DMP retargeting | 49 | 89.5–99.6% | 0 | 1 | 0 | 19.9 mm |
+| Nearest raw replay | 49 | 89.5–99.6% | 0 | 1 | 0 | 20.6 mm |
+| Straight line | 0 | 0.0–7.1% | 50 | 50 | 6 | -48.3 mm |
 
-| Initial assumption | Evidence | Decision |
-| --- | --- | --- |
-| Every corner marker had to remain visible throughout a recording. | Tracking stayed at 100% while a forearm briefly hid one marker during valid motion. | Calibrate from stable hands-free windows and gate camera drift and jitter separately. |
-| A generic 140 mm obstacle was a reasonable simulation proxy. | Contact-pair auditing found Panda wrist collisions even when the object path was clear. | Measure the physical 40 mm obstacle, rebuild the geometry, and retain the failed setup as a stress test. |
-| More demonstrations would automatically improve the controller. | The 5, 15, and 30 demonstration ablations all achieved 50/50 safe success. | Report saturation; route selection and calibration mattered more than volume for this task. |
-| Float32 would be faster as well as smaller. | It reduced checkpoint size by 44% but was slightly slower in this CPU benchmark. | Keep the size result and make no speed claim. |
+[Route-aware success](results/phase4e/representative_calibrated_success.mp4) ·
+[Straight-line collision](results/phase4e/representative_calibrated_failure.mp4)
 
-The complete chronological record is in the
-[experiment log](docs/experiments.md) and
-[decision log](docs/decisions.md).
+The 50/50 result has a Wilson 95% lower bound of 92.9%. It establishes success
+on these fixed simulated scenarios, not industrial reliability.
 
-## Engineering assurance
+</details>
 
-The standards-hardening work changed validation and software assurance, not the
-committed experimental outcomes. Its scope and verification record are in the
-[hardening plan](docs/standards_hardening_plan.md).
+## Reproduce
 
-| Concern | Implemented safeguard | Verification |
-| --- | --- | --- |
-| Ambiguous success metrics | Object-task success and calibrated safe success now use shared, explicit definitions; the historical `task_success` field remains a documented compatibility alias. | Truth-table tests cover placement failure, collision, unintended contact, drop and lost grasp. |
-| False canvas corners | Corner candidates must match the expected L orientation as well as area, extent and location. | Synthetic L markers pass, solid impostors fail, and the five pilot calibration windows retain their required coverage. |
-| Experiment provenance | Future run manifests record the Git commit, dirty state, configuration hash and `uv.lock` hash without absolute paths. | Clean, dirty and non-Git cases are tested. Historical result files were not rewritten. |
-| Private or unsafe publication artifacts | Staged files, the tracked tree and complete Git history are checked for raw media, audio, metadata, local paths, oversized files and high-confidence secrets. | The full-history and 16-file public-media audits pass in CI. |
-| Maintainability regressions | Stateful rollout phases are isolated behind small execution objects and complexity checking is enforced repository-wide. | Ruff reports no C901 violations; deterministic Phase 4A and saved-policy rollout metrics were unchanged by the refactor. |
-| Reproduction drift | Dependencies and Python are pinned; the downloaded `uv` installer and its platform binary are checksum-verified. | A clean clone passed setup and the public reproduction commands. |
-
-At this checkpoint, **57 tests pass** and statement coverage is **47.18%**, with
-a **45% minimum** enforced as a ratchet. Mypy currently gates six stable
-numerical, provenance and safety modules; it is intentionally not presented as
-whole-repository type coverage.
-
-## Quick start and reproduction
-
-The checksum-verified bootstrap installs the pinned uv and CPython 3.11.17
-inside the checkout, creates a project-local environment, and does not modify
-global Anaconda.
+The bootstrap installs pinned tooling and Python 3.11.17 inside the checkout;
+it does not modify global Anaconda.
 
 ```bash
 make setup
-make lint                 # Ruff, including complexity checks
-make typecheck            # mypy on the stable typed module set
-make test                 # 57 tests plus the 45% coverage gate
-make verify-data          # audit 36 released trajectories and rebuild their DMPs
-make simulate-demo        # five saved-model Panda rollouts; no private data or training
-make smoke-demo           # decode and validate the public demo
-make evaluate-existing    # verify committed results and README numbers
-make privacy-history      # audit every Git blob for private artifacts
-```
-
-For the compact non-simulation software and publication gate, run:
-
-```bash
 make reproduce-public
+make simulate-demo
+make smoke-demo
 ```
 
-`simulate-demo` uses the committed checkpoint and 80-point DMP motion priors
-derived from the personal recordings. It covers all three starts and both
-route families, checks saved geometry and route selection against the test
-manifest, and writes contact/placement results to `results/public_demo/`.
-This is a bounded reproduction check, not a fresh generalization benchmark.
-It needs no GPU or video rendering. macOS was tested locally. On Debian/Ubuntu,
-install the system graphics libraries before setup; MuJoCo imports EGL even
-when the rollouts do not render video:
+- `reproduce-public` runs linting, scoped type checks, 57 tests with a 45%
+  coverage gate, public-data reconstruction, result verification, media checks,
+  and repository privacy checks.
+- `simulate-demo` runs five deterministic saved-model Panda rollouts spanning
+  all three start regions and both routes. It does not retrain or render video.
+- `smoke-demo` verifies that the published demo decodes correctly and contains
+  no audio stream.
+
+The documented commands passed in a clean clone on macOS and the saved-model
+check runs on the Ubuntu GitHub Actions runner.
+
+<details>
+<summary><strong>Linux graphics prerequisite</strong></summary>
+
+MuJoCo imports EGL even for these headless, non-rendered checks:
 
 ```bash
 sudo apt-get install -y libegl1 libgl1 libgl1-mesa-dri
 ```
 
-The saved-model check passed on macOS and on the Ubuntu GitHub runner. CI
-repeats setup, lint, type checking, coverage-gated tests, saved-model simulation,
-public-data reconstruction, media validation and complete-history privacy checks.
+</details>
 
-The numerical inputs for controller comparison, policy training and ablations
-are also public. A clone falls back to `data/public/trajectories/` when the
-private processing directory is absent. To rerun the longer experiments, use a
-separate clone: these commands regenerate files in `results/`.
+<details>
+<summary><strong>Longer fixed-seed experiment commands</strong></summary>
+
+Run these in a separate clone because they regenerate files under `results/`:
 
 ```bash
-make phase4e-diagnostics  # expected direct-path failure and safe DMP diagnostic
-make phase4e-preflight   # five safe teacher rollouts before the comparison
-make phase4e   # calibrated controller comparison
-make phase5b   # fixed train/validation/test GRU evaluation
-make phase6    # fixed-seed ablations and precision comparison
+make phase4e-diagnostics
+make phase4e-preflight
+make phase4e
+make phase5b
+make phase6
 ```
 
-The commands use pinned dependencies and fixed seed manifests. Numerical
-physics and timing measurements can differ across operating systems; the
-committed results remain the historical reference. The five-case smoke test
-and public-input reconstruction are checked in CI, not the full sweeps. Raw
-recordings remain read-only and excluded from Git. Regenerating the vision
-extraction and its quality gate still requires those private recordings.
+The dependencies, configurations, and seed manifests are committed. Physics
+and latency values may vary across platforms; committed outputs are the
+historical reference.
 
-## Scope
+</details>
 
-Learning robot behaviour from human video, DMP retargeting, and compact
-imitation policies are established ideas. Phone2Panda does not claim a new
-general-purpose robotics algorithm or physical-robot validation. Its narrower
-contribution is a reproducible, low-cost integration with unusually explicit
-safety gates and controlled evidence that the personally collected paths alter
-robot behaviour. See [related work](docs/related_work.md) for the closest
-systems and the differences.
+## Data, privacy, and provenance
 
-Main limitations:
+Raw recordings remain private, read-only, and excluded from Git. The released
+CSV bundle contains only normalized coordinates, confidence, validity flags,
+and provenance hashes. `make verify-data` audits all 36 trajectories and
+rebuilds their DMPs. CI also scans the tracked tree and complete Git history for
+raw media, audio, metadata, local paths, oversized files, and likely secrets.
 
-- Simulation only; no claim of safe transfer to a physical Panda.
-- One demonstrator, camera, object, and obstacle family.
-- The tracker observes a marked 2D object path, not full 6D pose or contact.
-- A clone can rebuild motion priors from the released numerical trajectories,
-  run saved-model simulation and rerun the numerical experiments. It cannot
-  regenerate video extraction or independently recheck the visual quality gate
-  without the private recordings.
+A clone can reproduce motion priors, saved-model rollouts, and the numerical
+experiments from public inputs. It cannot independently rerun video extraction
+or visually audit the recordings without the private source videos.
 
-See [known issues](KNOWN_ISSUES.md), the [dataset card](docs/dataset_card.md),
-and the [model card](docs/model_card.md) for exact boundaries.
+## Scope and limitations
 
-## Repository map
+Phone2Panda is a reproducible integration study, not a new general-purpose
+robotics algorithm or a physical-robot safety claim.
 
-- `src/phone2panda/pilot_validation/`: decode, calibration, tracking, and gates
-- `src/phone2panda/trajectories/`: smoothing, resampling, and DMPs
-- `src/phone2panda/sim/`: robosuite Panda environment and phased control
-- `src/phone2panda/policy/`: dependency-free normalized GRU
-- `src/phone2panda/evaluation/`: fixed-scenario comparisons and ablations
-- `configs/`: versioned experiment settings
-- `data/public/`: sanitized numerical trajectories, schema and provenance hashes
-- `results/`: selected machine-readable records and public-safe media
+- Validation is simulation-only; there was no deployment on a physical Panda.
+- Data comes from one demonstrator, camera, object, and obstacle family.
+- Vision tracks a marked 2D object path, not full 6D pose or contact.
+- All 36 accepted recordings contribute motion priors; this is not a
+  held-out-human-recording study.
+- Camera intrinsics and independent frame-level ground truth were unavailable.
+- The controller does not provide general whole-arm motion planning or
+  standards-compliant industrial safety.
+
+See [known issues](KNOWN_ISSUES.md) for operational details.
+
+## Documentation
+
+| Topic | Document |
+| --- | --- |
+| System boundaries and interfaces | [Design](docs/design.md) |
+| Recording protocol | [Data collection](docs/data_collection.md) |
+| Released data and provenance | [Dataset card](docs/dataset_card.md) |
+| GRU purpose, evaluation, and limits | [Model card](docs/model_card.md) |
+| Chronological evidence | [Experiments](docs/experiments.md) |
+| Design choices and rejected alternatives | [Decisions](docs/decisions.md) |
+| Prior work | [Related work](docs/related_work.md) |
+| Engineering verification | [Standards-hardening plan](docs/standards_hardening_plan.md) |
+
+Repository layout:
+
+- `src/phone2panda/pilot_validation/` — video decoding, calibration, tracking, and gates
+- `src/phone2panda/trajectories/` — smoothing, resampling, and DMPs
+- `src/phone2panda/sim/` — Panda environment and phased controller
+- `src/phone2panda/policy/` — dependency-free normalized GRU
+- `src/phone2panda/evaluation/` — fixed-scenario comparisons and ablations
+- `data/public/` — sanitized trajectories, schema, and provenance hashes
+- `configs/` and `results/` — versioned settings and selected evidence
 
 ## Licence and citation
 
