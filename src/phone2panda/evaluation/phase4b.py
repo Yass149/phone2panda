@@ -8,7 +8,7 @@ import os
 import platform
 import time
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from time import perf_counter_ns
 from typing import Any
@@ -416,6 +416,299 @@ def _contact_types(
     return object_collision, robot_collision
 
 
+@dataclass
+class _RolloutExecution:
+    """Mutable state and phase operations for one rollout."""
+
+    config: Phase4BConfig
+    env: HumanPathPickPlace
+    capture_video: bool
+    contact_callback: ContactCallback | None
+    minimum_transport_cube_z_m: float | None
+    monitor_transport_height_drop: bool
+    action_provider: ActionProvider | None
+    observation: dict[str, Any] = field(init=False)
+    controller: dict[str, Any] = field(init=False)
+    workspace: dict[str, Any] = field(init=False)
+    video_config: dict[str, Any] = field(init=False)
+    eef_site: int = field(init=False)
+    frames: list[NDArray[np.uint8]] = field(default_factory=list, init=False)
+    actions: list[FloatArray] = field(default_factory=list, init=False)
+    cube_path: list[FloatArray] = field(default_factory=list, init=False)
+    eef_path: list[FloatArray] = field(default_factory=list, init=False)
+    latencies_ms: list[float] = field(default_factory=list, init=False)
+    phases: list[dict[str, Any]] = field(default_factory=list, init=False)
+    saturation_steps: int = field(default=0, init=False)
+    object_collision_steps: int = field(default=0, init=False)
+    robot_collision_steps: int = field(default=0, init=False)
+    dropped: bool = field(default=False, init=False)
+
+    def __post_init__(self) -> None:
+        self.observation = self.env.reset()
+        _reset_gripper_state(self.env)
+        self.controller = self.config.phase4a.raw["controller"]
+        self.workspace = self.config.phase4a.raw["workspace"]
+        self.video_config = self.config.phase4a.raw["video"]
+        self.eef_site = self.env.robots[0].eef_site_id["right"]
+
+    def step_toward(
+        self,
+        target: FloatArray,
+        gripper: float,
+        *,
+        monitor_drop: bool = False,
+        yaw_command: float = 0.0,
+    ) -> float:
+        eef = np.asarray(self.env.sim.data.site_xpos[self.eef_site])
+        cube_before = np.asarray(self.env.sim.data.body_xpos[self.env.cube_body_id])
+        started = perf_counter_ns()
+        if self.action_provider is None:
+            action, saturated = bounded_action(
+                target - eef,
+                float(self.controller["position_output_limit"]),
+                gripper,
+            )
+        else:
+            raw_action = np.asarray(
+                self.action_provider(target.copy(), gripper, eef.copy(), cube_before.copy()),
+                dtype=np.float64,
+            )
+            if raw_action.shape != (7,) or not np.all(np.isfinite(raw_action)):
+                raise ValueError("Action provider must return one finite seven-value action")
+            saturated = bool(np.any(np.abs(raw_action) > 1.0))
+            action = np.clip(raw_action, -1.0, 1.0)
+        action[5] = float(np.clip(yaw_command, -1.0, 1.0))
+        self.latencies_ms.append((perf_counter_ns() - started) / 1_000_000.0)
+        self.saturation_steps += int(saturated)
+        self.observation, _, _, _ = self.env.step(action)
+        object_collision, robot_collision = _contact_types(
+            self.env, len(self.actions), self.contact_callback
+        )
+        self.object_collision_steps += int(object_collision)
+        self.robot_collision_steps += int(robot_collision)
+        cube = np.asarray(self.env.sim.data.body_xpos[self.env.cube_body_id]).copy()
+        eef_after = np.asarray(self.env.sim.data.site_xpos[self.eef_site]).copy()
+        if monitor_drop:
+            threshold = self.minimum_transport_cube_z_m
+            if threshold is None:
+                threshold = float(self.workspace["table_z"]) + 0.08
+            height_drop = self.monitor_transport_height_drop and cube[2] < threshold
+            self.dropped |= bool(height_drop or np.linalg.norm(cube - eef_after) > 0.08)
+        self.actions.append(action.copy())
+        self.cube_path.append(cube)
+        self.eef_path.append(eef_after)
+        self._capture_frame()
+        return float(np.linalg.norm(target - eef_after))
+
+    def _capture_frame(self) -> None:
+        stride = int(self.config.raw["video"]["frame_stride"])
+        if self.capture_video and len(self.actions) % stride == 0:
+            frame = self.observation[f"{self.video_config['camera']}_image"]
+            self.frames.append(np.asarray(frame, dtype=np.uint8))
+
+    def converge(self, name: str, target: FloatArray, gripper: float) -> None:
+        start_step = len(self.actions)
+        error = float("inf")
+        for _ in range(int(self.controller["phase_timeout_steps"])):
+            error = self.step_toward(target, gripper)
+            if error <= float(self.controller["position_tolerance"]):
+                break
+        self.phases.append(
+            {
+                "name": name,
+                "steps": len(self.actions) - start_step,
+                "final_position_error_m": error,
+            }
+        )
+
+    def hold(
+        self,
+        name: str,
+        target: FloatArray,
+        gripper: float,
+        steps: int,
+        *,
+        monitor_drop: bool = False,
+        yaw_command: float = 0.0,
+    ) -> None:
+        start_step = len(self.actions)
+        for _ in range(steps):
+            self.step_toward(
+                target,
+                gripper,
+                monitor_drop=monitor_drop,
+                yaw_command=yaw_command,
+            )
+        self.phases.append({"name": name, "steps": len(self.actions) - start_step})
+
+    def transport(self, path: FloatArray, method: str) -> tuple[int, int]:
+        start_step = len(self.actions)
+        transport_z = float(self.workspace["transport_z"])
+        for xy in path:
+            target = np.asarray([xy[0], xy[1], transport_z])
+            for _ in range(int(self.controller["waypoint_steps"])):
+                self.step_toward(target, 1.0, monitor_drop=True)
+        end_step = len(self.actions)
+        self.phases.append(
+            {
+                "name": f"transport_{method}",
+                "steps": end_step - start_step,
+                "waypoints": len(path),
+            }
+        )
+        return start_step, end_step
+
+    def apply_pre_lower_posture(
+        self,
+        goal_xy: FloatArray,
+        steps: int,
+        yaw_command: float,
+    ) -> None:
+        if not steps:
+            return
+        target = np.asarray([*goal_xy, float(self.workspace["transport_z"])])
+        self.hold(
+            "pre_lower_safe_posture",
+            target,
+            1.0,
+            steps,
+            monitor_drop=True,
+            yaw_command=yaw_command,
+        )
+
+    def place(
+        self,
+        goal_xy: FloatArray,
+        obstacle_xy: FloatArray,
+        goal_side_offset: float,
+        lateral_staging_xy: FloatArray | None,
+    ) -> tuple[FloatArray, FloatArray | None, FloatArray | None]:
+        lower = np.asarray([*goal_xy, float(self.workspace["grasp_z"])])
+        if lateral_staging_xy is not None:
+            staging_high, staging_low = self._staging_points(lateral_staging_xy)
+            self.converge("route_side_staging", staging_high, 1.0)
+            self.converge("lower_route_side", staging_low, 1.0)
+            self.converge("place_from_route_side", lower, 1.0)
+            return lower, staging_low, staging_high
+        if goal_side_offset > 0.0:
+            goal_side = goal_xy - obstacle_xy
+            goal_side /= max(float(np.linalg.norm(goal_side)), 1e-12)
+            staging_high, staging_low = self._staging_points(
+                goal_xy + goal_side * goal_side_offset
+            )
+            self.converge("goal_side_staging", staging_high, 1.0)
+            self.converge("lower_goal_side", staging_low, 1.0)
+            self.converge("place_from_goal_side", lower, 1.0)
+            return lower, staging_low, staging_high
+        self.converge("lower", lower, 1.0)
+        return lower, None, None
+
+    def _staging_points(self, xy: FloatArray) -> tuple[FloatArray, FloatArray]:
+        staging_xy = np.asarray(xy, dtype=np.float64)
+        high = np.asarray([*staging_xy, float(self.workspace["transport_z"])])
+        low = np.asarray([*staging_xy, float(self.workspace["grasp_z"])])
+        return high, low
+
+    def retreat(
+        self,
+        goal_xy: FloatArray,
+        lateral_staging_xy: FloatArray | None,
+        staging_low: FloatArray | None,
+        staging_high: FloatArray | None,
+    ) -> FloatArray:
+        if lateral_staging_xy is not None:
+            assert staging_low is not None and staging_high is not None
+            self.converge("retreat_route_side_low", staging_low, -1.0)
+            self.converge("retreat_route_side_high", staging_high, -1.0)
+            return staging_high
+        retreat = np.asarray([*goal_xy, float(self.workspace["approach_z"])])
+        self.converge("retreat", retreat, -1.0)
+        return retreat
+
+
+def _build_rollout_result(
+    execution: _RolloutExecution,
+    scenario: Scenario,
+    method: str,
+    selection: dict[str, Any],
+    transport_start: int,
+    transport_end: int,
+    initial_eef: FloatArray,
+    initial_cube: FloatArray,
+) -> dict[str, Any]:
+    actions = np.asarray(execution.actions)
+    cube_path = np.asarray(execution.cube_path)
+    eef_path = np.asarray(execution.eef_path)
+    transport_cube = cube_path[transport_start:transport_end, :2]
+    grasp_distance = np.linalg.norm(
+        cube_path[transport_start:transport_end] - eef_path[transport_start:transport_end],
+        axis=1,
+    )
+    movement = float(np.sum(np.linalg.norm(np.diff(transport_cube, axis=0), axis=1)))
+    direct = float(np.linalg.norm(scenario.goal_xy - scenario.start_xy))
+    path_efficiency = min(1.0, direct / movement) if movement > 1e-9 else 0.0
+    clearance = signed_rectangle_clearance(
+        transport_cube,
+        scenario.obstacle_xy,
+        scenario.obstacle_half_size,
+        float(execution.config.raw["scenario"]["object_radius_m"]),
+    )
+    placement_error = float(np.linalg.norm(cube_path[-1, :2] - scenario.goal_xy))
+    target_placed = bool(execution.env._check_success())
+    outcome = evaluate_object_task(
+        placement_succeeded=target_placed,
+        object_collision=bool(execution.object_collision_steps),
+        dropped=execution.dropped,
+    )
+    return {
+        "schema_version": 1,
+        "method": method,
+        "scenario": scenario.serialise(),
+        **selection,
+        "object_task_success": outcome.success,
+        "task_success": outcome.success,
+        "task_success_semantics": "legacy_alias_of_object_task_success",
+        "target_placed": target_placed,
+        "failure_reasons": list(outcome.failure_reasons),
+        "collision": bool(execution.object_collision_steps),
+        "collision_steps": execution.object_collision_steps,
+        "object_collision_steps": execution.object_collision_steps,
+        "robot_obstacle_contact": bool(execution.robot_collision_steps),
+        "robot_obstacle_contact_steps": execution.robot_collision_steps,
+        "drop": execution.dropped,
+        "maximum_transport_grasp_distance_m": float(np.max(grasp_distance)),
+        "transport_cube_center_z_median_m": float(
+            np.median(cube_path[transport_start:transport_end, 2])
+        ),
+        "transport_eef_z_median_m": float(
+            np.median(eef_path[transport_start:transport_end, 2])
+        ),
+        "transport_grasp_offset_z_median_m": float(
+            np.median(
+                eef_path[transport_start:transport_end, 2]
+                - cube_path[transport_start:transport_end, 2]
+            )
+        ),
+        "placement_error_m": placement_error,
+        "steps": len(execution.actions),
+        "path_efficiency": path_efficiency,
+        "minimum_obstacle_clearance_m": float(np.min(clearance)),
+        "action_saturation_steps": execution.saturation_steps,
+        "action_saturation_rate": execution.saturation_steps / len(execution.actions),
+        "action_bound_violations": int(np.sum(np.abs(actions) > 1.0 + 1e-12)),
+        "maximum_absolute_action": float(np.max(np.abs(actions))),
+        "controller_latency_median_ms": float(np.median(execution.latencies_ms)),
+        "controller_latency_p95_ms": float(np.percentile(execution.latencies_ms, 95)),
+        "phases": execution.phases,
+        "_latencies_ms": execution.latencies_ms,
+        "_actions": actions,
+        "_initial_eef": initial_eef,
+        "_initial_cube": initial_cube,
+        "_eef_path": eef_path,
+        "_cube_path": cube_path,
+    }
+
+
 def execute_rollout(
     config: Phase4BConfig,
     env: HumanPathPickPlace,
@@ -434,242 +727,54 @@ def execute_rollout(
     action_provider: ActionProvider | None = None,
 ) -> tuple[dict[str, Any], list[NDArray[np.uint8]]]:
     np.random.seed(scenario.seed)
-    observation = env.reset()
-    _reset_gripper_state(env)
-    controller = config.phase4a.raw["controller"]
-    workspace = config.phase4a.raw["workspace"]
-    video_cfg = config.phase4a.raw["video"]
-    eef_site = env.robots[0].eef_site_id["right"]
-    table_z = float(workspace["table_z"])
-    frames: list[NDArray[np.uint8]] = []
-    actions: list[FloatArray] = []
-    cube_path: list[FloatArray] = []
-    eef_path: list[FloatArray] = []
-    latencies_ms: list[float] = []
-    phases: list[dict[str, Any]] = []
-    saturation_steps = 0
-    object_collision_steps = 0
-    robot_collision_steps = 0
-    dropped = False
-    transport_start = 0
-    transport_end = 0
-    initial_eef = np.asarray(env.sim.data.site_xpos[eef_site]).copy()
+    execution = _RolloutExecution(
+        config=config,
+        env=env,
+        capture_video=capture_video,
+        contact_callback=contact_callback,
+        minimum_transport_cube_z_m=minimum_transport_cube_z_m,
+        monitor_transport_height_drop=monitor_transport_height_drop,
+        action_provider=action_provider,
+    )
+    initial_eef = np.asarray(env.sim.data.site_xpos[execution.eef_site]).copy()
     initial_cube = np.asarray(env.sim.data.body_xpos[env.cube_body_id]).copy()
-
-    def step_toward(
-        target: FloatArray,
-        gripper: float,
-        monitor_drop: bool = False,
-        yaw_command: float = 0.0,
-    ) -> float:
-        nonlocal observation, saturation_steps, object_collision_steps
-        nonlocal robot_collision_steps, dropped
-        eef = np.asarray(env.sim.data.site_xpos[eef_site])
-        cube_before = np.asarray(env.sim.data.body_xpos[env.cube_body_id])
-        started = perf_counter_ns()
-        if action_provider is None:
-            action, saturated = bounded_action(
-                target - eef,
-                float(controller["position_output_limit"]),
-                gripper,
-            )
-        else:
-            raw_action = np.asarray(
-                action_provider(target.copy(), gripper, eef.copy(), cube_before.copy()),
-                dtype=np.float64,
-            )
-            if raw_action.shape != (7,) or not np.all(np.isfinite(raw_action)):
-                raise ValueError("Action provider must return one finite seven-value action")
-            saturated = bool(np.any(np.abs(raw_action) > 1.0))
-            action = np.clip(raw_action, -1.0, 1.0)
-        action[5] = float(np.clip(yaw_command, -1.0, 1.0))
-        latencies_ms.append((perf_counter_ns() - started) / 1_000_000.0)
-        saturation_steps += int(saturated)
-        observation, _, _, _ = env.step(action)
-        object_collision, robot_collision = _contact_types(
-            env, len(actions), contact_callback
-        )
-        object_collision_steps += int(object_collision)
-        robot_collision_steps += int(robot_collision)
-        cube = np.asarray(env.sim.data.body_xpos[env.cube_body_id]).copy()
-        eef_after = np.asarray(env.sim.data.site_xpos[eef_site]).copy()
-        if monitor_drop:
-            height_threshold = (
-                minimum_transport_cube_z_m
-                if minimum_transport_cube_z_m is not None
-                else table_z + 0.08
-            )
-            height_drop = monitor_transport_height_drop and cube[2] < height_threshold
-            dropped |= bool(height_drop or np.linalg.norm(cube - eef_after) > 0.08)
-        actions.append(action.copy())
-        cube_path.append(cube)
-        eef_path.append(eef_after)
-        if capture_video and len(actions) % int(config.raw["video"]["frame_stride"]) == 0:
-            frame = observation[f"{video_cfg['camera']}_image"]
-            frames.append(np.asarray(frame, dtype=np.uint8))
-        return float(np.linalg.norm(target - eef_after))
-
-    def converge(name: str, target: FloatArray, gripper: float) -> None:
-        start_step = len(actions)
-        error = float("inf")
-        for _ in range(int(controller["phase_timeout_steps"])):
-            error = step_toward(target, gripper)
-            if error <= float(controller["position_tolerance"]):
-                break
-        phases.append(
-            {"name": name, "steps": len(actions) - start_step, "final_position_error_m": error}
-        )
-
     start_xy, goal_xy = np.asarray(path[0]), np.asarray(path[-1])
+    workspace = execution.workspace
     approach = np.asarray([*start_xy, float(workspace["approach_z"])])
     grasp = np.asarray([*start_xy, float(workspace["grasp_z"])])
     lift = np.asarray([*start_xy, float(workspace["transport_z"])])
-    converge("approach", approach, -1.0)
-    converge("grasp", grasp, -1.0)
-    start_step = len(actions)
-    for _ in range(int(controller["grasp_steps"])):
-        step_toward(grasp, 1.0)
-    phases.append({"name": "close", "steps": len(actions) - start_step})
-    converge("lift", lift, 1.0)
-    transport_start = len(actions)
-    for xy in path:
-        target = np.asarray([xy[0], xy[1], float(workspace["transport_z"])])
-        for _ in range(int(controller["waypoint_steps"])):
-            step_toward(target, 1.0, monitor_drop=True)
-    transport_end = len(actions)
-    phases.append(
-        {
-            "name": f"transport_{method}",
-            "steps": transport_end - transport_start,
-            "waypoints": len(path),
-        }
-    )
-    if pre_lower_yaw_steps:
-        posture_target = np.asarray([*goal_xy, float(workspace["transport_z"])])
-        start_step = len(actions)
-        for _ in range(pre_lower_yaw_steps):
-            step_toward(
-                posture_target,
-                1.0,
-                monitor_drop=True,
-                yaw_command=pre_lower_yaw_command,
-            )
-        phases.append(
-            {"name": "pre_lower_safe_posture", "steps": len(actions) - start_step}
-        )
-    lower = np.asarray([*goal_xy, float(workspace["grasp_z"])])
-    staging_high: FloatArray | None = None
-    staging_low: FloatArray | None = None
-    if lateral_staging_xy is not None:
-        staging_xy = np.asarray(lateral_staging_xy, dtype=np.float64)
-        staging_high = np.asarray([*staging_xy, float(workspace["transport_z"])])
-        staging_low = np.asarray([*staging_xy, float(workspace["grasp_z"])])
-        converge("route_side_staging", staging_high, 1.0)
-        converge("lower_route_side", staging_low, 1.0)
-        converge("place_from_route_side", lower, 1.0)
-    elif goal_side_lower_offset_m > 0.0:
-        goal_side = goal_xy - scenario.obstacle_xy
-        goal_side /= max(float(np.linalg.norm(goal_side)), 1e-12)
-        staging_xy = goal_xy + goal_side * goal_side_lower_offset_m
-        staging_high = np.asarray([*staging_xy, float(workspace["transport_z"])])
-        staging_low = np.asarray([*staging_xy, float(workspace["grasp_z"])])
-        converge("goal_side_staging", staging_high, 1.0)
-        converge("lower_goal_side", staging_low, 1.0)
-        converge("place_from_goal_side", lower, 1.0)
-    else:
-        converge("lower", lower, 1.0)
-    start_step = len(actions)
-    for _ in range(int(controller["release_steps"])):
-        step_toward(lower, -1.0)
-    phases.append({"name": "release", "steps": len(actions) - start_step})
-    if lateral_staging_xy is not None:
-        assert staging_low is not None and staging_high is not None
-        converge("retreat_route_side_low", staging_low, -1.0)
-        converge("retreat_route_side_high", staging_high, -1.0)
-        retreat = staging_high
-    else:
-        retreat = np.asarray([*goal_xy, float(workspace["approach_z"])])
-        converge("retreat", retreat, -1.0)
-    start_step = len(actions)
-    for _ in range(int(controller["settle_steps"])):
-        step_toward(retreat, -1.0)
-    phases.append({"name": "settle", "steps": len(actions) - start_step})
-
-    action_values = np.asarray(actions)
-    cube_values = np.asarray(cube_path)
-    eef_values = np.asarray(eef_path)
-    transport_cube = cube_values[transport_start:transport_end, :2]
-    transport_grasp_distance = np.linalg.norm(
-        cube_values[transport_start:transport_end]
-        - eef_values[transport_start:transport_end],
-        axis=1,
-    )
-    movement = float(np.sum(np.linalg.norm(np.diff(transport_cube, axis=0), axis=1)))
-    direct = float(np.linalg.norm(scenario.goal_xy - scenario.start_xy))
-    path_efficiency = min(1.0, direct / movement) if movement > 1e-9 else 0.0
-    clearances = signed_rectangle_clearance(
-        transport_cube,
+    execution.converge("approach", approach, -1.0)
+    execution.converge("grasp", grasp, -1.0)
+    execution.hold("close", grasp, 1.0, int(execution.controller["grasp_steps"]))
+    execution.converge("lift", lift, 1.0)
+    transport_start, transport_end = execution.transport(path, method)
+    execution.apply_pre_lower_posture(goal_xy, pre_lower_yaw_steps, pre_lower_yaw_command)
+    lower, staging_low, staging_high = execution.place(
+        goal_xy,
         scenario.obstacle_xy,
-        scenario.obstacle_half_size,
-        float(config.raw["scenario"]["object_radius_m"]),
+        goal_side_lower_offset_m,
+        lateral_staging_xy,
     )
-    cube_final = cube_values[-1]
-    placement_error = float(np.linalg.norm(cube_final[:2] - scenario.goal_xy))
-    collision_steps = object_collision_steps
-    target_placed = bool(env._check_success())
-    object_outcome = evaluate_object_task(
-        placement_succeeded=target_placed,
-        object_collision=bool(object_collision_steps),
-        dropped=dropped,
+    execution.hold(
+        "release", lower, -1.0, int(execution.controller["release_steps"])
     )
-    result = {
-        "schema_version": 1,
-        "method": method,
-        "scenario": scenario.serialise(),
-        **selection,
-        "object_task_success": object_outcome.success,
-        "task_success": object_outcome.success,
-        "task_success_semantics": "legacy_alias_of_object_task_success",
-        "target_placed": target_placed,
-        "failure_reasons": list(object_outcome.failure_reasons),
-        "collision": bool(collision_steps),
-        "collision_steps": collision_steps,
-        "object_collision_steps": object_collision_steps,
-        "robot_obstacle_contact": bool(robot_collision_steps),
-        "robot_obstacle_contact_steps": robot_collision_steps,
-        "drop": dropped,
-        "maximum_transport_grasp_distance_m": float(np.max(transport_grasp_distance)),
-        "transport_cube_center_z_median_m": float(
-            np.median(cube_values[transport_start:transport_end, 2])
-        ),
-        "transport_eef_z_median_m": float(
-            np.median(eef_values[transport_start:transport_end, 2])
-        ),
-        "transport_grasp_offset_z_median_m": float(
-            np.median(
-                eef_values[transport_start:transport_end, 2]
-                - cube_values[transport_start:transport_end, 2]
-            )
-        ),
-        "placement_error_m": placement_error,
-        "steps": len(actions),
-        "path_efficiency": path_efficiency,
-        "minimum_obstacle_clearance_m": float(np.min(clearances)),
-        "action_saturation_steps": saturation_steps,
-        "action_saturation_rate": saturation_steps / len(actions),
-        "action_bound_violations": int(np.sum(np.abs(action_values) > 1.0 + 1e-12)),
-        "maximum_absolute_action": float(np.max(np.abs(action_values))),
-        "controller_latency_median_ms": float(np.median(latencies_ms)),
-        "controller_latency_p95_ms": float(np.percentile(latencies_ms, 95)),
-        "phases": phases,
-        "_latencies_ms": latencies_ms,
-        "_actions": action_values,
-        "_initial_eef": initial_eef,
-        "_initial_cube": initial_cube,
-        "_eef_path": eef_values,
-        "_cube_path": cube_values,
-    }
-    return result, frames
+    retreat = execution.retreat(
+        goal_xy, lateral_staging_xy, staging_low, staging_high
+    )
+    execution.hold(
+        "settle", retreat, -1.0, int(execution.controller["settle_steps"])
+    )
+    result = _build_rollout_result(
+        execution,
+        scenario,
+        method,
+        selection,
+        transport_start,
+        transport_end,
+        initial_eef,
+        initial_cube,
+    )
+    return result, execution.frames
 
 
 def _public_record(record: dict[str, Any]) -> dict[str, Any]:
