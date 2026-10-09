@@ -33,6 +33,50 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _validate_motion_prior_arrays(
+    entries: list[dict[str, Any]],
+    paths: np.ndarray,
+    endpoints: np.ndarray,
+    obstacle: np.ndarray,
+    half_size: np.ndarray,
+) -> None:
+    if not 1 <= len(entries) <= 36 or paths.shape != (len(entries), 80, 2):
+        raise ValueError("Invalid motion-prior dimensions")
+    if endpoints.shape != (len(entries), 2, 2):
+        raise ValueError("Invalid endpoint dimensions")
+    if obstacle.shape != (2,) or half_size.shape != (2,) or np.any(half_size <= 0):
+        raise ValueError("Invalid obstacle geometry")
+    if not all(np.isfinite(values).all() for values in (paths, endpoints, obstacle, half_size)):
+        raise ValueError("Motion-prior bundle contains non-finite values")
+    if len({row["episode_id"] for row in entries}) != len(entries):
+        raise ValueError("Duplicate demonstration identifier")
+
+
+def _build_demonstrations(
+    entries: list[dict[str, Any]], paths: np.ndarray, endpoints: np.ndarray
+) -> list[Demonstration]:
+    demonstrations = []
+    for index, row in enumerate(entries):
+        if row["start_id"] not in {"s1", "s2", "s3"} or row["route"] not in {"left", "right"}:
+            raise ValueError("Invalid start or route label")
+        if not all(0 <= float(row[key]) <= 1 for key in ("coverage", "confidence")):
+            raise ValueError("Invalid demonstration confidence")
+        demonstrations.append(
+            Demonstration(
+                episode_id=str(row["episode_id"]),
+                start_id=str(row["start_id"]),
+                route=str(row["route"]),
+                split=str(row["split"]),
+                coverage=float(row["coverage"]),
+                confidence=float(row["confidence"]),
+                # Only endpoints are retained; raw-replay evaluation is not supported.
+                raw_robot=endpoints[index],
+                dmp_robot=paths[index],
+            )
+        )
+    return demonstrations
+
+
 def load_motion_priors(directory: Path) -> tuple[list[Demonstration], dict[str, Any]]:
     manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
     if manifest.get("schema_version") != 1:
@@ -46,36 +90,9 @@ def load_motion_priors(directory: Path) -> tuple[list[Demonstration], dict[str, 
         obstacle = data["obstacle_xy"].copy()
         half_size = data["obstacle_half_size"].copy()
     entries = manifest["demonstrations"]
-    if not 1 <= len(entries) <= 36 or paths.shape != (len(entries), 80, 2):
-        raise ValueError("Invalid motion-prior dimensions")
-    if endpoints.shape != (len(entries), 2, 2):
-        raise ValueError("Invalid endpoint dimensions")
-    if obstacle.shape != (2,) or half_size.shape != (2,) or np.any(half_size <= 0):
-        raise ValueError("Invalid obstacle geometry")
-    if not all(np.isfinite(values).all() for values in (paths, endpoints, obstacle, half_size)):
-        raise ValueError("Motion-prior bundle contains non-finite values")
-    if len({row["episode_id"] for row in entries}) != len(entries):
-        raise ValueError("Duplicate demonstration identifier")
-    demos = []
-    for index, row in enumerate(entries):
-        if row["start_id"] not in {"s1", "s2", "s3"} or row["route"] not in {"left", "right"}:
-            raise ValueError("Invalid start or route label")
-        if not all(0 <= float(row[key]) <= 1 for key in ("coverage", "confidence")):
-            raise ValueError("Invalid demonstration confidence")
-        demos.append(
-            Demonstration(
-                episode_id=str(row["episode_id"]),
-                start_id=str(row["start_id"]),
-                route=str(row["route"]),
-                split=str(row["split"]),
-                coverage=float(row["coverage"]),
-                confidence=float(row["confidence"]),
-                # Only endpoints are retained; raw-replay evaluation is not supported.
-                raw_robot=endpoints[index],
-                dmp_robot=paths[index],
-            )
-        )
-    return demos, {"obstacle_xy": obstacle, "obstacle_half_size": half_size}
+    _validate_motion_prior_arrays(entries, paths, endpoints, obstacle, half_size)
+    demonstrations = _build_demonstrations(entries, paths, endpoints)
+    return demonstrations, {"obstacle_xy": obstacle, "obstacle_half_size": half_size}
 
 
 def representative_scenarios(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
