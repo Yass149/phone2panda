@@ -84,27 +84,12 @@ Machine-readable evidence:
 [`ablation summary`](results/phase6/ablation_summary.json) ·
 [`precision benchmark`](results/phase6/precision_benchmark.json)
 
-<details>
-<summary><strong>See the four-controller comparison</strong></summary>
-
-<p>
-  <img src="results/phase4e/comparison.png" width="1100" alt="Safe and failed rollout counts with median obstacle clearance across four controllers">
-</p>
-
-| Controller | Safe / 50 | Wilson 95% CI | Object collisions | Robot contacts | Drops | Median clearance |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| DMP + route/confidence | **50** | 92.9–100.0% | **0** | **0** | **0** | **22.4 mm** |
-| DMP retargeting | 49 | 89.5–99.6% | 0 | 1 | 0 | 19.9 mm |
-| Nearest raw replay | 49 | 89.5–99.6% | 0 | 1 | 0 | 20.6 mm |
-| Straight line | 0 | 0.0–7.1% | 50 | 50 | 6 | -48.3 mm |
-
 [Route-aware success](results/phase4e/representative_calibrated_success.mp4) ·
-[Straight-line collision](results/phase4e/representative_calibrated_failure.mp4)
+[Straight-line collision](results/phase4e/representative_calibrated_failure.mp4) ·
+[Four-controller plot](results/phase4e/comparison.png)
 
 The 50/50 result has a Wilson 95% lower bound of 92.9%. It establishes success
 on these fixed simulated scenarios, not industrial reliability.
-
-</details>
 
 ## Reproduce
 

@@ -357,7 +357,7 @@ def _make_environment(
     video = phase4a["video"]
     return HumanPathPickPlace(
         robots="Panda",
-        controller_configs=load_composite_controller_config(controller="BASIC", robot="Panda"),
+        controller_configs=load_composite_controller_config(robot="Panda"),
         start_xy=scenario.start_xy,
         target_xy=scenario.goal_xy,
         target_radius=float(workspace["target_radius"]),

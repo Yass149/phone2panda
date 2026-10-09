@@ -195,7 +195,7 @@ def make_environment(
     path = prepared["robot"]
     return HumanPathPickPlace(
         robots="Panda",
-        controller_configs=load_composite_controller_config(controller="BASIC", robot="Panda"),
+        controller_configs=load_composite_controller_config(robot="Panda"),
         start_xy=path[0],
         target_xy=path[-1],
         target_radius=float(workspace["target_radius"]),
