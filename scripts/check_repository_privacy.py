@@ -58,27 +58,33 @@ def text_findings(path: Path) -> list[str]:
     return text_findings_bytes(path.read_bytes())
 
 
-def media_findings(path: Path, data: bytes | None = None) -> list[str]:
-    relative = path.as_posix()
-    if relative not in PUBLIC_MEDIA:
-        return ["media is not on the public artifact allowlist"]
-    if path.suffix.lower() in {".gif", ".png"}:
-        try:
-            from PIL import Image
-        except ImportError:
-            return ["Pillow is required to audit staged PNG metadata"]
-        source = io.BytesIO(data) if data is not None else path
-        with Image.open(source) as image:
-            metadata = {str(key).lower(): str(value).lower() for key, value in image.info.items()}
-        allowed = {"background", "duration", "extension", "loop", "transparency", "version"}
-        unexpected = set(metadata) if path.suffix.lower() == ".png" else set(metadata) - allowed
-        if data is None and unexpected:
-            return ["image retains descriptive metadata"]
-        unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
-        if any(term in key or term in value for key, value in metadata.items() for term in unsafe):
-            return ["image contains location or device metadata"]
-        return []
+def _has_unsafe_metadata(metadata: dict[object, object]) -> bool:
+    unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
+    return any(
+        term in str(key).lower() or term in str(value).lower()
+        for key, value in metadata.items()
+        for term in unsafe
+    )
 
+
+def _image_media_findings(path: Path, data: bytes | None) -> list[str]:
+    try:
+        from PIL import Image
+    except ImportError:
+        return ["Pillow is required to audit staged PNG metadata"]
+    source = io.BytesIO(data) if data is not None else path
+    with Image.open(source) as image:
+        metadata = {str(key).lower(): str(value).lower() for key, value in image.info.items()}
+    allowed = {"background", "duration", "extension", "loop", "transparency", "version"}
+    unexpected = set(metadata) if path.suffix.lower() == ".png" else set(metadata) - allowed
+    if data is None and unexpected:
+        return ["image retains descriptive metadata"]
+    if _has_unsafe_metadata(metadata):
+        return ["image contains location or device metadata"]
+    return []
+
+
+def _video_media_findings(path: Path, data: bytes | None) -> list[str]:
     try:
         import av
     except ImportError:
@@ -88,24 +94,26 @@ def media_findings(path: Path, data: bytes | None = None) -> list[str]:
         if any(stream.type == "audio" for stream in container.streams):
             return ["video contains an audio stream"]
         metadata = dict(container.metadata)
-        if data is None:
-            allowed_format = {"major_brand", "minor_version", "compatible_brands"}
-            if set(metadata) - allowed_format:
-                return ["video retains descriptive container metadata"]
+        allowed_format = {"major_brand", "minor_version", "compatible_brands"}
+        if data is None and set(metadata) - allowed_format:
+            return ["video retains descriptive container metadata"]
         for stream in container.streams:
-            if data is None:
-                allowed_stream = {"language", "handler_name", "vendor_id"}
-                if set(stream.metadata) - allowed_stream:
-                    return ["video retains descriptive stream metadata"]
+            allowed_stream = {"language", "handler_name", "vendor_id"}
+            if data is None and set(stream.metadata) - allowed_stream:
+                return ["video retains descriptive stream metadata"]
             metadata.update(stream.metadata)
-    unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
-    if any(
-        term in str(key).lower() or term in str(value).lower()
-        for key, value in metadata.items()
-        for term in unsafe
-    ):
+    if _has_unsafe_metadata(metadata):
         return ["video contains location or device metadata"]
     return []
+
+
+def media_findings(path: Path, data: bytes | None = None) -> list[str]:
+    relative = path.as_posix()
+    if relative not in PUBLIC_MEDIA:
+        return ["media is not on the public artifact allowlist"]
+    if path.suffix.lower() in {".gif", ".png"}:
+        return _image_media_findings(path, data)
+    return _video_media_findings(path, data)
 
 
 def path_findings(path: Path, size: int, data: bytes) -> list[str]:
