@@ -28,6 +28,19 @@ https://github.com/user-attachments/assets/d6f34c27-e24b-484e-987e-88c90661ee87
 [Experiment log](docs/experiments.md) ·
 [Model card](docs/model_card.md)
 
+## Choose your path
+
+| Reader | Recommended route | What you will get |
+| --- | --- | --- |
+| **Recruitment reviewer · 2 min** | [Demo](#demo) → [headline results](#results) → [scope](#scope) | The problem, the visible robot behaviour, the strongest measured result and the boundaries of the claim. |
+| **Project or research lead · 5 min** | [Study](#study) → [what changed the result](#what-changed-the-result) → [research decisions](#research-decisions) | Why the project was built this way, which interventions mattered and what failed. |
+| **Robotics / ML reviewer · 10 min** | [System](#system) → [controller selection](#controller-selection) → [policy distillation](#policy-distillation) → [model card](docs/model_card.md) | Calibration, DMP retargeting, contact-aware evaluation, GRU distillation and limitations. |
+| **Reproducer or code reviewer · 15 min** | [Engineering assurance](#engineering-assurance) → [quick start](#quick-start-and-reproduction) → [dataset card](docs/dataset_card.md) → [experiment log](docs/experiments.md) | Exact commands, public inputs, quality gates, provenance and the evidence trail behind the claims. |
+
+**Shortest useful review:** watch the demo, inspect the two result plots, then
+read [Scope](#scope). **Deep technical review:** follow the final row and use the
+machine-readable artifacts linked beside each result.
+
 ## Study
 
 **Research question:** can one person's overhead phone demonstrations provide
