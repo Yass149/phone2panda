@@ -18,6 +18,7 @@ from phone2panda.public_demo import (
     SPLIT_MANIFEST,
     load_motion_priors,
     representative_scenarios,
+    run_public_demo,
     sha256,
 )
 
@@ -86,3 +87,24 @@ def test_saved_checkpoint_runs_with_public_route_features():
     assert policy.parameter_count == 3559
     assert np.isfinite(outputs.inverse(action[0])).all()
     assert np.isfinite(hidden).all()
+
+
+def test_public_rollout_preserves_phase_and_safety_contract():
+    report = run_public_demo(ROOT, episodes=1)
+    rollout = report["rollouts"][0]
+
+    assert report["passed"]
+    assert rollout["phase5a_gate_success"]
+    assert rollout["action_bound_violations"] == 0
+    assert rollout["steps"] == sum(phase["steps"] for phase in rollout["phases"])
+    assert [phase["name"] for phase in rollout["phases"]] == [
+        "approach",
+        "grasp",
+        "close",
+        "lift",
+        "transport_gru_policy",
+        "lower",
+        "release",
+        "retreat",
+        "settle",
+    ]
