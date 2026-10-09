@@ -6,6 +6,23 @@ robot safety. Work is strictly sequential: each task starts with a failing test,
 ends with focused and full-suite verification, and is committed before the next
 task begins.
 
+## Completion status
+
+Completed on 2026-10-09:
+
+- [x] unambiguous safety outcomes;
+- [x] corner-marker shape validation;
+- [x] reproducible run provenance;
+- [x] repository and CI safeguards;
+- [x] maintainability refactors with no remaining Ruff C901 findings;
+- [x] coverage and static-analysis gates;
+- [x] checksum-verified project-local `uv` bootstrap.
+
+Final verification: 57 tests passed, statement coverage was 47.18% against a
+45% ratchet, six stable numerical/safety modules passed mypy, the complete Git
+history passed the privacy audit, and a fresh clone passed setup and the public
+reproduction commands. Simulation characterization metrics were unchanged.
+
 ## Working rules
 
 1. Write a small test that states the requirement and confirm that it fails for
@@ -108,4 +125,3 @@ represented as solved here:
 - ISO 10218-style hazard analysis, safety-rated stops, guarding, and physical
   speed/force validation require the target robot, site, and responsible safety
   review.
-
