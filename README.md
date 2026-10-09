@@ -13,6 +13,7 @@ a direct start-to-goal controller completed **0/50**.
 [Inspect the results](#results) ·
 [Inspect the collected data](data/public/) ·
 [How it works](#system) ·
+[Engineering assurance](#engineering-assurance) ·
 [Reproduce the checks](#quick-start-and-reproduction)
 
 ## Demo
@@ -57,7 +58,8 @@ robosuite · Matplotlib · pytest
   <img src="docs/architecture.svg" width="1100" alt="Phone2Panda system architecture">
 </p>
 
-1. Four canvas markers calibrate each overhead recording into a unit workspace.
+1. Four L-shaped canvas markers calibrate each overhead recording into a unit
+   workspace; shape validation rejects corner-adjacent dark impostors.
 2. A red object marker becomes a confidence-weighted 2D trajectory.
 3. Left and right demonstrations form route-specific DMP motion priors.
 4. Candidate routes are retargeted to the seeded Panda scene and scored for
@@ -163,18 +165,48 @@ The complete chronological record is in the
 [experiment log](docs/experiments.md) and
 [decision log](docs/decisions.md).
 
+## Engineering assurance
+
+The standards-hardening work changed validation and software assurance, not the
+committed experimental outcomes. Its scope and verification record are in the
+[hardening plan](docs/standards_hardening_plan.md).
+
+| Concern | Implemented safeguard | Verification |
+| --- | --- | --- |
+| Ambiguous success metrics | Object-task success and calibrated safe success now use shared, explicit definitions; the historical `task_success` field remains a documented compatibility alias. | Truth-table tests cover placement failure, collision, unintended contact, drop and lost grasp. |
+| False canvas corners | Corner candidates must match the expected L orientation as well as area, extent and location. | Synthetic L markers pass, solid impostors fail, and the five pilot calibration windows retain their required coverage. |
+| Experiment provenance | Future run manifests record the Git commit, dirty state, configuration hash and `uv.lock` hash without absolute paths. | Clean, dirty and non-Git cases are tested. Historical result files were not rewritten. |
+| Private or unsafe publication artifacts | Staged files, the tracked tree and complete Git history are checked for raw media, audio, metadata, local paths, oversized files and high-confidence secrets. | The full-history and 16-file public-media audits pass in CI. |
+| Maintainability regressions | Stateful rollout phases are isolated behind small execution objects and complexity checking is enforced repository-wide. | Ruff reports no C901 violations; deterministic Phase 4A and saved-policy rollout metrics were unchanged by the refactor. |
+| Reproduction drift | Dependencies and Python are pinned; the downloaded `uv` installer and its platform binary are checksum-verified. | A clean clone passed setup and the public reproduction commands. |
+
+At this checkpoint, **57 tests pass** and statement coverage is **47.18%**, with
+a **45% minimum** enforced as a ratchet. Mypy currently gates six stable
+numerical, provenance and safety modules; it is intentionally not presented as
+whole-repository type coverage.
+
 ## Quick start and reproduction
 
-The bootstrap installs uv and CPython 3.11.17 inside the checkout, creates a
-project-local environment, and does not modify global Anaconda.
+The checksum-verified bootstrap installs the pinned uv and CPython 3.11.17
+inside the checkout, creates a project-local environment, and does not modify
+global Anaconda.
 
 ```bash
 make setup
-make test                 # unit and integration tests
+make lint                 # Ruff, including complexity checks
+make typecheck            # mypy on the stable typed module set
+make test                 # 57 tests plus the 45% coverage gate
 make verify-data          # audit 36 released trajectories and rebuild their DMPs
 make simulate-demo        # five saved-model Panda rollouts; no private data or training
 make smoke-demo           # decode and validate the public demo
 make evaluate-existing    # verify committed results and README numbers
+make privacy-history      # audit every Git blob for private artifacts
+```
+
+For the compact non-simulation software and publication gate, run:
+
+```bash
+make reproduce-public
 ```
 
 `simulate-demo` uses the committed checkpoint and 80-point DMP motion priors
@@ -190,8 +222,9 @@ when the rollouts do not render video:
 sudo apt-get install -y libegl1 libgl1 libgl1-mesa-dri
 ```
 
-The saved-model check passed on macOS and on the Ubuntu GitHub runner. The
-workflow above repeats setup, tests, simulation, media and privacy checks.
+The saved-model check passed on macOS and on the Ubuntu GitHub runner. CI
+repeats setup, lint, type checking, coverage-gated tests, saved-model simulation,
+public-data reconstruction, media validation and complete-history privacy checks.
 
 The numerical inputs for controller comparison, policy training and ablations
 are also public. A clone falls back to `data/public/trajectories/` when the
