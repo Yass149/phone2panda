@@ -62,75 +62,81 @@ def check_metrics() -> list[str]:
     return errors
 
 
-def check_tracked_media() -> tuple[list[str], int]:
+def _contains_private_metadata(metadata: dict[object, object]) -> bool:
+    unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
+    return any(
+        term in str(key).lower() or term in str(value).lower()
+        for key, value in metadata.items()
+        for term in unsafe
+    )
+
+
+def _check_image(path: Path) -> list[str]:
     errors: list[str] = []
+    with Image.open(path) as image:
+        metadata = dict(image.info)
+        frames = getattr(image, "n_frames", 1)
+        image.verify()
+    allowed = {"background", "duration", "extension", "loop", "transparency", "version"}
+    unexpected = set(metadata) if path.suffix.lower() == ".png" else set(metadata) - allowed
+    if unexpected:
+        errors.append(
+            f"{path.relative_to(ROOT)} retains descriptive image metadata: "
+            f"{', '.join(sorted(unexpected))}"
+        )
+    if frames == 0:
+        errors.append(f"{path.relative_to(ROOT)} has no decodable frames")
+    if _contains_private_metadata(metadata):
+        errors.append(f"{path.relative_to(ROOT)} has private metadata")
+    return errors
+
+
+def _check_video(path: Path) -> list[str]:
+    errors: list[str] = []
+    with av.open(str(path)) as container:
+        if any(stream.type == "audio" for stream in container.streams):
+            errors.append(f"{path.relative_to(ROOT)} contains audio")
+        metadata = dict(container.metadata)
+        allowed_format = {"major_brand", "minor_version", "compatible_brands"}
+        unexpected_format = set(metadata) - allowed_format
+        if unexpected_format:
+            errors.append(
+                f"{path.relative_to(ROOT)} retains descriptive container metadata: "
+                f"{', '.join(sorted(unexpected_format))}"
+            )
+        for stream in container.streams:
+            allowed_stream = {"language", "handler_name", "vendor_id"}
+            unexpected_stream = set(stream.metadata) - allowed_stream
+            if unexpected_stream:
+                errors.append(
+                    f"{path.relative_to(ROOT)} retains descriptive stream metadata: "
+                    f"{', '.join(sorted(unexpected_stream))}"
+                )
+            metadata.update(stream.metadata)
+        video = next((stream for stream in container.streams if stream.type == "video"), None)
+        decoded = 0 if video is None else sum(1 for _ in container.decode(video))
+    if decoded == 0:
+        errors.append(f"{path.relative_to(ROOT)} has no decodable frames")
+    if _contains_private_metadata(metadata):
+        errors.append(f"{path.relative_to(ROOT)} has private metadata")
+    return errors
+
+
+def _check_media_file(path: Path) -> list[str]:
+    try:
+        if path.suffix.lower() in {".gif", ".png"}:
+            return _check_image(path)
+        return _check_video(path)
+    except Exception as exc:  # report corrupt media without hiding the source path
+        return [f"{path.relative_to(ROOT)} could not be opened: {exc}"]
+
+
+def check_tracked_media() -> tuple[list[str], int]:
     output = subprocess.check_output(
         ["git", "ls-files", "-z", "*.gif", "*.mp4", "*.png"], cwd=ROOT
     )
     paths = [ROOT / item.decode() for item in output.split(b"\0") if item]
-    unsafe = ("gps", "location", "latitude", "longitude", "device", "make", "model")
-    for path in paths:
-        try:
-            if path.suffix.lower() in {".gif", ".png"}:
-                with Image.open(path) as image:
-                    metadata = dict(image.info)
-                    frames = getattr(image, "n_frames", 1)
-                    image.verify()
-                allowed = {"background", "duration", "extension", "loop", "transparency", "version"}
-                unexpected = (
-                    set(metadata)
-                    if path.suffix.lower() == ".png"
-                    else set(metadata) - allowed
-                )
-                if unexpected:
-                    errors.append(
-                        f"{path.relative_to(ROOT)} retains descriptive image metadata: "
-                        f"{', '.join(sorted(unexpected))}"
-                    )
-                if frames == 0:
-                    errors.append(f"{path.relative_to(ROOT)} has no decodable frames")
-                if any(
-                    term in str(key).lower() or term in str(value).lower()
-                    for key, value in metadata.items()
-                    for term in unsafe
-                ):
-                    errors.append(f"{path.relative_to(ROOT)} has private metadata")
-                continue
-            with av.open(str(path)) as container:
-                if any(stream.type == "audio" for stream in container.streams):
-                    errors.append(f"{path.relative_to(ROOT)} contains audio")
-                metadata = dict(container.metadata)
-                format_keys = set(metadata)
-                allowed_format = {"major_brand", "minor_version", "compatible_brands"}
-                unexpected_format = format_keys - allowed_format
-                if unexpected_format:
-                    errors.append(
-                        f"{path.relative_to(ROOT)} retains descriptive container metadata: "
-                        f"{', '.join(sorted(unexpected_format))}"
-                    )
-                for stream in container.streams:
-                    allowed_stream = {"language", "handler_name", "vendor_id"}
-                    unexpected_stream = set(stream.metadata) - allowed_stream
-                    if unexpected_stream:
-                        errors.append(
-                            f"{path.relative_to(ROOT)} retains descriptive stream metadata: "
-                            f"{', '.join(sorted(unexpected_stream))}"
-                        )
-                    metadata.update(stream.metadata)
-                video = next(
-                    (stream for stream in container.streams if stream.type == "video"), None
-                )
-                decoded = 0 if video is None else sum(1 for _ in container.decode(video))
-                if decoded == 0:
-                    errors.append(f"{path.relative_to(ROOT)} has no decodable frames")
-                if any(
-                    term in str(key).lower() or term in str(value).lower()
-                    for key, value in metadata.items()
-                    for term in unsafe
-                ):
-                    errors.append(f"{path.relative_to(ROOT)} has private metadata")
-        except Exception as exc:  # report corrupt media without hiding the source path
-            errors.append(f"{path.relative_to(ROOT)} could not be opened: {exc}")
+    errors = [error for path in paths for error in _check_media_file(path)]
     return errors, len(paths)
 
 
