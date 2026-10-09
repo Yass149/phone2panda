@@ -144,6 +144,22 @@ def _gate(
     return {"passed": all(criteria.values()), "criteria": criteria, "failure_reasons": failures}
 
 
+def _validate_decoded_orientation(
+    reference_points: dict[str, tuple[float, float]], filename: str
+) -> None:
+    top_above_bottom = max(reference_points["tl"][1], reference_points["tr"][1]) < min(
+        reference_points["bl"][1], reference_points["br"][1]
+    )
+    left_before_right = max(reference_points["tl"][0], reference_points["bl"][0]) < min(
+        reference_points["tr"][0], reference_points["br"][0]
+    )
+    if not (top_above_bottom and left_before_right):
+        raise ValueError(
+            f"Decoded marker order is not upright landscape for {filename}; "
+            "refusing to infer a rotation from container metadata"
+        )
+
+
 def _process_pilot(config: ValidationConfig, spec: PilotSpec) -> dict[str, Any]:
     LOGGER.info("Processing %s", spec.file.name)
     metadata = inspect_video(spec.file)
@@ -156,18 +172,7 @@ def _process_pilot(config: ValidationConfig, spec: PilotSpec) -> dict[str, Any]:
     median_frame = temporal_median(samples)
     references = corner_reference(median_frame, config.detection)
     reference_points = {name: references[name].point for name in CORNER_ORDER}
-    top_markers_above_bottom = max(reference_points["tl"][1], reference_points["tr"][1]) < min(
-        reference_points["bl"][1], reference_points["br"][1]
-    )
-    left_markers_left_of_right = max(reference_points["tl"][0], reference_points["bl"][0]) < min(
-        reference_points["tr"][0], reference_points["br"][0]
-    )
-    decoded_upright_landscape = top_markers_above_bottom and left_markers_left_of_right
-    if not decoded_upright_landscape:
-        raise ValueError(
-            f"Decoded marker order is not upright landscape for {spec.file.name}; "
-            "refusing to infer a rotation from container metadata"
-        )
+    _validate_decoded_orientation(reference_points, spec.file.name)
     homography = homography_from_corners(reference_points)
     obstacle, obstacle_confidence = detect_obstacle(median_frame, homography, config.detection)
 

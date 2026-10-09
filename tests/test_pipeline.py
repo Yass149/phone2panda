@@ -2,8 +2,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from phone2panda.pilot_validation.config import ValidationConfig
-from phone2panda.pilot_validation.pipeline import _gate
+from phone2panda.pilot_validation.pipeline import _gate, _validate_decoded_orientation
 
 
 def _config() -> ValidationConfig:
@@ -69,3 +71,22 @@ def test_gate_rejects_camera_drift() -> None:
 
     assert not result["passed"]
     assert result["failure_reasons"] == ["camera_or_canvas_moved_during_recording"]
+
+
+def test_decoded_orientation_uses_marker_positions() -> None:
+    upright = {
+        "tl": (10.0, 10.0),
+        "tr": (90.0, 10.0),
+        "bl": (10.0, 90.0),
+        "br": (90.0, 90.0),
+    }
+    _validate_decoded_orientation(upright, "upright.MOV")
+
+    rotated = {
+        "tl": (90.0, 10.0),
+        "tr": (90.0, 90.0),
+        "bl": (10.0, 10.0),
+        "br": (10.0, 90.0),
+    }
+    with pytest.raises(ValueError, match="not upright landscape"):
+        _validate_decoded_orientation(rotated, "rotated.MOV")
