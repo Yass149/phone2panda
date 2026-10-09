@@ -4,7 +4,7 @@ import json
 import os
 import platform
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -223,6 +223,85 @@ def reset_signature(env: HumanPathPickPlace) -> FloatArray:
     return np.concatenate([eef, cube])
 
 
+@dataclass
+class _Phase4AExecution:
+    config: Phase4AConfig
+    env: HumanPathPickPlace
+    observation: dict[str, Any]
+    controller: dict[str, Any] = field(init=False)
+    eef_site: int = field(init=False)
+    frames: list[NDArray[np.uint8]] = field(default_factory=list, init=False)
+    actions: list[list[float]] = field(default_factory=list, init=False)
+    cube_path: list[list[float]] = field(default_factory=list, init=False)
+    eef_path: list[list[float]] = field(default_factory=list, init=False)
+    phases: list[dict[str, Any]] = field(default_factory=list, init=False)
+    saturation_count: int = field(default=0, init=False)
+    obstacle_collision_steps: int = field(default=0, init=False)
+
+    def __post_init__(self) -> None:
+        self.controller = self.config.raw["controller"]
+        self.eef_site = self.env.robots[0].eef_site_id["right"]
+
+    def step_toward(self, target: FloatArray, gripper: float) -> float:
+        eef = np.asarray(self.env.sim.data.site_xpos[self.eef_site])
+        action, saturated = bounded_action(
+            target - eef,
+            float(self.controller["position_output_limit"]),
+            gripper,
+        )
+        self.saturation_count += int(saturated)
+        self.observation, _, _, _ = self.env.step(action)
+        self.obstacle_collision_steps += int(self.env.obstacle_collision())
+        self.actions.append(action.tolist())
+        self.cube_path.append(
+            np.asarray(self.env.sim.data.body_xpos[self.env.cube_body_id]).tolist()
+        )
+        self.eef_path.append(
+            np.asarray(self.env.sim.data.site_xpos[self.eef_site]).tolist()
+        )
+        camera = self.config.raw["video"]["camera"]
+        self.frames.append(np.asarray(self.observation[f"{camera}_image"], dtype=np.uint8))
+        eef_after = np.asarray(self.env.sim.data.site_xpos[self.eef_site])
+        return float(np.linalg.norm(target - eef_after))
+
+    def converge(self, name: str, target: FloatArray, gripper: float) -> None:
+        start = len(self.actions)
+        error = float("inf")
+        for _ in range(int(self.controller["phase_timeout_steps"])):
+            error = self.step_toward(target, gripper)
+            if error <= float(self.controller["position_tolerance"]):
+                break
+        self.phases.append(
+            {
+                "name": name,
+                "steps": len(self.actions) - start,
+                "final_position_error": error,
+            }
+        )
+
+    def hold(self, name: str, target: FloatArray, gripper: float, steps: int) -> None:
+        start = len(self.actions)
+        for _ in range(steps):
+            self.step_toward(target, gripper)
+        self.phases.append(
+            {"name": name, "steps": len(self.actions) - start, "final_position_error": 0.0}
+        )
+
+    def transport(self, path: FloatArray, transport_z: float) -> None:
+        start = len(self.actions)
+        for xy in path:
+            target = np.asarray([xy[0], xy[1], transport_z])
+            for _ in range(int(self.controller["waypoint_steps"])):
+                self.step_toward(target, 1.0)
+        self.phases.append(
+            {
+                "name": "transport_human_dmp",
+                "steps": len(self.actions) - start,
+                "waypoints": len(path),
+            }
+        )
+
+
 def run_phase4a(config: Phase4AConfig) -> dict[str, Any]:
     seed = int(config.raw["seed"])
     np.random.seed(seed)
@@ -230,95 +309,37 @@ def run_phase4a(config: Phase4AConfig) -> dict[str, Any]:
     env = make_environment(config, prepared, render=True)
     output_dir = config.path("output_dir")
     output_dir.mkdir(parents=True, exist_ok=True)
-    frames: list[NDArray[np.uint8]] = []
     controller = config.raw["controller"]
     workspace = config.raw["workspace"]
-    obs = env.reset()
+    env.reset()
     initial_signature = reset_signature(env)
     env.reset()
     deterministic_reset_error = float(np.max(np.abs(reset_signature(env) - initial_signature)))
-    obs = env.reset()
-    eef_site = env.robots[0].eef_site_id["right"]
-    phases: list[dict[str, Any]] = []
-    saturation_count = 0
-    obstacle_collision_steps = 0
-    actions: list[list[float]] = []
-    cube_path: list[list[float]] = []
-    eef_path: list[list[float]] = []
-
-    def capture(observation: dict[str, Any]) -> None:
-        frame = observation[f"{config.raw['video']['camera']}_image"]
-        frames.append(np.asarray(frame, dtype=np.uint8))
-
-    def step_toward(target: FloatArray, gripper: float) -> float:
-        nonlocal obs, saturation_count, obstacle_collision_steps
-        eef = np.asarray(env.sim.data.site_xpos[eef_site])
-        action, saturated = bounded_action(
-            target - eef,
-            float(controller["position_output_limit"]),
-            gripper,
-        )
-        saturation_count += int(saturated)
-        obs, _, _, _ = env.step(action)
-        obstacle_collision_steps += int(env.obstacle_collision())
-        actions.append(action.tolist())
-        cube_path.append(np.asarray(env.sim.data.body_xpos[env.cube_body_id]).tolist())
-        eef_path.append(np.asarray(env.sim.data.site_xpos[eef_site]).tolist())
-        capture(obs)
-        return float(np.linalg.norm(target - np.asarray(env.sim.data.site_xpos[eef_site])))
-
-    def converge(name: str, target: FloatArray, gripper: float) -> None:
-        start = len(actions)
-        error = float("inf")
-        for _ in range(int(controller["phase_timeout_steps"])):
-            error = step_toward(target, gripper)
-            if error <= float(controller["position_tolerance"]):
-                break
-        phases.append({"name": name, "steps": len(actions) - start, "final_position_error": error})
+    execution = _Phase4AExecution(config, env, env.reset())
 
     path = np.asarray(prepared["robot"])
     start_xy, goal_xy = path[0], path[-1]
     approach = np.asarray([*start_xy, float(workspace["approach_z"])])
     grasp = np.asarray([*start_xy, float(workspace["grasp_z"])])
     lift = np.asarray([*start_xy, float(workspace["transport_z"])])
-    converge("approach", approach, -1.0)
-    converge("grasp", grasp, -1.0)
-    start = len(actions)
-    for _ in range(int(controller["grasp_steps"])):
-        step_toward(grasp, 1.0)
-    phases.append({"name": "close", "steps": len(actions) - start, "final_position_error": 0.0})
-    converge("lift", lift, 1.0)
-    start = len(actions)
-    for xy in path:
-        target = np.asarray([xy[0], xy[1], float(workspace["transport_z"])])
-        for _ in range(int(controller["waypoint_steps"])):
-            step_toward(target, 1.0)
-    phases.append(
-        {
-            "name": "transport_human_dmp",
-            "steps": len(actions) - start,
-            "waypoints": len(path),
-        }
-    )
+    execution.converge("approach", approach, -1.0)
+    execution.converge("grasp", grasp, -1.0)
+    execution.hold("close", grasp, 1.0, int(controller["grasp_steps"]))
+    execution.converge("lift", lift, 1.0)
+    execution.transport(path, float(workspace["transport_z"]))
     lower = np.asarray([*goal_xy, float(workspace["grasp_z"])])
-    converge("lower", lower, 1.0)
-    start = len(actions)
-    for _ in range(int(controller["release_steps"])):
-        step_toward(lower, -1.0)
-    phases.append({"name": "release", "steps": len(actions) - start, "final_position_error": 0.0})
+    execution.converge("lower", lower, 1.0)
+    execution.hold("release", lower, -1.0, int(controller["release_steps"]))
     retreat = np.asarray([*goal_xy, float(workspace["approach_z"])])
-    converge("retreat", retreat, -1.0)
-    start = len(actions)
-    for _ in range(int(controller["settle_steps"])):
-        step_toward(retreat, -1.0)
-    phases.append({"name": "settle", "steps": len(actions) - start, "final_position_error": 0.0})
+    execution.converge("retreat", retreat, -1.0)
+    execution.hold("settle", retreat, -1.0, int(controller["settle_steps"]))
 
     cube_final = np.asarray(env.sim.data.body_xpos[env.cube_body_id])
     placement_error = float(np.linalg.norm(cube_final[:2] - goal_xy))
-    success = bool(env._check_success() and obstacle_collision_steps == 0)
+    success = bool(env._check_success() and execution.obstacle_collision_steps == 0)
     obstacle_low = prepared["obstacle_xy"] - prepared["obstacle_half_size"]
     obstacle_high = prepared["obstacle_xy"] + prepared["obstacle_half_size"]
-    cube_xy = np.asarray(cube_path)[:, :2]
+    cube_xy = np.asarray(execution.cube_path)[:, :2]
     obstacle_dx = np.maximum(
         np.maximum(obstacle_low[0] - cube_xy[:, 0], cube_xy[:, 0] - obstacle_high[0]),
         0.0,
@@ -328,8 +349,10 @@ def run_phase4a(config: Phase4AConfig) -> dict[str, Any]:
         0.0,
     )
     minimum_obstacle_center_clearance = float(np.min(np.hypot(obstacle_dx, obstacle_dy)))
-    robot_transport = np.asarray(eef_path)[
-        sum(phase["steps"] for phase in phases[:4]) : sum(phase["steps"] for phase in phases[:5]),
+    robot_transport = np.asarray(execution.eef_path)[
+        sum(phase["steps"] for phase in execution.phases[:4]) : sum(
+            phase["steps"] for phase in execution.phases[:5]
+        ),
         :2,
     ]
     straight_start, straight_goal = path[0], path[-1]
@@ -348,15 +371,15 @@ def run_phase4a(config: Phase4AConfig) -> dict[str, Any]:
         ffmpeg_log_level="error",
         output_params=["-an", "-map_metadata", "-1"],
     )
-    for frame in frames:
+    for frame in execution.frames:
         writer.append_data(frame)
     writer.close()
     rollout_path = output_dir / "rollout.npz"
     np.savez_compressed(
         rollout_path,
-        actions=np.asarray(actions),
-        cube_positions=np.asarray(cube_path),
-        eef_positions=np.asarray(eef_path),
+        actions=np.asarray(execution.actions),
+        cube_positions=np.asarray(execution.cube_path),
+        eef_positions=np.asarray(execution.eef_path),
         human_normalised=np.asarray(prepared["smoothed"]),
         dmp_normalised=np.asarray(prepared["dmp"]),
         retargeted_waypoints=path,
@@ -368,19 +391,19 @@ def run_phase4a(config: Phase4AConfig) -> dict[str, Any]:
         "source_episode": config.raw["episode_id"],
         "source_route": prepared["episode"]["expected_route"],
         "controller": "OSC_POSE_fixed_impedance",
-        "steps": len(actions),
-        "duration_seconds": len(actions) / float(controller["control_frequency"]),
+        "steps": len(execution.actions),
+        "duration_seconds": len(execution.actions) / float(controller["control_frequency"]),
         "placement_error_m": placement_error,
         "target_radius_m": float(workspace["target_radius"]),
-        "obstacle_collision_steps": obstacle_collision_steps,
+        "obstacle_collision_steps": execution.obstacle_collision_steps,
         "minimum_obstacle_center_clearance_m": minimum_obstacle_center_clearance,
-        "controller_saturation_steps": saturation_count,
-        "maximum_absolute_action": float(np.max(np.abs(actions))),
-        "action_bound_violations": int(np.sum(np.abs(actions) > 1.0)),
+        "controller_saturation_steps": execution.saturation_count,
+        "maximum_absolute_action": float(np.max(np.abs(execution.actions))),
+        "action_bound_violations": int(np.sum(np.abs(execution.actions) > 1.0)),
         "maximum_transport_deviation_from_straight_m": float(np.max(deviation)),
         "human_path_materially_controls_transport": bool(np.max(deviation) >= 0.04),
         "deterministic_reset_max_error": deterministic_reset_error,
-        "phases": phases,
+        "phases": execution.phases,
         "versions": {
             "robosuite": robosuite.__version__,
             "mujoco": mujoco.__version__,
