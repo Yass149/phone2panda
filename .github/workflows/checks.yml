@@ -24,7 +24,7 @@ jobs:
       - name: Install locked environment
         run: make setup
       - name: Lint and test
-        run: make lint test
+        run: make lint typecheck test
       - name: Run saved-model simulation
         run: make simulate-demo
       - name: Rebuild public-data priors and check teacher safety

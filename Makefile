@@ -1,4 +1,4 @@
-.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c phase4d-preflight phase4d phase4e-diagnostics phase4e-preflight phase4e phase5a phase5b phase6 test lint check readme-results build-demo sanitize-media smoke-demo simulate-demo verify-data evaluate-existing submission-check reproduce-public privacy-history
+.PHONY: setup validate-pilots validate-dataset phase4a phase4b-preflight phase4b phase4c-audit phase4c-preflight phase4c phase4d-preflight phase4d phase4e-diagnostics phase4e-preflight phase4e phase5a phase5b phase6 test lint typecheck check readme-results build-demo sanitize-media smoke-demo simulate-demo verify-data evaluate-existing submission-check reproduce-public privacy-history
 
 UV_ENV = UV_CACHE_DIR=$(CURDIR)/.cache/uv UV_PYTHON_INSTALL_DIR=$(CURDIR)/.local/share/uv/python
 UV = $(UV_ENV) ./tools/run-uv.sh
@@ -84,12 +84,15 @@ submission-check:
 privacy-history:
 	.venv/bin/python scripts/check_repository_privacy.py --history
 
-reproduce-public: lint test submission-check
+reproduce-public: lint typecheck test submission-check
 
 test:
-	.venv/bin/pytest
+	.venv/bin/pytest --cov=phone2panda --cov-report=term-missing
 
 lint:
 	.venv/bin/ruff check .
 
-check: lint test validate-pilots
+typecheck:
+	.venv/bin/mypy
+
+check: lint typecheck test validate-pilots
